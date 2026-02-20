@@ -5,30 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Luigi Bertoldi | IT Infrastructure & Cloud Support</title>
 
-  <!-- Rounded, modern tech fonts -->
+  <!-- Premium rounded tech fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#050814;
-      --text:#e7edf7;
+      --bg0:#040716;
+      --bg1:#060a1a;
+
+      --text:#eaf1ff;
       --muted:#a7b4c7;
 
-      --brand:#5dd6ff;
-      --brand2:#33e0a1;
+      --brand:#66dcff;
+      --brand2:#36f0aa;
+      --danger:#ff5d7a;
 
-      --panel: rgba(12, 18, 36, 0.74);
-      --panel2: rgba(6, 10, 24, 0.62);
+      --glass: rgba(10, 16, 34, 0.64);
+      --glass2: rgba(6, 10, 24, 0.58);
 
-      --stroke: rgba(160, 175, 205, 0.16);
-      --stroke2: rgba(93, 214, 255, 0.28);
+      --stroke: rgba(160,175,205,0.16);
+      --stroke2: rgba(102,220,255,0.30);
 
-      --shadow: 0 24px 80px rgba(0,0,0,.55);
+      --shadow: 0 26px 90px rgba(0,0,0,.58);
       --radius: 22px;
 
-      --max: 1120px;
+      --max: 1140px;
       --pad: 18px;
 
       --navH: 64px;
@@ -41,10 +44,10 @@
       font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(1100px 620px at 14% 10%, rgba(93,214,255,0.13), transparent 55%),
-        radial-gradient(900px 520px at 86% 22%, rgba(51,224,161,0.10), transparent 55%),
-        radial-gradient(900px 520px at 50% 92%, rgba(93,214,255,0.08), transparent 55%),
-        linear-gradient(180deg, #030512 0%, #050814 50%, #030512 100%);
+        radial-gradient(1100px 650px at 12% 10%, rgba(102,220,255,0.13), transparent 55%),
+        radial-gradient(900px 520px at 88% 22%, rgba(54,240,170,0.10), transparent 55%),
+        radial-gradient(900px 520px at 50% 92%, rgba(102,220,255,0.08), transparent 55%),
+        linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 45%, var(--bg0) 100%);
       overflow-x:hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -61,13 +64,24 @@
       height:3px; width:0%;
       z-index:9999;
       background: linear-gradient(90deg, var(--brand), var(--brand2));
-      box-shadow: 0 0 22px rgba(93,214,255,0.35);
+      box-shadow: 0 0 24px rgba(102,220,255,0.35);
+    }
+
+    /* particles canvas */
+    #bgCanvas{
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.55;
+      pointer-events: none;
     }
 
     /* container */
     .container{
       width: min(var(--max), calc(100% - (var(--pad) * 2)));
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
     /* NAV */
@@ -86,15 +100,13 @@
       align-items:center;
       justify-content:space-between;
       gap: 12px;
-
       padding: 10px 12px;
       border-radius: 999px;
-
-      background: rgba(6, 10, 24, 0.58);
+      background: rgba(6, 10, 24, 0.62);
       border: 1px solid rgba(160,175,205,0.16);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.48);
     }
 
     .brand{
@@ -103,19 +115,19 @@
       gap:10px;
       user-select:none;
       padding-left: 6px;
-      min-width: 160px;
+      min-width: 170px;
     }
     .dot{
       width:10px; height:10px; border-radius:999px;
       background: var(--brand);
-      box-shadow: 0 0 0 7px rgba(93,214,255,0.10), 0 0 28px rgba(93,214,255,0.35);
+      box-shadow: 0 0 0 7px rgba(102,220,255,0.10), 0 0 30px rgba(102,220,255,0.35);
       flex: 0 0 auto;
     }
     .brandText{
       font-family: Sora, "Plus Jakarta Sans", sans-serif;
       font-weight:700;
       font-size:12px;
-      letter-spacing:1.2px;
+      letter-spacing:1.3px;
       color:#dbeafe;
       opacity:.92;
       white-space:nowrap;
@@ -126,7 +138,6 @@
       align-items:center;
       gap: 8px;
     }
-
     .links{
       display:flex;
       gap: 6px;
@@ -145,56 +156,40 @@
     }
     .nav a:hover{
       color: var(--text);
-      background: rgba(93,214,255,0.10);
-      box-shadow: 0 0 0 1px rgba(93,214,255,0.14) inset;
+      background: rgba(102,220,255,0.10);
+      box-shadow: 0 0 0 1px rgba(102,220,255,0.14) inset;
     }
 
-    .langBtn{
+    .langBtn, .menuBtn{
       border: 1px solid rgba(160,175,205,0.18);
-      background: rgba(6,10,24,0.40);
+      background: rgba(6,10,24,0.44);
       color: var(--text);
       border-radius: 999px;
       padding: 10px 12px;
-      font-weight: 800;
+      font-weight: 900;
       font-size: 12px;
       cursor:pointer;
       transition: 200ms ease;
       user-select:none;
+      letter-spacing: .2px;
     }
-    .langBtn:hover{
-      border-color: rgba(93,214,255,0.30);
-      background: rgba(93,214,255,0.10);
-    }
-
-    .menuBtn{
-      display:none;
-      border: 1px solid rgba(160,175,205,0.18);
-      background: rgba(6,10,24,0.40);
-      color: var(--text);
-      border-radius: 999px;
-      padding: 10px 12px;
-      cursor:pointer;
-      transition: 200ms ease;
-      user-select:none;
-      font-weight: 800;
-      font-size: 12px;
-    }
-    .menuBtn:hover{
-      border-color: rgba(93,214,255,0.30);
-      background: rgba(93,214,255,0.10);
+    .langBtn:hover, .menuBtn:hover{
+      border-color: rgba(102,220,255,0.30);
+      background: rgba(102,220,255,0.10);
     }
 
-    /* Mobile menu panel */
+    .menuBtn{ display:none; }
+
     .mobilePanel{
       display:none;
       margin-top: 10px;
       border-radius: 18px;
       padding: 10px;
-      background: rgba(6, 10, 24, 0.72);
+      background: rgba(6, 10, 24, 0.76);
       border: 1px solid rgba(160,175,205,0.16);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.48);
     }
     .mobilePanel a{
       display:block;
@@ -205,8 +200,8 @@
       font-size: 14px;
     }
     .mobilePanel a:hover{
-      background: rgba(93,214,255,0.10);
-      box-shadow: 0 0 0 1px rgba(93,214,255,0.14) inset;
+      background: rgba(102,220,255,0.10);
+      box-shadow: 0 0 0 1px rgba(102,220,255,0.14) inset;
       color: var(--text);
     }
     .mobilePanel .row{
@@ -216,11 +211,9 @@
       justify-content:flex-end;
     }
 
-    @media (max-width: 860px){
+    @media (max-width: 940px){
       .links{ display:none; }
       .menuBtn{ display:inline-flex; }
-      .mobilePanel{ display:none; }
-      .nav{ border-radius: 22px; }
       .brand{ min-width: unset; }
     }
     .mobileOpen .mobilePanel{ display:block; }
@@ -232,42 +225,98 @@
       place-items:center;
       padding: calc(92px + var(--navH)) var(--pad) 76px;
       position: relative;
+      z-index: 1;
     }
-    .gridGlow{
-      position:absolute;
-      inset:-60px;
-      background:
-        linear-gradient(rgba(93,214,255,0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(93,214,255,0.07) 1px, transparent 1px);
-      background-size: 70px 70px;
-      mask-image: radial-gradient(circle at 50% 30%, black 0%, transparent 70%);
-      opacity: 0.85;
-      pointer-events:none;
-    }
+
     .heroInner{
       width: min(var(--max), calc(100% - (var(--pad) * 2)));
       text-align:center;
       position: relative;
-      z-index: 1;
     }
+
+    .heroTag{
+      display:inline-flex;
+      gap: 10px;
+      align-items:center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(160,175,205,0.16);
+      background: rgba(6,10,24,0.40);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: rgba(167,180,199,0.95);
+      font-size: 13px;
+      letter-spacing: .2px;
+      margin-bottom: 18px;
+      box-shadow: 0 16px 55px rgba(0,0,0,.32);
+    }
+    .spark{
+      width: 8px; height: 8px;
+      border-radius: 999px;
+      background: var(--brand2);
+      box-shadow: 0 0 0 6px rgba(54,240,170,0.10), 0 0 28px rgba(54,240,170,0.35);
+    }
+
     h1{
       font-family: Sora, "Plus Jakarta Sans", sans-serif;
       font-weight: 700;
       letter-spacing: 0.2px;
-      font-size: clamp(34px, 5vw, 72px);
+      font-size: clamp(34px, 5vw, 74px);
       line-height: 1.03;
       margin: 0;
     }
+
     .heroRole{
       margin: 14px 0 0;
       font-size: clamp(14px, 2vw, 18px);
       color: rgba(167,180,199,0.98);
       letter-spacing: 0.2px;
     }
-    .heroRole b{ color: rgba(93,214,255,0.95); }
+    .heroRole b{ color: rgba(102,220,255,0.95); }
+
+    .heroCtas{
+      margin-top: 26px;
+      display:flex;
+      gap: 12px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-weight: 900;
+      font-size: 14px;
+      border: 1px solid rgba(160,175,205,0.18);
+      transition: 200ms ease;
+      user-select:none;
+      text-decoration:none;
+      letter-spacing: .2px;
+      min-width: 160px;
+    }
+    .btnPrimary{
+      background: linear-gradient(90deg, var(--brand), rgba(54,240,170,0.95));
+      color: #061018;
+      border-color: rgba(102,220,255,0.25);
+      box-shadow: 0 22px 65px rgba(102,220,255,0.15);
+    }
+    .btnPrimary:hover{ transform: translateY(-2px); }
+    .btnGhost{
+      background: rgba(6,10,24,0.34);
+      color: var(--text);
+    }
+    .btnGhost:hover{
+      background: rgba(102,220,255,0.10);
+      border-color: rgba(102,220,255,0.25);
+      transform: translateY(-2px);
+    }
 
     .scrollHint{
-      margin-top: 28px;
+      margin-top: 26px;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -289,7 +338,7 @@
       top: 6px; left: 50%;
       width: 3px; height: 6px;
       border-radius: 6px;
-      background: rgba(93,214,255,0.95);
+      background: rgba(102,220,255,0.95);
       transform: translateX(-50%);
       animation: wheel 1.4s infinite;
     }
@@ -301,10 +350,7 @@
 
     /* SECTIONS */
     section{ scroll-margin-top: 110px; }
-
-    .wrap{
-      padding: 84px 0;
-    }
+    .wrap{ padding: 86px 0; }
 
     .sectionHead{
       display:flex;
@@ -324,12 +370,13 @@
       margin:0;
       color: var(--muted);
       font-size: 13px;
-      max-width: 62ch;
+      max-width: 68ch;
       line-height: 1.55;
     }
-    @media (max-width: 860px){
+    @media (max-width: 940px){
       .sectionHead{ flex-direction: column; align-items:flex-start; }
       .sectionHead p{ max-width: 100%; }
+      .btn{ min-width: 140px; }
     }
 
     .grid{
@@ -338,11 +385,19 @@
       gap: 16px;
       align-items: stretch;
     }
+    .three{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
     .twoCols{
       display:grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap: 16px;
       align-items: stretch;
+    }
+    @media (max-width: 1020px){
+      .three{ grid-template-columns: 1fr; }
     }
     @media (max-width: 960px){
       .grid, .twoCols{ grid-template-columns: 1fr; }
@@ -353,7 +408,7 @@
       padding: 22px 22px;
       border-radius: var(--radius);
       border: 1px solid var(--stroke);
-      background: linear-gradient(180deg, var(--panel), var(--panel2));
+      background: linear-gradient(180deg, var(--glass), var(--glass2));
       box-shadow: 0 16px 48px rgba(0,0,0,0.24);
       transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
       position:relative;
@@ -364,10 +419,10 @@
       position:absolute;
       inset:-2px;
       background:
-        radial-gradient(700px 240px at 10% 16%, rgba(93,214,255,0.22), transparent 56%),
-        radial-gradient(650px 240px at 78% 10%, rgba(51,224,161,0.14), transparent 58%);
-      opacity:.34;
-      filter: blur(8px);
+        radial-gradient(700px 240px at 10% 16%, rgba(102,220,255,0.22), transparent 56%),
+        radial-gradient(650px 240px at 78% 10%, rgba(54,240,170,0.14), transparent 58%);
+      opacity:.32;
+      filter: blur(10px);
       pointer-events:none;
     }
     .card > *{ position:relative; z-index:1; }
@@ -375,7 +430,7 @@
     .card:hover{
       transform: translateY(-6px);
       border-color: var(--stroke2);
-      background: linear-gradient(180deg, rgba(12,18,36,0.88), rgba(6,10,24,0.72));
+      background: linear-gradient(180deg, rgba(10,16,34,0.80), rgba(6,10,24,0.70));
     }
 
     .card h3{
@@ -390,6 +445,23 @@
       color: var(--muted);
       font-size: 14px;
       line-height: 1.65;
+    }
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 12px;
+      color: rgba(167,180,199,0.95);
+      font-size: 13px;
+    }
+    .meta span{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(160,175,205,0.14);
+      background: rgba(6,10,24,0.30);
     }
 
     .list{
@@ -410,8 +482,8 @@
       font-size: 12px;
       padding: 7px 11px;
       border-radius: 999px;
-      background: rgba(93,214,255,0.10);
-      border: 1px solid rgba(93,214,255,0.18);
+      background: rgba(102,220,255,0.10);
+      border: 1px solid rgba(102,220,255,0.18);
       color: rgba(231,237,247,0.92);
       white-space: nowrap;
     }
@@ -419,42 +491,33 @@
     a{ color: var(--brand); text-decoration:none; }
     a:hover{ text-decoration: underline; }
 
-    .ctaRow{
-      display:flex;
-      gap: 12px;
-      flex-wrap:wrap;
+    /* KPI cards */
+    .kpis{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
       margin-top: 16px;
-      align-items:center;
     }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding: 12px 16px;
-      border-radius: 14px;
-      font-weight: 800;
-      font-size: 14px;
-      border: 1px solid rgba(160,175,205,0.18);
-      transition: 200ms ease;
-      user-select:none;
-      text-decoration:none;
+    @media (max-width: 900px){
+      .kpis{ grid-template-columns: 1fr; }
     }
-    .btnPrimary{
-      background: linear-gradient(90deg, var(--brand), rgba(51,224,161,0.95));
-      color: #061018;
-      border-color: rgba(93,214,255,0.25);
-      box-shadow: 0 18px 50px rgba(93,214,255,0.16);
+    .kpi{
+      padding: 18px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(160,175,205,0.16);
+      background: rgba(6,10,24,0.34);
     }
-    .btnPrimary:hover{ transform: translateY(-2px); }
-    .btnGhost{
-      background: rgba(6,10,24,0.30);
-      color: var(--text);
+    .kpi .v{
+      font-family: Sora, "Plus Jakarta Sans", sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: #eaf2ff;
     }
-    .btnGhost:hover{
-      background: rgba(93,214,255,0.10);
-      border-color: rgba(93,214,255,0.25);
-      transform: translateY(-2px);
+    .kpi .l{
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
     }
 
     /* reveal */
@@ -472,6 +535,8 @@
       color: rgba(167,180,199,0.92);
       border-top: 1px solid rgba(160,175,205,0.12);
       background: rgba(6,10,24,0.28);
+      position: relative;
+      z-index: 1;
     }
 
     /* back to top */
@@ -491,7 +556,7 @@
     }
     .toTop button{
       border: 1px solid rgba(160,175,205,0.18);
-      background: rgba(6,10,24,0.70);
+      background: rgba(6,10,24,0.75);
       color: var(--text);
       border-radius: 14px;
       padding: 12px 12px;
@@ -501,15 +566,17 @@
       -webkit-backdrop-filter: blur(12px);
     }
     .toTop button:hover{
-      border-color: rgba(93,214,255,0.28);
-      background: rgba(93,214,255,0.10);
+      border-color: rgba(102,220,255,0.28);
+      background: rgba(102,220,255,0.10);
     }
   </style>
 </head>
 
 <body class="lang-pt">
+  <canvas id="bgCanvas"></canvas>
   <div class="progress" id="progress"></div>
 
+  <!-- NAV -->
   <div class="navWrap" id="navWrap">
     <div class="nav">
       <div class="brand">
@@ -521,8 +588,8 @@
         <div class="links" aria-label="Menu principal">
           <a href="#about" data-i18n="nav_about">Sobre</a>
           <a href="#experience" data-i18n="nav_experience">Experiência</a>
-          <a href="#stack" data-i18n="nav_stack">Stack</a>
-          <a href="#languages" data-i18n="nav_languages">Idiomas</a>
+          <a href="#projects" data-i18n="nav_projects">Projetos</a>
+          <a href="#skills" data-i18n="nav_skills">Skills</a>
           <a href="#contact" data-i18n="nav_contact">Contato</a>
         </div>
 
@@ -534,8 +601,8 @@
     <div class="mobilePanel" id="mobilePanel" aria-label="Menu mobile">
       <a href="#about" data-i18n="nav_about">Sobre</a>
       <a href="#experience" data-i18n="nav_experience">Experiência</a>
-      <a href="#stack" data-i18n="nav_stack">Stack</a>
-      <a href="#languages" data-i18n="nav_languages">Idiomas</a>
+      <a href="#projects" data-i18n="nav_projects">Projetos</a>
+      <a href="#skills" data-i18n="nav_skills">Skills</a>
       <a href="#contact" data-i18n="nav_contact">Contato</a>
       <div class="row">
         <button class="langBtn" id="langBtn2" aria-label="Trocar idioma">EN</button>
@@ -543,20 +610,30 @@
     </div>
   </div>
 
-  <!-- HERO (limpo) -->
+  <!-- HERO -->
   <header class="hero" id="top">
-    <div class="gridGlow"></div>
     <div class="heroInner">
-      <div>
-        <h1>Luigi Giovanni Bertoldi</h1>
-        <p class="heroRole" data-lang="pt">IT Infrastructure • <b>Cloud Support</b> • Systems Analyst</p>
-        <p class="heroRole" data-lang="en">IT Infrastructure • <b>Cloud Support</b> • Systems Analyst</p>
+      <div class="heroTag">
+        <span class="spark"></span>
+        <span data-lang="pt">Disponível • Remoto/Presencial</span>
+        <span data-lang="en">Available • Remote/On-site</span>
+      </div>
 
-        <div class="scrollHint">
-          <span class="mouse"></span>
-          <span data-lang="pt">Scroll</span>
-          <span data-lang="en">Scroll</span>
-        </div>
+      <h1>Luigi Giovanni Bertoldi</h1>
+
+      <p class="heroRole" data-lang="pt">IT Infrastructure • <b>Cloud Support</b> • Systems Analyst</p>
+      <p class="heroRole" data-lang="en">IT Infrastructure • <b>Cloud Support</b> • Systems Analyst</p>
+
+      <div class="heroCtas">
+        <a class="btn btnPrimary" href="mailto:luigigbertoldi@gmail.com" data-lang="pt">📩 Contato</a>
+        <a class="btn btnPrimary" href="mailto:luigigbertoldi@gmail.com" data-lang="en">📩 Contact</a>
+        <a class="btn btnGhost" href="https://github.com/luigigbertoldi" target="_blank" rel="noopener">💻 GitHub</a>
+      </div>
+
+      <div class="scrollHint">
+        <span class="mouse"></span>
+        <span data-lang="pt">Scroll</span>
+        <span data-lang="en">Scroll</span>
       </div>
     </div>
   </header>
@@ -568,54 +645,67 @@
         <h2 data-lang="pt">Sobre</h2>
         <h2 data-lang="en">About</h2>
 
-        <p data-lang="pt">Suporte N1/N2 e infraestrutura com foco em estabilidade, segurança e experiência do usuário.</p>
-        <p data-lang="en">N1/N2 support and infrastructure focused on stability, security, and user experience.</p>
+        <p data-lang="pt">Infraestrutura e suporte com foco em estabilidade, segurança e excelência no atendimento.</p>
+        <p data-lang="en">Infrastructure and support focused on stability, security, and top-tier service.</p>
       </div>
 
       <div class="twoCols">
         <div class="card reveal">
-          <h3 data-lang="pt">Perfil</h3>
-          <h3 data-lang="en">Profile</h3>
+          <h3 data-lang="pt">Resumo</h3>
+          <h3 data-lang="en">Summary</h3>
 
           <p data-lang="pt">
-            Profissional de TI com experiência em suporte e infraestrutura, atuando com Windows e Linux, administração de identidade (Active Directory),
-            troubleshooting de redes e padronização de processos. Responsável por setor cedo, com postura de ownership e disciplina operacional.
+            Profissional de TI com experiência em suporte N1/N2 e infraestrutura, atuando com ambientes Windows e Linux,
+            Active Directory, troubleshooting de redes e segurança básica. Forte foco em documentação, padronização e melhoria contínua.
           </p>
           <p data-lang="en">
-            IT professional with experience in support and infrastructure, working with Windows and Linux, identity administration (Active Directory),
-            network troubleshooting, and process standardization. Took ownership early, with strong operational discipline.
+            IT professional with experience in N1/N2 support and infrastructure, working with Windows and Linux environments,
+            Active Directory, network troubleshooting, and baseline security. Strong focus on documentation, standardization, and continuous improvement.
           </p>
 
-          <div class="pillRow">
-            <span class="pill">Troubleshooting</span>
-            <span class="pill" data-lang="pt">Documentação</span>
-            <span class="pill" data-lang="en">Documentation</span>
-            <span class="pill" data-lang="pt">Processos</span>
-            <span class="pill" data-lang="en">Processes</span>
-            <span class="pill" data-lang="pt">Segurança</span>
-            <span class="pill" data-lang="en">Security</span>
+          <div class="kpis">
+            <div class="kpi">
+              <div class="v" data-lang="pt">N1/N2</div>
+              <div class="v" data-lang="en">N1/N2</div>
+              <div class="l" data-lang="pt">Atendimento presencial e remoto</div>
+              <div class="l" data-lang="en">On-site and remote support</div>
+            </div>
+            <div class="kpi">
+              <div class="v">AD</div>
+              <div class="l" data-lang="pt">Usuários, grupos e permissões</div>
+              <div class="l" data-lang="en">Users, groups and permissions</div>
+            </div>
+            <div class="kpi">
+              <div class="v" data-lang="pt">Redes</div>
+              <div class="v" data-lang="en">Networking</div>
+              <div class="l" data-lang="pt">DNS • TCP/IP • conectividade</div>
+              <div class="l" data-lang="en">DNS • TCP/IP • connectivity</div>
+            </div>
           </div>
         </div>
 
         <div class="card reveal">
-          <h3 data-lang="pt">Foco</h3>
-          <h3 data-lang="en">Focus</h3>
+          <h3 data-lang="pt">Objetivo</h3>
+          <h3 data-lang="en">Goal</h3>
 
-          <p data-lang="pt">Infraestrutura & Cloud Support, contribuindo com disponibilidade, performance e melhoria contínua.</p>
-          <p data-lang="en">Infrastructure & Cloud Support, focused on availability, performance, and continuous improvement.</p>
+          <p data-lang="pt">
+            Evoluir para uma posição em Infraestrutura/Cloud Support, atuando com identidade, redes, segurança e operação —
+            garantindo disponibilidade e qualidade do serviço.
+          </p>
+          <p data-lang="en">
+            Grow into an Infrastructure/Cloud Support role, working with identity, networking, security, and operations —
+            ensuring high availability and service quality.
+          </p>
 
-          <ul class="list" data-lang="pt">
-            <li>Windows / Linux • suporte corporativo</li>
-            <li>Active Directory • permissões • acessos</li>
-            <li>DNS • TCP/IP • conectividade</li>
-            <li>Base para evolução em cloud (AWS/Azure)</li>
-          </ul>
-          <ul class="list" data-lang="en">
-            <li>Windows / Linux • corporate support</li>
-            <li>Active Directory • permissions • access control</li>
-            <li>DNS • TCP/IP • connectivity</li>
-            <li>Foundation for cloud growth (AWS/Azure)</li>
-          </ul>
+          <div class="pillRow">
+            <span class="pill">Windows</span>
+            <span class="pill">Linux</span>
+            <span class="pill">Active Directory</span>
+            <span class="pill">DNS</span>
+            <span class="pill">TCP/IP</span>
+            <span class="pill" data-lang="pt">Segurança</span>
+            <span class="pill" data-lang="en">Security</span>
+          </div>
         </div>
       </div>
     </section>
@@ -626,8 +716,8 @@
         <h2 data-lang="pt">Experiência</h2>
         <h2 data-lang="en">Experience</h2>
 
-        <p data-lang="pt">Atuação com suporte, infraestrutura e rotinas operacionais em ambiente corporativo.</p>
-        <p data-lang="en">Hands-on work with support, infrastructure, and operations in a corporate environment.</p>
+        <p data-lang="pt">Atuação em ambiente corporativo com foco em operação, estabilidade e atendimento.</p>
+        <p data-lang="en">Corporate environment experience focused on operations, stability, and support.</p>
       </div>
 
       <div class="grid">
@@ -635,179 +725,191 @@
           <h3 data-lang="pt">SIGAMAQ Industrial — Analista de Suporte de TI (N1/N2)</h3>
           <h3 data-lang="en">SIGAMAQ Industrial — IT Support Analyst (N1/N2)</h3>
 
+          <div class="meta">
+            <span>📍 Blumenau/SC</span>
+            <span data-lang="pt">🧩 Infra & Suporte</span>
+            <span data-lang="en">🧩 Infra & Support</span>
+          </div>
+
           <ul class="list" data-lang="pt">
-            <li>Suporte presencial e remoto, priorizando por impacto e urgência</li>
-            <li>Administração de usuários, grupos e permissões via Active Directory</li>
-            <li>Troubleshooting de rede: DNS, IP, conectividade e acesso a recursos</li>
-            <li>Manutenção e upgrades: SSD, RAM, diagnóstico e troca de componentes</li>
-            <li>Suporte a impressoras, filas, drivers e padronização</li>
-            <li>Boas práticas de segurança: BitLocker, antivírus e controle de acesso</li>
+            <li>Suporte presencial e remoto, priorização por impacto e urgência</li>
+            <li>Active Directory: usuários, grupos e permissões</li>
+            <li>Redes: DNS, IP, conectividade e acesso a recursos</li>
+            <li>Manutenção e upgrades: SSD, RAM, diagnóstico e troca</li>
+            <li>Impressoras: drivers, filas e padronização</li>
+            <li>Segurança: BitLocker, antivírus e boas práticas</li>
           </ul>
 
           <ul class="list" data-lang="en">
             <li>On-site and remote support, prioritizing by impact and urgency</li>
-            <li>User/group/permission management through Active Directory</li>
-            <li>Network troubleshooting: DNS, IP, connectivity and resource access</li>
+            <li>Active Directory: users, groups and permissions</li>
+            <li>Networking: DNS, IP, connectivity and resource access</li>
             <li>Hardware maintenance and upgrades: SSD, RAM, diagnostics and replacement</li>
-            <li>Printer support: queues, drivers and standardization</li>
-            <li>Security best practices: BitLocker, antivirus and access control</li>
+            <li>Printers: drivers, queues and standardization</li>
+            <li>Security: BitLocker, antivirus and best practices</li>
           </ul>
-
-          <div class="pillRow">
-            <span class="pill">N1/N2</span>
-            <span class="pill">Active Directory</span>
-            <span class="pill" data-lang="pt">Redes</span>
-            <span class="pill" data-lang="en">Networking</span>
-            <span class="pill">Windows/Linux</span>
-          </div>
         </div>
 
         <div class="card reveal">
-          <h3 data-lang="pt">Responsabilidade & liderança</h3>
-          <h3 data-lang="en">Ownership & leadership</h3>
+          <h3 data-lang="pt">Responsabilidade cedo</h3>
+          <h3 data-lang="en">Early ownership</h3>
 
-          <p data-lang="pt">Experiência assumindo responsabilidades cedo, com foco em organização, padronização e execução.</p>
-          <p data-lang="en">Experience taking ownership early, focusing on organization, standardization, and execution.</p>
-
-          <ul class="list" data-lang="pt">
-            <li>Criação e manutenção de documentação técnica</li>
-            <li>Padronização de rotinas para reduzir retrabalho</li>
-            <li>Organização de ativos e suporte operacional</li>
-          </ul>
-          <ul class="list" data-lang="en">
-            <li>Technical documentation creation and maintenance</li>
-            <li>Standardizing routines to reduce rework</li>
-            <li>Asset organization and operational support</li>
-          </ul>
+          <p data-lang="pt">
+            Experiência assumindo responsabilidades de setor cedo, com foco em organização, padronização de rotinas e documentação técnica
+            para reduzir retrabalho e melhorar consistência.
+          </p>
+          <p data-lang="en">
+            Experience taking ownership early, focused on organization, routine standardization, and technical documentation
+            to reduce rework and improve consistency.
+          </p>
 
           <div class="pillRow">
-            <span class="pill">Ownership</span>
-            <span class="pill" data-lang="pt">Processos</span>
-            <span class="pill" data-lang="en">Processes</span>
+            <span class="pill" data-lang="pt">Documentação</span>
+            <span class="pill" data-lang="en">Documentation</span>
             <span class="pill" data-lang="pt">Padronização</span>
             <span class="pill" data-lang="en">Standardization</span>
+            <span class="pill">Ownership</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- STACK -->
-    <section class="wrap" id="stack">
+    <!-- PROJECTS -->
+    <section class="wrap" id="projects">
       <div class="sectionHead reveal">
-        <h2 data-lang="pt">Stack</h2>
-        <h2 data-lang="en">Tech Stack</h2>
+        <h2 data-lang="pt">Projetos</h2>
+        <h2 data-lang="en">Projects</h2>
 
-        <p data-lang="pt">Tecnologias e áreas de atuação com base em experiência prática.</p>
-        <p data-lang="en">Technologies and areas of work based on hands-on experience.</p>
+        <p data-lang="pt">Cases técnicos com foco em infraestrutura, operação e qualidade.</p>
+        <p data-lang="en">Technical cases focused on infrastructure, operations, and quality.</p>
       </div>
 
-      <div class="grid">
+      <div class="three">
         <div class="card reveal">
-          <h3 data-lang="pt">Sistemas & Identidade</h3>
-          <h3 data-lang="en">Systems & Identity</h3>
+          <h3 data-lang="pt">Padronização de atendimento & base de conhecimento</h3>
+          <h3 data-lang="en">Support standardization & knowledge base</h3>
 
-          <ul class="list" data-lang="pt">
-            <li>Windows (estações) • fundamentos de Windows Server</li>
-            <li>Linux (administração básica) • permissões • serviços</li>
-            <li>Active Directory: usuários, grupos, permissões e controle de acesso</li>
-          </ul>
-          <ul class="list" data-lang="en">
-            <li>Windows (workstations) • Windows Server fundamentals</li>
-            <li>Linux (basic administration) • permissions • services</li>
-            <li>Active Directory: users, groups, permissions and access control</li>
-          </ul>
+          <p data-lang="pt">
+            Criação de procedimentos e documentação para acelerar atendimento e reduzir recorrência de incidentes.
+          </p>
+          <p data-lang="en">
+            Created procedures and documentation to speed up support and reduce recurring incidents.
+          </p>
 
           <div class="pillRow">
-            <span class="pill">Windows</span>
-            <span class="pill">Linux</span>
-            <span class="pill">Active Directory</span>
+            <span class="pill" data-lang="pt">Documentação</span>
+            <span class="pill" data-lang="en">Documentation</span>
+            <span class="pill" data-lang="pt">Processos</span>
+            <span class="pill" data-lang="en">Processes</span>
+            <span class="pill">SLA mindset</span>
           </div>
         </div>
 
         <div class="card reveal">
-          <h3 data-lang="pt">Redes & Segurança</h3>
-          <h3 data-lang="en">Networking & Security</h3>
+          <h3 data-lang="pt">Troubleshooting de rede (DNS/TCP/IP)</h3>
+          <h3 data-lang="en">Network troubleshooting (DNS/TCP/IP)</h3>
 
-          <ul class="list" data-lang="pt">
-            <li>DNS • TCP/IP • troubleshooting de conectividade</li>
-            <li>Diagnóstico e testes de comunicação em rede</li>
-            <li>Boas práticas: BitLocker, antivírus, senhas e acessos</li>
-          </ul>
-          <ul class="list" data-lang="en">
-            <li>DNS • TCP/IP • connectivity troubleshooting</li>
-            <li>Network diagnostics and communication testing</li>
-            <li>Best practices: BitLocker, antivirus, passwords and access</li>
-          </ul>
+          <p data-lang="pt">
+            Diagnóstico e correção de falhas de conectividade e acesso a recursos, com testes e validações.
+          </p>
+          <p data-lang="en">
+            Diagnosed and fixed connectivity issues and resource access, with testing and validation.
+          </p>
 
           <div class="pillRow">
             <span class="pill">DNS</span>
             <span class="pill">TCP/IP</span>
-            <span class="pill">BitLocker</span>
+            <span class="pill" data-lang="pt">Conectividade</span>
+            <span class="pill" data-lang="en">Connectivity</span>
           </div>
         </div>
 
         <div class="card reveal">
-          <h3 data-lang="pt">Operação & Qualidade</h3>
-          <h3 data-lang="en">Operations & Quality</h3>
+          <h3 data-lang="pt">Segurança básica (BitLocker & boas práticas)</h3>
+          <h3 data-lang="en">Baseline security (BitLocker & best practices)</h3>
 
-          <ul class="list" data-lang="pt">
-            <li>Registro e acompanhamento de incidentes e problemas</li>
-            <li>Documentação e base de conhecimento</li>
-            <li>Padronização e melhoria contínua</li>
-          </ul>
-          <ul class="list" data-lang="en">
-            <li>Incident and problem tracking</li>
-            <li>Documentation and knowledge base</li>
-            <li>Standardization and continuous improvement</li>
-          </ul>
+          <p data-lang="pt">
+            Aplicação de boas práticas, criptografia de dispositivos e controle de acessos conforme políticas internas.
+          </p>
+          <p data-lang="en">
+            Applied best practices, device encryption, and access control aligned with internal policies.
+          </p>
 
           <div class="pillRow">
-            <span class="pill" data-lang="pt">Incidentes</span>
-            <span class="pill" data-lang="en">Incidents</span>
+            <span class="pill">BitLocker</span>
+            <span class="pill" data-lang="pt">Acessos</span>
+            <span class="pill" data-lang="en">Access</span>
+            <span class="pill" data-lang="pt">Segurança</span>
+            <span class="pill" data-lang="en">Security</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="wrap" id="skills">
+      <div class="sectionHead reveal">
+        <h2 data-lang="pt">Skills</h2>
+        <h2 data-lang="en">Skills</h2>
+
+        <p data-lang="pt">Competências técnicas alinhadas para Infraestrutura e Cloud Support.</p>
+        <p data-lang="en">Technical competencies aligned with Infrastructure and Cloud Support.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card reveal">
+          <h3 data-lang="pt">Core</h3>
+          <h3 data-lang="en">Core</h3>
+
+          <div class="pillRow">
+            <span class="pill">Active Directory</span>
+            <span class="pill">Windows</span>
+            <span class="pill">Linux</span>
+            <span class="pill">DNS</span>
+            <span class="pill">TCP/IP</span>
+            <span class="pill" data-lang="pt">Suporte N1/N2</span>
+            <span class="pill" data-lang="en">N1/N2 Support</span>
             <span class="pill" data-lang="pt">Documentação</span>
             <span class="pill" data-lang="en">Documentation</span>
-            <span class="pill" data-lang="pt">Melhoria contínua</span>
-            <span class="pill" data-lang="en">Continuous improvement</span>
           </div>
         </div>
 
         <div class="card reveal">
-          <h3 data-lang="pt">Cloud</h3>
-          <h3 data-lang="en">Cloud</h3>
+          <h3 data-lang="pt">Cloud & Próximos passos</h3>
+          <h3 data-lang="en">Cloud & Next steps</h3>
 
-          <ul class="list" data-lang="pt">
-            <li>Fundamentos e conceitos de cloud (base para AWS/Azure)</li>
-            <li>Foco em suporte e operação: identidade, redes e segurança</li>
-          </ul>
-          <ul class="list" data-lang="en">
-            <li>Cloud fundamentals (foundation for AWS/Azure)</li>
-            <li>Support and operations focus: identity, networking, and security</li>
-          </ul>
+          <p data-lang="pt">
+            Base sólida para evolução em cloud com foco em suporte e operação (identidade, redes, segurança e observabilidade).
+          </p>
+          <p data-lang="en">
+            Strong foundation to grow into cloud focused on support and operations (identity, networking, security, and observability).
+          </p>
 
           <div class="pillRow">
-            <span class="pill">Cloud Support</span>
-            <span class="pill">AWS/Azure</span>
-            <span class="pill" data-lang="pt">Redes</span>
-            <span class="pill" data-lang="en">Networking</span>
+            <span class="pill">AWS/Azure (Foundations)</span>
+            <span class="pill" data-lang="pt">Operação</span>
+            <span class="pill" data-lang="en">Operations</span>
+            <span class="pill" data-lang="pt">Segurança</span>
+            <span class="pill" data-lang="en">Security</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- LANGUAGES + CONTACT -->
-    <section class="wrap" id="languages">
+    <section class="wrap" id="contact">
       <div class="sectionHead reveal">
-        <h2 data-lang="pt">Idiomas</h2>
-        <h2 data-lang="en">Languages</h2>
+        <h2 data-lang="pt">Contato</h2>
+        <h2 data-lang="en">Contact</h2>
 
-        <p data-lang="pt">Comunicação técnica e suporte para ambientes internacionais.</p>
-        <p data-lang="en">Technical communication and support for international environments.</p>
+        <p data-lang="pt">Vamos conversar sobre oportunidades e projetos.</p>
+        <p data-lang="en">Let’s talk about opportunities and projects.</p>
       </div>
 
       <div class="twoCols">
         <div class="card reveal">
-          <h3 data-lang="pt">Proficiência</h3>
-          <h3 data-lang="en">Proficiency</h3>
+          <h3 data-lang="pt">Idiomas</h3>
+          <h3 data-lang="en">Languages</h3>
 
           <ul class="list" data-lang="pt">
             <li>🇧🇷 Português — Fluente</li>
@@ -823,19 +925,25 @@
           </ul>
         </div>
 
-        <div class="card reveal" id="contact">
-          <h3 data-lang="pt">Contato</h3>
-          <h3 data-lang="en">Contact</h3>
+        <div class="card reveal">
+          <h3 data-lang="pt">Links</h3>
+          <h3 data-lang="en">Links</h3>
 
           <p>
             📧 <a href="mailto:luigigbertoldi@gmail.com">luigigbertoldi@gmail.com</a><br>
             💻 <a href="https://github.com/luigigbertoldi" target="_blank" rel="noopener">github.com/luigigbertoldi</a>
           </p>
 
-          <div class="ctaRow">
+          <div class="meta">
+            <span>✅ PT/IT</span>
+            <span>🌍 EN</span>
+            <span data-lang="pt">🚀 Cloud Support</span>
+            <span data-lang="en">🚀 Cloud Support</span>
+          </div>
+
+          <div class="heroCtas" style="margin-top:16px">
             <a class="btn btnPrimary" href="mailto:luigigbertoldi@gmail.com" data-lang="pt">📩 Enviar e-mail</a>
             <a class="btn btnPrimary" href="mailto:luigigbertoldi@gmail.com" data-lang="en">📩 Send email</a>
-
             <a class="btn btnGhost" href="https://github.com/luigigbertoldi" target="_blank" rel="noopener">💻 GitHub</a>
           </div>
         </div>
@@ -879,10 +987,10 @@
       else toTop.classList.remove('show');
     });
 
-    // i18n nav labels
+    // i18n labels (nav)
     const labels = {
-      pt: { nav_about:'Sobre', nav_experience:'Experiência', nav_stack:'Stack', nav_languages:'Idiomas', nav_contact:'Contato' },
-      en: { nav_about:'About', nav_experience:'Experience', nav_stack:'Tech Stack', nav_languages:'Languages', nav_contact:'Contact' }
+      pt: { nav_about:'Sobre', nav_experience:'Experiência', nav_projects:'Projetos', nav_skills:'Skills', nav_contact:'Contato' },
+      en: { nav_about:'About', nav_experience:'Experience', nav_projects:'Projects', nav_skills:'Skills', nav_contact:'Contact' }
     };
 
     const langBtn = document.getElementById('langBtn');
@@ -894,7 +1002,7 @@
 
       const next = (lang === 'pt') ? 'EN' : 'PT';
       langBtn.textContent = next;
-      langBtn2.textContent = next;
+      if (langBtn2) langBtn2.textContent = next;
 
       localStorage.setItem('siteLang', lang);
 
@@ -903,14 +1011,10 @@
         el.textContent = labels[lang][key] || el.textContent;
       });
     }
-
     const saved = localStorage.getItem('siteLang');
     setLang(saved === 'en' ? 'en' : 'pt');
 
     langBtn.addEventListener('click', () => {
-      setLang(document.body.classList.contains('lang-pt') ? 'en' : 'pt');
-    });
-    langBtn2.addEventListener('click', () => {
       setLang(document.body.classList.contains('lang-pt') ? 'en' : 'pt');
     });
 
@@ -920,16 +1024,89 @@
     menuBtn.addEventListener('click', () => {
       navWrap.classList.toggle('mobileOpen');
     });
-
-    // close mobile on link click
     document.getElementById('mobilePanel').addEventListener('click', (e) => {
       if (e.target.tagName === 'A') navWrap.classList.remove('mobileOpen');
+      if (e.target.id === 'langBtn2') setLang(document.body.classList.contains('lang-pt') ? 'en' : 'pt');
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 940) navWrap.classList.remove('mobileOpen');
     });
 
-    // close mobile when resizing up
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 860) navWrap.classList.remove('mobileOpen');
-    });
+    // Particles background (lightweight)
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let w, h, dpr;
+    function resize(){
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = Math.floor(window.innerWidth * dpr);
+      h = canvas.height = Math.floor(window.innerHeight * dpr);
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      ctx.setTransform(1,0,0,1,0,0);
+      ctx.scale(dpr, dpr);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const pts = [];
+    const P = 60; // keep light
+    function rnd(min,max){ return Math.random()*(max-min)+min; }
+
+    for(let i=0;i<P;i++){
+      pts.push({
+        x:rnd(0, window.innerWidth),
+        y:rnd(0, window.innerHeight),
+        vx:rnd(-0.25,0.25),
+        vy:rnd(-0.25,0.25),
+        r:rnd(1.2,2.4)
+      });
+    }
+
+    function step(){
+      ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+
+      // points
+      for(const p of pts){
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if(p.x < -20) p.x = window.innerWidth + 20;
+        if(p.x > window.innerWidth + 20) p.x = -20;
+        if(p.y < -20) p.y = window.innerHeight + 20;
+        if(p.y > window.innerHeight + 20) p.y = -20;
+      }
+
+      // lines
+      for(let i=0;i<pts.length;i++){
+        for(let j=i+1;j<pts.length;j++){
+          const a = pts[i], b = pts[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          const max = 150;
+          if(dist < max){
+            const alpha = (1 - dist/max) * 0.16;
+            ctx.strokeStyle = `rgba(102,220,255,${alpha})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x,a.y);
+            ctx.lineTo(b.x,b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // dots
+      for(const p of pts){
+        ctx.fillStyle = 'rgba(102,220,255,0.55)';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(step);
+    }
+    step();
   </script>
 </body>
 </html>
