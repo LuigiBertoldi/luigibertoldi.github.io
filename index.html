@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Luigi Giovanni Bertoldi | IT Infrastructure & Cloud Support</title>
 
+  <!-- Premium rounded tech fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,6 +27,8 @@
       --stroke: rgba(160,175,205,0.16);
       --stroke2: rgba(102,220,255,0.30);
 
+      --shadow: 0 26px 90px rgba(0,0,0,.58);
+
       --radius: 22px;
       --max: 1140px;
       --pad: 18px;
@@ -34,6 +37,7 @@
 
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
+
     body{
       margin:0;
       font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -47,11 +51,6 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-
-    /* language visibility */
-    [data-lang]{ display:none; }
-    body.lang-pt [data-lang="pt"]{ display:block; }
-    body.lang-en [data-lang="en"]{ display:block; }
 
     /* top progress */
     .progress{
@@ -127,17 +126,8 @@
       white-space:nowrap;
     }
 
-    .navRight{
-      display:flex;
-      align-items:center;
-      gap: 8px;
-    }
-    .links{
-      display:flex;
-      gap: 6px;
-      align-items:center;
-      flex-wrap: wrap;
-    }
+    .navRight{ display:flex; align-items:center; gap: 8px; }
+    .links{ display:flex; gap: 6px; align-items:center; flex-wrap: wrap; }
 
     .nav a{
       color: rgba(167,180,199,0.95);
@@ -171,7 +161,6 @@
       border-color: rgba(102,220,255,0.30);
       background: rgba(102,220,255,0.10);
     }
-
     .menuBtn{ display:none; }
 
     .mobilePanel{
@@ -364,7 +353,7 @@
       margin:0;
       color: var(--muted);
       font-size: 13px;
-      max-width: 68ch;
+      max-width: 72ch;
       line-height: 1.55;
     }
     @media (max-width: 940px){
@@ -415,7 +404,7 @@
       background:
         radial-gradient(700px 240px at 10% 16%, rgba(102,220,255,0.22), transparent 56%),
         radial-gradient(650px 240px at 78% 10%, rgba(54,240,170,0.14), transparent 58%);
-      opacity:.32;
+      opacity:.30;
       filter: blur(10px);
       pointer-events:none;
     }
@@ -440,6 +429,7 @@
       font-size: 14px;
       line-height: 1.65;
     }
+
     .meta{
       display:flex;
       flex-wrap:wrap;
@@ -534,7 +524,7 @@
   </style>
 </head>
 
-<body class="lang-pt">
+<body>
   <canvas id="bgCanvas"></canvas>
   <div class="progress" id="progress"></div>
 
@@ -548,26 +538,26 @@
 
       <div class="navRight">
         <div class="links" aria-label="Menu principal">
-          <a href="#about" data-i18n="nav_about">Sobre</a>
-          <a href="#experience" data-i18n="nav_experience">Experiência</a>
-          <a href="#projects" data-i18n="nav_projects">Projetos</a>
-          <a href="#skills" data-i18n="nav_skills">Competências</a>
-          <a href="#contact" data-i18n="nav_contact">Contato</a>
+          <a href="#about" data-i18n="nav_about"></a>
+          <a href="#experience" data-i18n="nav_experience"></a>
+          <a href="#projects" data-i18n="nav_projects"></a>
+          <a href="#skills" data-i18n="nav_skills"></a>
+          <a href="#contact" data-i18n="nav_contact"></a>
         </div>
 
-        <button class="langBtn" id="langBtn" aria-label="Trocar idioma">EN</button>
+        <button class="langBtn" id="langBtn" aria-label="Trocar idioma"></button>
         <button class="menuBtn" id="menuBtn" aria-label="Abrir menu">MENU</button>
       </div>
     </div>
 
     <div class="mobilePanel" id="mobilePanel" aria-label="Menu mobile">
-      <a href="#about" data-i18n="nav_about">Sobre</a>
-      <a href="#experience" data-i18n="nav_experience">Experiência</a>
-      <a href="#projects" data-i18n="nav_projects">Projetos</a>
-      <a href="#skills" data-i18n="nav_skills">Competências</a>
-      <a href="#contact" data-i18n="nav_contact">Contato</a>
+      <a href="#about" data-i18n="nav_about"></a>
+      <a href="#experience" data-i18n="nav_experience"></a>
+      <a href="#projects" data-i18n="nav_projects"></a>
+      <a href="#skills" data-i18n="nav_skills"></a>
+      <a href="#contact" data-i18n="nav_contact"></a>
       <div class="row">
-        <button class="langBtn" id="langBtn2" aria-label="Trocar idioma">EN</button>
+        <button class="langBtn" id="langBtn2" aria-label="Trocar idioma"></button>
       </div>
     </div>
   </div>
@@ -577,25 +567,28 @@
     <div class="heroInner">
       <div class="heroTag">
         <span class="spark"></span>
-        <span data-lang="pt">Disponível • Remoto/Presencial</span>
-        <span data-lang="en">Available • Remote/On-site</span>
+        <span data-i18n="hero_tag"></span>
       </div>
 
       <h1>Luigi Giovanni Bertoldi</h1>
 
-      <p class="heroRole" data-lang="pt">Infraestrutura de TI • <b>Cloud Support</b> • Analista de Sistemas</p>
-      <p class="heroRole" data-lang="en">IT Infrastructure • <b>Cloud Support</b> • Systems Analyst</p>
+      <p class="heroRole">
+        <span data-i18n="hero_role_1"></span> • <b data-i18n="hero_role_2"></b> • <span data-i18n="hero_role_3"></span>
+      </p>
 
       <div class="heroCtas">
-        <a class="btn btnPrimary" href="mailto:luigigbertoldi@gmail.com" data-lang="pt">📩 Contato</a>
-        <a class="btn btnPrimary" href="mailto:luigigbertoldi@gmail.com" data-lang="en">📩 Contact</a>
-        <a class="btn btnGhost" href="https://github.com/luigibertoldi" target="_blank" rel="noopener">💻 GitHub</a>
+        <a class="btn btnPrimary" href="#contact">
+          ✉️ <span data-i18n="cta_contact"></span>
+        </a>
+
+        <a class="btn btnGhost" href="https://github.com/luigibertoldi" target="_blank" rel="noopener">
+          💻 <span data-i18n="cta_github"></span>
+        </a>
       </div>
 
       <div class="scrollHint">
         <span class="mouse"></span>
-        <span data-lang="pt">Role para baixo</span>
-        <span data-lang="en">Scroll down</span>
+        <span data-i18n="scroll_hint"></span>
       </div>
     </div>
   </header>
@@ -604,48 +597,26 @@
     <!-- ABOUT -->
     <section class="wrap" id="about">
       <div class="sectionHead reveal">
-        <h2 data-lang="pt">Sobre</h2>
-        <h2 data-lang="en">About</h2>
-
-        <p data-lang="pt">Infraestrutura e suporte com foco em estabilidade, segurança e excelência no atendimento.</p>
-        <p data-lang="en">Infrastructure and support focused on stability, security, and top-tier service.</p>
+        <h2 data-i18n="about_title"></h2>
+        <p data-i18n="about_sub"></p>
       </div>
 
       <div class="twoCols">
         <div class="card reveal">
-          <h3 data-lang="pt">Resumo</h3>
-          <h3 data-lang="en">Summary</h3>
-
-          <p data-lang="pt">
-            Profissional de TI com experiência em suporte N1/N2 e infraestrutura, atuando com Windows e Linux, Active Directory,
-            troubleshooting de redes e boas práticas de segurança. Forte foco em documentação, padronização e melhoria contínua.
-          </p>
-          <p data-lang="en">
-            IT professional with experience in N1/N2 support and infrastructure, working with Windows and Linux, Active Directory,
-            network troubleshooting, and baseline security best practices. Strong focus on documentation, standardization, and continuous improvement.
-          </p>
+          <h3 data-i18n="about_summary_title"></h3>
+          <p data-i18n="about_summary_body"></p>
 
           <div class="meta">
             <span>🧩 N1/N2</span>
             <span>🔐 Active Directory</span>
             <span>🌐 DNS/TCP-IP</span>
-            <span data-lang="pt">🛡️ Segurança</span>
-            <span data-lang="en">🛡️ Security</span>
+            <span>🛡️ BitLocker</span>
           </div>
         </div>
 
         <div class="card reveal">
-          <h3 data-lang="pt">Objetivo</h3>
-          <h3 data-lang="en">Goal</h3>
-
-          <p data-lang="pt">
-            Evoluir para uma posição em Infraestrutura/Cloud Support, atuando com identidade, redes, segurança e operação,
-            garantindo disponibilidade e qualidade do serviço.
-          </p>
-          <p data-lang="en">
-            Grow into an Infrastructure/Cloud Support role, working with identity, networking, security, and operations,
-            ensuring high availability and service quality.
-          </p>
+          <h3 data-i18n="about_focus_title"></h3>
+          <p data-i18n="about_focus_body"></p>
 
           <div class="pillRow">
             <span class="pill">Windows</span>
@@ -653,7 +624,7 @@
             <span class="pill">Active Directory</span>
             <span class="pill">DNS</span>
             <span class="pill">TCP/IP</span>
-            <span class="pill">BitLocker</span>
+            <span class="pill" data-i18n="pill_documentation"></span>
           </div>
         </div>
       </div>
@@ -662,62 +633,29 @@
     <!-- EXPERIENCE -->
     <section class="wrap" id="experience">
       <div class="sectionHead reveal">
-        <h2 data-lang="pt">Experiência</h2>
-        <h2 data-lang="en">Experience</h2>
-
-        <p data-lang="pt">Atuação em ambiente corporativo com foco em operação, estabilidade e atendimento.</p>
-        <p data-lang="en">Corporate environment experience focused on operations, stability, and support.</p>
+        <h2 data-i18n="exp_title"></h2>
+        <p data-i18n="exp_sub"></p>
       </div>
 
       <div class="grid">
         <div class="card reveal">
-          <h3 data-lang="pt">SIGAMAQ Industrial — Analista de Suporte de TI (N1/N2)</h3>
-          <h3 data-lang="en">SIGAMAQ Industrial — IT Support Analyst (N1/N2)</h3>
-
+          <h3 data-i18n="exp_job_title"></h3>
           <div class="meta">
             <span>📍 Blumenau/SC</span>
-            <span data-lang="pt">🧩 Infra & Suporte</span>
-            <span data-lang="en">🧩 Infra & Support</span>
+            <span data-i18n="exp_job_tag"></span>
           </div>
 
-          <ul class="list" data-lang="pt">
-            <li>Suporte presencial e remoto, priorização por impacto e urgência</li>
-            <li>Active Directory: usuários, grupos e permissões</li>
-            <li>Redes: DNS, IP, conectividade e acesso a recursos</li>
-            <li>Manutenção e upgrades: SSD, RAM, diagnóstico e troca</li>
-            <li>Impressoras: drivers, filas e padronização</li>
-            <li>Segurança: BitLocker, antivírus e boas práticas</li>
-          </ul>
-
-          <ul class="list" data-lang="en">
-            <li>On-site and remote support, prioritizing by impact and urgency</li>
-            <li>Active Directory: users, groups and permissions</li>
-            <li>Networking: DNS, IP, connectivity and resource access</li>
-            <li>Hardware maintenance and upgrades: SSD, RAM, diagnostics and replacement</li>
-            <li>Printers: drivers, queues and standardization</li>
-            <li>Security: BitLocker, antivirus and best practices</li>
-          </ul>
+          <ul class="list" id="expList"></ul>
         </div>
 
         <div class="card reveal">
-          <h3 data-lang="pt">Responsabilidade e liderança</h3>
-          <h3 data-lang="en">Ownership & leadership</h3>
-
-          <p data-lang="pt">
-            Experiência assumindo responsabilidades cedo, com foco em organização, padronização de rotinas e documentação técnica
-            para reduzir retrabalho e melhorar consistência.
-          </p>
-          <p data-lang="en">
-            Experience taking ownership early, focused on organization, routine standardization, and technical documentation
-            to reduce rework and improve consistency.
-          </p>
+          <h3 data-i18n="exp_lead_title"></h3>
+          <p data-i18n="exp_lead_body"></p>
 
           <div class="pillRow">
-            <span class="pill" data-lang="pt">Documentação</span>
-            <span class="pill" data-lang="en">Documentation</span>
-            <span class="pill" data-lang="pt">Padronização</span>
-            <span class="pill" data-lang="en">Standardization</span>
-            <span class="pill">Ownership</span>
+            <span class="pill" data-i18n="pill_ownership"></span>
+            <span class="pill" data-i18n="pill_standard"></span>
+            <span class="pill" data-i18n="pill_process"></span>
           </div>
         </div>
       </div>
@@ -726,58 +664,38 @@
     <!-- PROJECTS -->
     <section class="wrap" id="projects">
       <div class="sectionHead reveal">
-        <h2 data-lang="pt">Projetos</h2>
-        <h2 data-lang="en">Projects</h2>
-
-        <p data-lang="pt">Cases técnicos com foco em infraestrutura, operação e qualidade.</p>
-        <p data-lang="en">Technical cases focused on infrastructure, operations, and quality.</p>
+        <h2 data-i18n="proj_title"></h2>
+        <p data-i18n="proj_sub"></p>
       </div>
 
       <div class="three">
         <div class="card reveal">
-          <h3 data-lang="pt">Base de conhecimento e procedimentos</h3>
-          <h3 data-lang="en">Knowledge base & procedures</h3>
-
-          <p data-lang="pt">Criação de documentação para acelerar atendimento e reduzir recorrência de incidentes.</p>
-          <p data-lang="en">Created documentation to speed up support and reduce recurring incidents.</p>
-
+          <h3 data-i18n="proj_1_title"></h3>
+          <p data-i18n="proj_1_body"></p>
           <div class="pillRow">
-            <span class="pill" data-lang="pt">Documentação</span>
-            <span class="pill" data-lang="en">Documentation</span>
-            <span class="pill" data-lang="pt">Processos</span>
-            <span class="pill" data-lang="en">Processes</span>
+            <span class="pill" data-i18n="pill_documentation"></span>
+            <span class="pill" data-i18n="pill_process"></span>
             <span class="pill">SLA mindset</span>
           </div>
         </div>
 
         <div class="card reveal">
-          <h3 data-lang="pt">Troubleshooting de rede</h3>
-          <h3 data-lang="en">Network troubleshooting</h3>
-
-          <p data-lang="pt">Diagnóstico e correção de falhas de conectividade e acesso a recursos.</p>
-          <p data-lang="en">Diagnosed and fixed connectivity issues and resource access problems.</p>
-
+          <h3 data-i18n="proj_2_title"></h3>
+          <p data-i18n="proj_2_body"></p>
           <div class="pillRow">
             <span class="pill">DNS</span>
             <span class="pill">TCP/IP</span>
-            <span class="pill" data-lang="pt">Conectividade</span>
-            <span class="pill" data-lang="en">Connectivity</span>
+            <span class="pill" data-i18n="pill_connectivity"></span>
           </div>
         </div>
 
         <div class="card reveal">
-          <h3 data-lang="pt">Segurança e proteção de dados</h3>
-          <h3 data-lang="en">Security & data protection</h3>
-
-          <p data-lang="pt">Aplicação de boas práticas, criptografia com BitLocker e controle de acessos.</p>
-          <p data-lang="en">Applied best practices, BitLocker encryption, and access control.</p>
-
+          <h3 data-i18n="proj_3_title"></h3>
+          <p data-i18n="proj_3_body"></p>
           <div class="pillRow">
             <span class="pill">BitLocker</span>
-            <span class="pill" data-lang="pt">Acessos</span>
-            <span class="pill" data-lang="en">Access</span>
-            <span class="pill" data-lang="pt">Segurança</span>
-            <span class="pill" data-lang="en">Security</span>
+            <span class="pill" data-i18n="pill_access"></span>
+            <span class="pill" data-i18n="pill_security"></span>
           </div>
         </div>
       </div>
@@ -786,18 +704,13 @@
     <!-- SKILLS -->
     <section class="wrap" id="skills">
       <div class="sectionHead reveal">
-        <h2 data-lang="pt">Competências</h2>
-        <h2 data-lang="en">Skills</h2>
-
-        <p data-lang="pt">Competências técnicas alinhadas para Infraestrutura e Cloud Support.</p>
-        <p data-lang="en">Technical competencies aligned with Infrastructure and Cloud Support.</p>
+        <h2 data-i18n="skills_title"></h2>
+        <p data-i18n="skills_sub"></p>
       </div>
 
       <div class="grid">
         <div class="card reveal">
-          <h3 data-lang="pt">Tecnologias</h3>
-          <h3 data-lang="en">Technologies</h3>
-
+          <h3 data-i18n="skills_tech_title"></h3>
           <div class="pillRow">
             <span class="pill">Windows</span>
             <span class="pill">Linux</span>
@@ -805,29 +718,14 @@
             <span class="pill">DNS</span>
             <span class="pill">TCP/IP</span>
             <span class="pill">BitLocker</span>
-            <span class="pill" data-lang="pt">Impressoras</span>
-            <span class="pill" data-lang="en">Printers</span>
-            <span class="pill" data-lang="pt">Suporte N1/N2</span>
-            <span class="pill" data-lang="en">N1/N2 Support</span>
+            <span class="pill" data-i18n="pill_printers"></span>
+            <span class="pill" data-i18n="pill_support"></span>
           </div>
         </div>
 
         <div class="card reveal">
-          <h3 data-lang="pt">Diferenciais</h3>
-          <h3 data-lang="en">Strengths</h3>
-
-          <ul class="list" data-lang="pt">
-            <li>Comunicação clara e foco em experiência do usuário</li>
-            <li>Organização, documentação e padronização</li>
-            <li>Postura de ownership e responsabilidade desde cedo</li>
-            <li>Boa base para evoluir em Cloud Support (AWS/Azure)</li>
-          </ul>
-          <ul class="list" data-lang="en">
-            <li>Clear communication and user experience focus</li>
-            <li>Organization, documentation, and standardization</li>
-            <li>Ownership mindset and early responsibility</li>
-            <li>Strong foundation to grow into Cloud Support (AWS/Azure)</li>
-          </ul>
+          <h3 data-i18n="skills_diff_title"></h3>
+          <ul class="list" id="skillsList"></ul>
         </div>
       </div>
     </section>
@@ -835,45 +733,26 @@
     <!-- CONTACT -->
     <section class="wrap" id="contact">
       <div class="sectionHead reveal">
-        <h2 data-lang="pt">Contato</h2>
-        <h2 data-lang="en">Contact</h2>
-
-        <p data-lang="pt">Vamos conversar sobre oportunidades.</p>
-        <p data-lang="en">Let’s talk about opportunities.</p>
+        <h2 data-i18n="contact_title"></h2>
+        <p data-i18n="contact_sub"></p>
       </div>
 
       <div class="twoCols">
         <div class="card reveal">
-          <h3 data-lang="pt">Idiomas</h3>
-          <h3 data-lang="en">Languages</h3>
-
-          <ul class="list" data-lang="pt">
-            <li>🇧🇷 Português — Fluente</li>
-            <li>🇮🇹 Italiano — Fluente</li>
-            <li>🇺🇸 Inglês — Intermediário</li>
-            <li>🇪🇸 Espanhol — Básico</li>
-          </ul>
-          <ul class="list" data-lang="en">
-            <li>🇧🇷 Portuguese — Fluent</li>
-            <li>🇮🇹 Italian — Fluent</li>
-            <li>🇺🇸 English — Intermediate</li>
-            <li>🇪🇸 Spanish — Basic</li>
-          </ul>
+          <h3 data-i18n="lang_title"></h3>
+          <ul class="list" id="langList"></ul>
         </div>
 
         <div class="card reveal">
-          <h3 data-lang="pt">Links</h3>
-          <h3 data-lang="en">Links</h3>
-
+          <h3 data-i18n="links_title"></h3>
           <p>
             📧 <a href="mailto:luigigbertoldi@gmail.com">luigigbertoldi@gmail.com</a><br>
             💻 <a href="https://github.com/luigibertoldi" target="_blank" rel="noopener">github.com/luigibertoldi</a>
           </p>
 
           <div class="heroCtas" style="margin-top:16px">
-            <a class="btn btnPrimary" href="mailto:luigigbertoldi@gmail.com" data-lang="pt">📩 Enviar e-mail</a>
-            <a class="btn btnPrimary" href="mailto:luigigbertoldi@gmail.com" data-lang="en">📩 Send email</a>
-            <a class="btn btnGhost" href="https://github.com/luigibertoldi" target="_blank" rel="noopener">💻 GitHub</a>
+            <a class="btn btnPrimary" href="mailto:luigigbertoldi@gmail.com">✉️ <span data-i18n="cta_email"></span></a>
+            <a class="btn btnGhost" href="https://github.com/luigibertoldi" target="_blank" rel="noopener">💻 <span data-i18n="cta_github"></span></a>
           </div>
         </div>
       </div>
@@ -894,14 +773,6 @@
     // year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // progress
-    const progress = document.getElementById('progress');
-    window.addEventListener('scroll', () => {
-      const st = window.scrollY || document.documentElement.scrollTop;
-      const dh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      progress.style.width = (dh > 0 ? (st / dh) * 100 : 0) + '%';
-    });
-
     // reveal
     const revealEls = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries) => {
@@ -909,77 +780,250 @@
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
 
-    // back to top
+    // progress + toTop
+    const progress = document.getElementById('progress');
     const toTop = document.getElementById('toTop');
     window.addEventListener('scroll', () => {
+      const st = window.scrollY || document.documentElement.scrollTop;
+      const dh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      progress.style.width = (dh > 0 ? (st / dh) * 100 : 0) + '%';
+
       if (window.scrollY > 700) toTop.classList.add('show');
       else toTop.classList.remove('show');
     });
 
-    // i18n labels (nav)
-    const labels = {
-      pt: {
-        nav_about:'Sobre',
-        nav_experience:'Experiência',
-        nav_projects:'Projetos',
-        nav_skills:'Competências',
-        nav_contact:'Contato'
-      },
-      en: {
-        nav_about:'About',
-        nav_experience:'Experience',
-        nav_projects:'Projects',
-        nav_skills:'Skills',
-        nav_contact:'Contact'
-      }
-    };
-
-    const langBtn = document.getElementById('langBtn');
-    const langBtn2 = document.getElementById('langBtn2');
-
-    function setLang(lang){
-      document.body.classList.remove('lang-pt','lang-en');
-      document.body.classList.add('lang-' + lang);
-
-      const next = (lang === 'pt') ? 'EN' : 'PT';
-      langBtn.textContent = next;
-      langBtn2.textContent = next;
-
-      localStorage.setItem('siteLang', lang);
-
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        el.textContent = labels[lang][key] || el.textContent;
-      });
-    }
-    const saved = localStorage.getItem('siteLang');
-    setLang(saved === 'en' ? 'en' : 'pt');
-
-    langBtn.addEventListener('click', () => {
-      setLang(document.body.classList.contains('lang-pt') ? 'en' : 'pt');
-    });
-
-    // mobile menu
+    // Mobile menu
     const navWrap = document.getElementById('navWrap');
     const menuBtn = document.getElementById('menuBtn');
-    menuBtn.addEventListener('click', () => {
-      navWrap.classList.toggle('mobileOpen');
-    });
+    menuBtn.addEventListener('click', () => navWrap.classList.toggle('mobileOpen'));
     document.getElementById('mobilePanel').addEventListener('click', (e) => {
       if (e.target.tagName === 'A') navWrap.classList.remove('mobileOpen');
-      if (e.target.id === 'langBtn2') setLang(document.body.classList.contains('lang-pt') ? 'en' : 'pt');
     });
     window.addEventListener('resize', () => {
       if (window.innerWidth > 940) navWrap.classList.remove('mobileOpen');
+    });
+
+    // --- i18n (NO DUPLICATION) ---
+    const I18N = {
+      pt: {
+        nav_about: "Sobre",
+        nav_experience: "Experiência",
+        nav_projects: "Projetos",
+        nav_skills: "Competências",
+        nav_contact: "Contato",
+
+        hero_tag: "Disponível • Remoto/Presencial",
+        hero_role_1: "Infraestrutura de TI",
+        hero_role_2: "Cloud Support",
+        hero_role_3: "Analista de Sistemas",
+        cta_contact: "Contato",
+        cta_github: "GitHub",
+        scroll_hint: "Role para baixo",
+
+        about_title: "Sobre",
+        about_sub: "Infraestrutura e suporte com foco em estabilidade, segurança e excelência no atendimento.",
+        about_summary_title: "Resumo",
+        about_summary_body: "Profissional de TI com experiência em suporte N1/N2 e infraestrutura, atuando com Windows e Linux, Active Directory, troubleshooting de redes e boas práticas de segurança. Forte foco em documentação, padronização e melhoria contínua.",
+        about_focus_title: "Foco",
+        about_focus_body: "Atuar em Infraestrutura/Cloud Support com qualidade operacional: identidade, redes, segurança e padrão de atendimento.",
+
+        exp_title: "Experiência",
+        exp_sub: "Rotina corporativa com foco em operação, estabilidade e atendimento ao usuário.",
+        exp_job_title: "SIGAMAQ Industrial — Analista de Suporte de TI (N1/N2)",
+        exp_job_tag: "🧩 Infra & Suporte",
+        exp_list: [
+          "Suporte presencial e remoto, priorização por impacto e urgência",
+          "Active Directory: usuários, grupos e permissões",
+          "Redes: DNS, IP, conectividade e acesso a recursos",
+          "Manutenção e upgrades: SSD, RAM, diagnóstico e substituição",
+          "Impressoras: drivers, filas e padronização",
+          "Segurança: BitLocker, antivírus e boas práticas"
+        ],
+        exp_lead_title: "Responsabilidade e liderança",
+        exp_lead_body: "Experiência assumindo responsabilidades cedo, com foco em organização, padronização de rotinas e documentação técnica para reduzir retrabalho e aumentar consistência.",
+
+        proj_title: "Projetos",
+        proj_sub: "Cases técnicos com foco em infraestrutura, operação e qualidade.",
+        proj_1_title: "Base de conhecimento e procedimentos",
+        proj_1_body: "Documentação e padronização para acelerar atendimento e reduzir recorrência de incidentes.",
+        proj_2_title: "Troubleshooting de rede",
+        proj_2_body: "Diagnóstico e correção de falhas de conectividade e acesso a recursos.",
+        proj_3_title: "Segurança e proteção de dados",
+        proj_3_body: "Boas práticas, criptografia com BitLocker e controle de acessos.",
+
+        skills_title: "Competências",
+        skills_sub: "Competências técnicas alinhadas para Infraestrutura e Cloud Support.",
+        skills_tech_title: "Tecnologias",
+        skills_diff_title: "Diferenciais",
+        skills_list: [
+          "Comunicação clara e foco em experiência do usuário",
+          "Organização, documentação e padronização de processos",
+          "Postura de ownership e responsabilidade desde cedo",
+          "Base sólida para evoluir em Cloud Support (AWS/Azure)"
+        ],
+
+        contact_title: "Contato",
+        contact_sub: "Vamos conversar sobre oportunidades.",
+        lang_title: "Idiomas",
+        languages: [
+          "🇧🇷 Português — Fluente",
+          "🇮🇹 Italiano — Fluente",
+          "🇺🇸 Inglês — Intermediário",
+          "🇪🇸 Espanhol — Básico"
+        ],
+        links_title: "Links",
+        cta_email: "Enviar e-mail",
+
+        pill_documentation: "Documentação",
+        pill_ownership: "Ownership",
+        pill_standard: "Padronização",
+        pill_process: "Processos",
+        pill_connectivity: "Conectividade",
+        pill_access: "Acessos",
+        pill_security: "Segurança",
+        pill_printers: "Impressoras",
+        pill_support: "Suporte N1/N2"
+      },
+
+      en: {
+        nav_about: "About",
+        nav_experience: "Experience",
+        nav_projects: "Projects",
+        nav_skills: "Skills",
+        nav_contact: "Contact",
+
+        hero_tag: "Available • Remote/On-site",
+        hero_role_1: "IT Infrastructure",
+        hero_role_2: "Cloud Support",
+        hero_role_3: "Systems Analyst",
+        cta_contact: "Contact",
+        cta_github: "GitHub",
+        scroll_hint: "Scroll down",
+
+        about_title: "About",
+        about_sub: "Infrastructure and support focused on stability, security, and excellent user experience.",
+        about_summary_title: "Summary",
+        about_summary_body: "IT professional experienced in N1/N2 support and infrastructure, working with Windows and Linux, Active Directory, network troubleshooting, and baseline security best practices. Strong focus on documentation, standardization, and continuous improvement.",
+        about_focus_title: "Focus",
+        about_focus_body: "Work in Infrastructure/Cloud Support with operational quality: identity, networking, security, and consistent support standards.",
+
+        exp_title: "Experience",
+        exp_sub: "Corporate operations with a focus on stability and high-quality support.",
+        exp_job_title: "SIGAMAQ Industrial — IT Support Analyst (N1/N2)",
+        exp_job_tag: "🧩 Infra & Support",
+        exp_list: [
+          "On-site and remote support, prioritizing by impact and urgency",
+          "Active Directory: users, groups, and permissions",
+          "Networking: DNS, IP, connectivity, and resource access",
+          "Hardware maintenance and upgrades: SSD, RAM, diagnostics and replacement",
+          "Printers: drivers, queues and standardization",
+          "Security: BitLocker, antivirus and best practices"
+        ],
+        exp_lead_title: "Ownership & leadership",
+        exp_lead_body: "Early ownership experience focused on organization, routine standardization, and technical documentation to reduce rework and improve consistency.",
+
+        proj_title: "Projects",
+        proj_sub: "Technical cases focused on infrastructure, operations, and quality.",
+        proj_1_title: "Knowledge base & procedures",
+        proj_1_body: "Documentation and standardization to speed up support and reduce recurring incidents.",
+        proj_2_title: "Network troubleshooting",
+        proj_2_body: "Diagnosed and fixed connectivity issues and access problems.",
+        proj_3_title: "Security & data protection",
+        proj_3_body: "Best practices, BitLocker encryption, and access control.",
+
+        skills_title: "Skills",
+        skills_sub: "Skills aligned with Infrastructure and Cloud Support.",
+        skills_tech_title: "Technologies",
+        skills_diff_title: "Strengths",
+        skills_list: [
+          "Clear communication and user experience focus",
+          "Organization, documentation, and process standardization",
+          "Ownership mindset and early responsibility",
+          "Strong foundation to grow into Cloud Support (AWS/Azure)"
+        ],
+
+        contact_title: "Contact",
+        contact_sub: "Let’s talk about opportunities.",
+        lang_title: "Languages",
+        languages: [
+          "🇧🇷 Portuguese — Fluent",
+          "🇮🇹 Italian — Fluent",
+          "🇺🇸 English — Intermediate",
+          "🇪🇸 Spanish — Basic"
+        ],
+        links_title: "Links",
+        cta_email: "Send email",
+
+        pill_documentation: "Documentation",
+        pill_ownership: "Ownership",
+        pill_standard: "Standardization",
+        pill_process: "Processes",
+        pill_connectivity: "Connectivity",
+        pill_access: "Access",
+        pill_security: "Security",
+        pill_printers: "Printers",
+        pill_support: "N1/N2 Support"
+      }
+    };
+
+    function setLang(lang){
+      document.documentElement.lang = lang === "pt" ? "pt-br" : "en";
+      localStorage.setItem("siteLang", lang);
+
+      // buttons show opposite language
+      const next = lang === "pt" ? "EN" : "PT";
+      document.getElementById("langBtn").textContent = next;
+      document.getElementById("langBtn2").textContent = next;
+
+      // replace all i18n text
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (I18N[lang][key] !== undefined) el.textContent = I18N[lang][key];
+      });
+
+      // lists
+      const expList = document.getElementById("expList");
+      expList.innerHTML = "";
+      I18N[lang].exp_list.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        expList.appendChild(li);
+      });
+
+      const skillsList = document.getElementById("skillsList");
+      skillsList.innerHTML = "";
+      I18N[lang].skills_list.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        skillsList.appendChild(li);
+      });
+
+      const langList = document.getElementById("langList");
+      langList.innerHTML = "";
+      I18N[lang].languages.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        langList.appendChild(li);
+      });
+    }
+
+    // init language
+    const saved = localStorage.getItem("siteLang");
+    setLang(saved === "en" ? "en" : "pt");
+
+    document.getElementById("langBtn").addEventListener("click", () => {
+      setLang((localStorage.getItem("siteLang") || "pt") === "pt" ? "en" : "pt");
+    });
+    document.getElementById("langBtn2").addEventListener("click", () => {
+      setLang((localStorage.getItem("siteLang") || "pt") === "pt" ? "en" : "pt");
     });
 
     // Particles background (lightweight)
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
 
-    let dpr = 1;
     function resize(){
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.floor(window.innerWidth * dpr);
       canvas.height = Math.floor(window.innerHeight * dpr);
       canvas.style.width = window.innerWidth + 'px';
@@ -990,27 +1034,22 @@
     window.addEventListener('resize', resize);
 
     const pts = [];
-    const P = 56;
-    function rnd(min,max){ return Math.random()*(max-min)+min; }
+    const P = 52;
+    const rnd = (min,max)=> Math.random()*(max-min)+min;
+
     for(let i=0;i<P;i++){
-      pts.push({
-        x:rnd(0, window.innerWidth),
-        y:rnd(0, window.innerHeight),
-        vx:rnd(-0.22,0.22),
-        vy:rnd(-0.22,0.22),
-        r:rnd(1.2,2.4)
-      });
+      pts.push({ x:rnd(0, innerWidth), y:rnd(0, innerHeight), vx:rnd(-0.22,0.22), vy:rnd(-0.22,0.22), r:rnd(1.2,2.4) });
     }
 
     function step(){
-      ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+      ctx.clearRect(0,0,innerWidth,innerHeight);
 
       for(const p of pts){
         p.x += p.vx; p.y += p.vy;
-        if(p.x < -20) p.x = window.innerWidth + 20;
-        if(p.x > window.innerWidth + 20) p.x = -20;
-        if(p.y < -20) p.y = window.innerHeight + 20;
-        if(p.y > window.innerHeight + 20) p.y = -20;
+        if(p.x < -20) p.x = innerWidth + 20;
+        if(p.x > innerWidth + 20) p.x = -20;
+        if(p.y < -20) p.y = innerHeight + 20;
+        if(p.y > innerHeight + 20) p.y = -20;
       }
 
       for(let i=0;i<pts.length;i++){
@@ -1020,7 +1059,7 @@
           const dist = Math.sqrt(dx*dx + dy*dy);
           const max = 150;
           if(dist < max){
-            const alpha = (1 - dist/max) * 0.16;
+            const alpha = (1 - dist/max) * 0.15;
             ctx.strokeStyle = `rgba(102,220,255,${alpha})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
