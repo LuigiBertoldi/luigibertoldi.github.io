@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Luigi Bertoldi | IT Infrastructure & Cloud Support</title>
 
+  <!-- Rounded, modern tech fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
@@ -14,15 +15,23 @@
       --bg:#050814;
       --text:#e7edf7;
       --muted:#a7b4c7;
+
       --brand:#5dd6ff;
       --brand2:#33e0a1;
-      --panel: rgba(12, 18, 36, 0.72);
+
+      --panel: rgba(12, 18, 36, 0.74);
       --panel2: rgba(6, 10, 24, 0.62);
+
       --stroke: rgba(160, 175, 205, 0.16);
       --stroke2: rgba(93, 214, 255, 0.28);
+
       --shadow: 0 24px 80px rgba(0,0,0,.55);
       --radius: 22px;
+
       --max: 1120px;
+      --pad: 18px;
+
+      --navH: 64px;
     }
 
     *{ box-sizing:border-box; }
@@ -41,49 +50,68 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* progress */
+    /* language visibility */
+    [data-lang]{ display:none; }
+    body.lang-pt [data-lang="pt"]{ display:block; }
+    body.lang-en [data-lang="en"]{ display:block; }
+
+    /* top progress */
     .progress{
-      position:fixed;
-      top:0; left:0;
-      height:3px;
-      width:0%;
+      position:fixed; top:0; left:0;
+      height:3px; width:0%;
       z-index:9999;
       background: linear-gradient(90deg, var(--brand), var(--brand2));
       box-shadow: 0 0 22px rgba(93,214,255,0.35);
     }
 
-    /* nav */
+    /* container */
+    .container{
+      width: min(var(--max), calc(100% - (var(--pad) * 2)));
+      margin: 0 auto;
+    }
+
+    /* NAV */
+    .navWrap{
+      position: fixed;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(var(--max), calc(100% - 24px));
+      z-index: 9998;
+    }
+
     .nav{
-      position:fixed;
-      top:14px;
-      left:50%;
-      transform:translateX(-50%);
-      width:min(var(--max), calc(100% - 24px));
-      z-index:9998;
-      padding:10px 12px;
-      border-radius:999px;
-      background: rgba(6, 10, 24, 0.55);
+      height: var(--navH);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+
+      padding: 10px 12px;
+      border-radius: 999px;
+
+      background: rgba(6, 10, 24, 0.58);
       border: 1px solid rgba(160,175,205,0.16);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       box-shadow: 0 18px 60px rgba(0,0,0,.45);
+    }
+
+    .brand{
       display:flex;
       align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
-    .nav .left{
-      display:flex; align-items:center; gap:10px;
+      gap:10px;
       user-select:none;
-      padding-left:6px;
+      padding-left: 6px;
       min-width: 160px;
     }
     .dot{
       width:10px; height:10px; border-radius:999px;
       background: var(--brand);
       box-shadow: 0 0 0 7px rgba(93,214,255,0.10), 0 0 28px rgba(93,214,255,0.35);
+      flex: 0 0 auto;
     }
-    .nav .title{
+    .brandText{
       font-family: Sora, "Plus Jakarta Sans", sans-serif;
       font-weight:700;
       font-size:12px;
@@ -92,20 +120,28 @@
       opacity:.92;
       white-space:nowrap;
     }
-    .nav .links{
+
+    .navRight{
       display:flex;
-      gap:6px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
       align-items:center;
+      gap: 8px;
     }
+
+    .links{
+      display:flex;
+      gap: 6px;
+      align-items:center;
+      flex-wrap: wrap;
+    }
+
     .nav a{
       color: rgba(167,180,199,0.95);
       text-decoration:none;
       font-size:13px;
-      padding:10px 12px;
+      padding: 10px 12px;
       border-radius:999px;
       transition: 200ms ease;
+      white-space: nowrap;
     }
     .nav a:hover{
       color: var(--text);
@@ -118,8 +154,8 @@
       background: rgba(6,10,24,0.40);
       color: var(--text);
       border-radius: 999px;
-      padding: 9px 12px;
-      font-weight: 700;
+      padding: 10px 12px;
+      font-weight: 800;
       font-size: 12px;
       cursor:pointer;
       transition: 200ms ease;
@@ -130,13 +166,72 @@
       background: rgba(93,214,255,0.10);
     }
 
-    /* hero */
+    .menuBtn{
+      display:none;
+      border: 1px solid rgba(160,175,205,0.18);
+      background: rgba(6,10,24,0.40);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 12px;
+      cursor:pointer;
+      transition: 200ms ease;
+      user-select:none;
+      font-weight: 800;
+      font-size: 12px;
+    }
+    .menuBtn:hover{
+      border-color: rgba(93,214,255,0.30);
+      background: rgba(93,214,255,0.10);
+    }
+
+    /* Mobile menu panel */
+    .mobilePanel{
+      display:none;
+      margin-top: 10px;
+      border-radius: 18px;
+      padding: 10px;
+      background: rgba(6, 10, 24, 0.72);
+      border: 1px solid rgba(160,175,205,0.16);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+    }
+    .mobilePanel a{
+      display:block;
+      padding: 12px 12px;
+      border-radius: 14px;
+      color: rgba(167,180,199,0.95);
+      text-decoration:none;
+      font-size: 14px;
+    }
+    .mobilePanel a:hover{
+      background: rgba(93,214,255,0.10);
+      box-shadow: 0 0 0 1px rgba(93,214,255,0.14) inset;
+      color: var(--text);
+    }
+    .mobilePanel .row{
+      display:flex;
+      gap: 10px;
+      padding: 10px 8px 4px;
+      justify-content:flex-end;
+    }
+
+    @media (max-width: 860px){
+      .links{ display:none; }
+      .menuBtn{ display:inline-flex; }
+      .mobilePanel{ display:none; }
+      .nav{ border-radius: 22px; }
+      .brand{ min-width: unset; }
+    }
+    .mobileOpen .mobilePanel{ display:block; }
+
+    /* HERO */
     .hero{
-      min-height:100vh;
+      min-height: 100vh;
       display:grid;
       place-items:center;
-      padding: 110px 18px 70px;
-      position:relative;
+      padding: calc(92px + var(--navH)) var(--pad) 76px;
+      position: relative;
     }
     .gridGlow{
       position:absolute;
@@ -150,17 +245,14 @@
       pointer-events:none;
     }
     .heroInner{
-      width:min(var(--max), 100%);
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      width: min(var(--max), calc(100% - (var(--pad) * 2)));
       text-align:center;
-      position:relative;
-      z-index:1;
+      position: relative;
+      z-index: 1;
     }
     h1{
       font-family: Sora, "Plus Jakarta Sans", sans-serif;
-      font-weight:700;
+      font-weight: 700;
       letter-spacing: 0.2px;
       font-size: clamp(34px, 5vw, 72px);
       line-height: 1.03;
@@ -207,18 +299,19 @@
       100%{ opacity:.2; transform: translate(-50%, 10px); }
     }
 
-    /* layout */
+    /* SECTIONS */
+    section{ scroll-margin-top: 110px; }
+
     .wrap{
-      width:min(var(--max), calc(100% - 36px));
-      margin: 0 auto;
-      padding: 78px 0;
+      padding: 84px 0;
     }
+
     .sectionHead{
       display:flex;
       align-items:flex-end;
       justify-content:space-between;
-      gap:16px;
-      margin-bottom: 20px;
+      gap: 16px;
+      margin-bottom: 22px;
     }
     .sectionHead h2{
       margin:0;
@@ -232,28 +325,32 @@
       color: var(--muted);
       font-size: 13px;
       max-width: 62ch;
-      line-height:1.55;
+      line-height: 1.55;
+    }
+    @media (max-width: 860px){
+      .sectionHead{ flex-direction: column; align-items:flex-start; }
+      .sectionHead p{ max-width: 100%; }
     }
 
     .grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
+      align-items: stretch;
     }
     .twoCols{
       display:grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap: 16px;
+      align-items: stretch;
     }
-    @media (max-width: 900px){
+    @media (max-width: 960px){
       .grid, .twoCols{ grid-template-columns: 1fr; }
-      .nav{ top:10px; }
-      .nav .left{ min-width: unset; }
     }
 
-    /* cards */
     .card{
-      padding: 20px 20px;
+      height:100%;
+      padding: 22px 22px;
       border-radius: var(--radius);
       border: 1px solid var(--stroke);
       background: linear-gradient(180deg, var(--panel), var(--panel2));
@@ -278,8 +375,9 @@
     .card:hover{
       transform: translateY(-6px);
       border-color: var(--stroke2);
-      background: linear-gradient(180deg, rgba(12,18,36,0.86), rgba(6,10,24,0.70));
+      background: linear-gradient(180deg, rgba(12,18,36,0.88), rgba(6,10,24,0.72));
     }
+
     .card h3{
       margin: 0 0 10px;
       font-family: Sora, "Plus Jakarta Sans", sans-serif;
@@ -293,15 +391,17 @@
       font-size: 14px;
       line-height: 1.65;
     }
+
     .list{
-      margin: 10px 0 0;
+      margin: 12px 0 0;
       padding-left: 18px;
       color: var(--muted);
       line-height: 1.8;
       font-size: 14px;
     }
+
     .pillRow{
-      margin-top: 12px;
+      margin-top: 14px;
       display:flex;
       flex-wrap:wrap;
       gap: 8px;
@@ -316,12 +416,14 @@
       white-space: nowrap;
     }
 
-    /* buttons */
+    a{ color: var(--brand); text-decoration:none; }
+    a:hover{ text-decoration: underline; }
+
     .ctaRow{
       display:flex;
       gap: 12px;
       flex-wrap:wrap;
-      margin-top: 14px;
+      margin-top: 16px;
       align-items:center;
     }
     .btn{
@@ -331,7 +433,7 @@
       gap:10px;
       padding: 12px 16px;
       border-radius: 14px;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 14px;
       border: 1px solid rgba(160,175,205,0.18);
       transition: 200ms ease;
@@ -355,20 +457,17 @@
       transform: translateY(-2px);
     }
 
-    a{ color: var(--brand); text-decoration:none; }
-    a:hover{ text-decoration: underline; }
-
     /* reveal */
     .reveal{
       opacity:0;
-      transform: translateY(16px);
-      transition: opacity 760ms ease, transform 760ms ease;
+      transform: translateY(14px);
+      transition: opacity 720ms ease, transform 720ms ease;
     }
     .reveal.show{ opacity:1; transform: translateY(0); }
 
     /* footer */
     footer{
-      padding: 44px 18px 60px;
+      padding: 44px 0 60px;
       text-align:center;
       color: rgba(167,180,199,0.92);
       border-top: 1px solid rgba(160,175,205,0.12);
@@ -392,7 +491,7 @@
     }
     .toTop button{
       border: 1px solid rgba(160,175,205,0.18);
-      background: rgba(6,10,24,0.65);
+      background: rgba(6,10,24,0.70);
       color: var(--text);
       border-radius: 14px;
       padding: 12px 12px;
@@ -405,33 +504,46 @@
       border-color: rgba(93,214,255,0.28);
       background: rgba(93,214,255,0.10);
     }
-
-    /* language */
-    [data-lang]{ display:none; }
-    body.lang-pt [data-lang="pt"]{ display:block; }
-    body.lang-en [data-lang="en"]{ display:block; }
   </style>
 </head>
 
 <body class="lang-pt">
   <div class="progress" id="progress"></div>
 
-  <nav class="nav">
-    <div class="left">
-      <span class="dot"></span>
-      <span class="title">LUIGI • IT</span>
+  <div class="navWrap" id="navWrap">
+    <div class="nav">
+      <div class="brand">
+        <span class="dot"></span>
+        <span class="brandText">LUIGI • IT</span>
+      </div>
+
+      <div class="navRight">
+        <div class="links" aria-label="Menu principal">
+          <a href="#about" data-i18n="nav_about">Sobre</a>
+          <a href="#experience" data-i18n="nav_experience">Experiência</a>
+          <a href="#stack" data-i18n="nav_stack">Stack</a>
+          <a href="#languages" data-i18n="nav_languages">Idiomas</a>
+          <a href="#contact" data-i18n="nav_contact">Contato</a>
+        </div>
+
+        <button class="langBtn" id="langBtn" aria-label="Trocar idioma">EN</button>
+        <button class="menuBtn" id="menuBtn" aria-label="Abrir menu">MENU</button>
+      </div>
     </div>
-    <div class="links">
+
+    <div class="mobilePanel" id="mobilePanel" aria-label="Menu mobile">
       <a href="#about" data-i18n="nav_about">Sobre</a>
       <a href="#experience" data-i18n="nav_experience">Experiência</a>
       <a href="#stack" data-i18n="nav_stack">Stack</a>
       <a href="#languages" data-i18n="nav_languages">Idiomas</a>
       <a href="#contact" data-i18n="nav_contact">Contato</a>
-      <button class="langBtn" id="langBtn">EN</button>
+      <div class="row">
+        <button class="langBtn" id="langBtn2" aria-label="Trocar idioma">EN</button>
+      </div>
     </div>
-  </nav>
+  </div>
 
-  <!-- HERO -->
+  <!-- HERO (limpo) -->
   <header class="hero" id="top">
     <div class="gridGlow"></div>
     <div class="heroInner">
@@ -449,7 +561,7 @@
     </div>
   </header>
 
-  <main>
+  <main class="container">
     <!-- ABOUT -->
     <section class="wrap" id="about">
       <div class="sectionHead reveal">
@@ -466,14 +578,12 @@
           <h3 data-lang="en">Profile</h3>
 
           <p data-lang="pt">
-            Profissional de TI com experiência em suporte e infraestrutura, atuando com ambientes Windows e Linux,
-            administração de identidade (Active Directory), troubleshooting de redes e padronização de processos.
-            Responsável por setor cedo, com postura de ownership e disciplina operacional.
+            Profissional de TI com experiência em suporte e infraestrutura, atuando com Windows e Linux, administração de identidade (Active Directory),
+            troubleshooting de redes e padronização de processos. Responsável por setor cedo, com postura de ownership e disciplina operacional.
           </p>
           <p data-lang="en">
-            IT professional with experience in support and infrastructure, working with Windows and Linux environments,
-            identity administration (Active Directory), network troubleshooting, and process standardization.
-            Took ownership early, with strong operational discipline.
+            IT professional with experience in support and infrastructure, working with Windows and Linux, identity administration (Active Directory),
+            network troubleshooting, and process standardization. Took ownership early, with strong operational discipline.
           </p>
 
           <div class="pillRow">
@@ -526,7 +636,7 @@
           <h3 data-lang="en">SIGAMAQ Industrial — IT Support Analyst (N1/N2)</h3>
 
           <ul class="list" data-lang="pt">
-            <li>Suporte presencial e remoto, com priorização por impacto e urgência</li>
+            <li>Suporte presencial e remoto, priorizando por impacto e urgência</li>
             <li>Administração de usuários, grupos e permissões via Active Directory</li>
             <li>Troubleshooting de rede: DNS, IP, conectividade e acesso a recursos</li>
             <li>Manutenção e upgrades: SSD, RAM, diagnóstico e troca de componentes</li>
@@ -556,7 +666,7 @@
           <h3 data-lang="pt">Responsabilidade & liderança</h3>
           <h3 data-lang="en">Ownership & leadership</h3>
 
-          <p data-lang="pt">Experiência assumindo responsabilidades de setor cedo, com foco em organização, padronização e execução.</p>
+          <p data-lang="pt">Experiência assumindo responsabilidades cedo, com foco em organização, padronização e execução.</p>
           <p data-lang="en">Experience taking ownership early, focusing on organization, standardization, and execution.</p>
 
           <ul class="list" data-lang="pt">
@@ -684,7 +794,7 @@
       </div>
     </section>
 
-    <!-- LANGUAGES -->
+    <!-- LANGUAGES + CONTACT -->
     <section class="wrap" id="languages">
       <div class="sectionHead reveal">
         <h2 data-lang="pt">Idiomas</h2>
@@ -694,7 +804,7 @@
         <p data-lang="en">Technical communication and support for international environments.</p>
       </div>
 
-      <div class="grid">
+      <div class="twoCols">
         <div class="card reveal">
           <h3 data-lang="pt">Proficiência</h3>
           <h3 data-lang="en">Proficiency</h3>
@@ -734,7 +844,9 @@
   </main>
 
   <footer>
-    © <span id="year"></span> Luigi Giovanni Bertoldi • IT Infrastructure & Cloud Support
+    <div class="container">
+      © <span id="year"></span> Luigi Giovanni Bertoldi • IT Infrastructure & Cloud Support
+    </div>
   </footer>
 
   <div class="toTop" id="toTop">
@@ -742,6 +854,7 @@
   </div>
 
   <script>
+    // year
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // progress
@@ -766,28 +879,56 @@
       else toTop.classList.remove('show');
     });
 
-    // language toggle (PT/EN)
+    // i18n nav labels
+    const labels = {
+      pt: { nav_about:'Sobre', nav_experience:'Experiência', nav_stack:'Stack', nav_languages:'Idiomas', nav_contact:'Contato' },
+      en: { nav_about:'About', nav_experience:'Experience', nav_stack:'Tech Stack', nav_languages:'Languages', nav_contact:'Contact' }
+    };
+
     const langBtn = document.getElementById('langBtn');
+    const langBtn2 = document.getElementById('langBtn2');
+
     function setLang(lang){
       document.body.classList.remove('lang-pt','lang-en');
       document.body.classList.add('lang-' + lang);
-      langBtn.textContent = (lang === 'pt') ? 'EN' : 'PT';
+
+      const next = (lang === 'pt') ? 'EN' : 'PT';
+      langBtn.textContent = next;
+      langBtn2.textContent = next;
+
       localStorage.setItem('siteLang', lang);
 
-      // update nav labels
-      const labels = {
-        pt: { nav_about:'Sobre', nav_experience:'Experiência', nav_stack:'Stack', nav_languages:'Idiomas', nav_contact:'Contato' },
-        en: { nav_about:'About', nav_experience:'Experience', nav_stack:'Tech', nav_languages:'Languages', nav_contact:'Contact' }
-      };
-      document.querySelectorAll('[data-i18n]').forEach(el=>{
+      document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         el.textContent = labels[lang][key] || el.textContent;
       });
     }
+
     const saved = localStorage.getItem('siteLang');
     setLang(saved === 'en' ? 'en' : 'pt');
+
     langBtn.addEventListener('click', () => {
       setLang(document.body.classList.contains('lang-pt') ? 'en' : 'pt');
+    });
+    langBtn2.addEventListener('click', () => {
+      setLang(document.body.classList.contains('lang-pt') ? 'en' : 'pt');
+    });
+
+    // mobile menu
+    const navWrap = document.getElementById('navWrap');
+    const menuBtn = document.getElementById('menuBtn');
+    menuBtn.addEventListener('click', () => {
+      navWrap.classList.toggle('mobileOpen');
+    });
+
+    // close mobile on link click
+    document.getElementById('mobilePanel').addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') navWrap.classList.remove('mobileOpen');
+    });
+
+    // close mobile when resizing up
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 860) navWrap.classList.remove('mobileOpen');
     });
   </script>
 </body>
