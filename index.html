@@ -3,452 +3,165 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Luigi Bertoldi | Infra & Cloud Support</title>
+  <title>Luigi Bertoldi | IT Infrastructure & Cloud Support</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg: #070b16;
-      --panel: rgba(17, 24, 39, 0.72);
-      --panel2: rgba(2, 6, 23, 0.72);
-      --text: #e5e7eb;
-      --muted: #94a3b8;
-      --brand: #38bdf8;
-      --brand2: #22c55e;
-      --ring: rgba(56, 189, 248, 0.25);
-      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --bg:#060a14;
+      --panel: rgba(17, 24, 39, 0.62);
+      --panel2: rgba(2, 6, 23, 0.62);
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --brand:#38bdf8;
+      --brand2:#22c55e;
+      --stroke: rgba(148,163,184,0.16);
+      --stroke2: rgba(56,189,248,0.28);
+      --shadow: 0 18px 60px rgba(0,0,0,.48);
       --radius: 18px;
-      --max: 1100px;
+      --max: 1120px;
     }
 
-    *{ box-sizing: border-box; }
-    html{ scroll-behavior: smooth; }
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
     body{
       margin:0;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 15% 10%, rgba(56,189,248,0.12), transparent 55%),
-                  radial-gradient(900px 500px at 85% 20%, rgba(34,197,94,0.10), transparent 55%),
-                  radial-gradient(900px 500px at 50% 90%, rgba(56,189,248,0.08), transparent 55%),
-                  var(--bg);
       color: var(--text);
-      overflow-x: hidden;
+      background:
+        radial-gradient(1200px 650px at 15% 10%, rgba(56,189,248,0.13), transparent 55%),
+        radial-gradient(900px 520px at 85% 20%, rgba(34,197,94,0.11), transparent 55%),
+        radial-gradient(900px 520px at 50% 92%, rgba(56,189,248,0.09), transparent 55%),
+        var(--bg);
+      overflow-x:hidden;
     }
 
-    /* top progress */
-    .progress {
-      position: fixed;
-      top: 0; left: 0;
-      height: 3px;
-      width: 0%;
+    /* progress */
+    .progress{
+      position:fixed;
+      top:0; left:0;
+      height:3px;
+      width:0%;
+      z-index:9999;
       background: linear-gradient(90deg, var(--brand), var(--brand2));
-      z-index: 9999;
       box-shadow: 0 0 18px rgba(56,189,248,0.35);
     }
 
     /* nav */
     .nav{
-      position: fixed;
-      top: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(var(--max), calc(100% - 24px));
-      z-index: 9998;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      position:fixed;
+      top:14px;
+      left:50%;
+      transform:translateX(-50%);
+      width:min(var(--max), calc(100% - 24px));
+      z-index:9998;
+      padding:10px 12px;
+      border-radius:999px;
       background: rgba(2, 6, 23, 0.55);
       border: 1px solid rgba(148,163,184,0.18);
-      border-radius: 999px;
-      padding: 10px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       box-shadow: var(--shadow);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
     }
-    .brand{
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      padding-left: 6px;
-      user-select: none;
+    .nav .left{
+      display:flex; align-items:center; gap:10px;
+      user-select:none;
+      padding-left:6px;
+      min-width: 180px;
     }
-    .logoDot{
-      width: 10px; height: 10px;
-      border-radius: 99px;
+    .dot{
+      width:10px; height:10px; border-radius:999px;
       background: var(--brand);
-      box-shadow: 0 0 0 6px rgba(56,189,248,0.10),
-                  0 0 28px rgba(56,189,248,0.35);
+      box-shadow: 0 0 0 6px rgba(56,189,248,0.10), 0 0 28px rgba(56,189,248,0.35);
     }
-    .brandText{
+    .nav .title{
       font-family: Orbitron, Inter, sans-serif;
-      letter-spacing: 0.6px;
-      font-weight: 700;
-      font-size: 13px;
-      color: #dbeafe;
-      opacity: 0.95;
+      font-weight:700;
+      font-size:12px;
+      letter-spacing:1.4px;
+      color:#dbeafe;
+      opacity:.9;
+      white-space:nowrap;
+    }
+    .nav .links{
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
     }
     .nav a{
       color: var(--muted);
-      text-decoration: none;
-      font-size: 13px;
-      padding: 10px 12px;
-      border-radius: 999px;
+      text-decoration:none;
+      font-size:13px;
+      padding:10px 12px;
+      border-radius:999px;
       transition: 200ms;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
     }
     .nav a:hover{
       color: var(--text);
       background: rgba(56,189,248,0.10);
       box-shadow: 0 0 0 1px rgba(56,189,248,0.15) inset;
     }
-    .navLinks{
-      display:flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
 
     /* hero */
     .hero{
-      min-height: 100vh;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
       padding: 110px 18px 70px;
-      display: grid;
-      place-items: center;
-      position: relative;
+      position:relative;
     }
-
     .gridGlow{
-      position: absolute;
-      inset: -40px;
+      position:absolute;
+      inset:-60px;
       background:
         linear-gradient(rgba(56,189,248,0.08) 1px, transparent 1px),
         linear-gradient(90deg, rgba(56,189,248,0.08) 1px, transparent 1px);
-      background-size: 60px 60px;
+      background-size: 62px 62px;
       mask-image: radial-gradient(circle at 50% 30%, black 0%, transparent 70%);
       opacity: 0.85;
-      pointer-events: none;
-    }
-
-    .heroInner{
-      width: min(var(--max), 100%);
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 26px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    @media (max-width: 900px){
-      .heroInner{ grid-template-columns: 1fr; }
-      .nav{ top: 10px; }
-    }
-
-    .glass{
-      background: linear-gradient(180deg, rgba(17,24,39,0.74), rgba(2,6,23,0.66));
-      border: 1px solid rgba(148,163,184,0.18);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    .heroCard{
-      padding: 30px 28px;
-      position: relative;
-      overflow: hidden;
-    }
-    .heroCard::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background: radial-gradient(900px 220px at 10% 20%, rgba(56,189,248,0.22), transparent 50%),
-                  radial-gradient(700px 260px at 70% 15%, rgba(34,197,94,0.16), transparent 52%);
-      filter: blur(6px);
-      opacity: 0.9;
       pointer-events:none;
     }
-    .heroCard > *{ position:relative; z-index:1; }
-
-    .kicker{
-      font-family: Orbitron, Inter, sans-serif;
-      font-size: 12px;
-      letter-spacing: 1.8px;
-      color: rgba(56,189,248,0.92);
-      text-transform: uppercase;
-    }
-    h1{
-      margin: 10px 0 12px;
-      font-family: Orbitron, Inter, sans-serif;
-      font-size: clamp(30px, 4vw, 52px);
-      line-height: 1.05;
-      letter-spacing: 0.4px;
-    }
-    .subtitle{
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.6;
-      max-width: 62ch;
-    }
-
-    .chipRow{
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 18px;
-    }
-    .chip{
-      font-size: 12px;
-      color: #cbd5e1;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(56,189,248,0.10);
-      border: 1px solid rgba(56,189,248,0.18);
-      box-shadow: 0 0 0 6px rgba(56,189,248,0.03);
-    }
-
-    .ctaRow{
-      display:flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-      align-items: center;
-    }
-    .btn{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 12px 16px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
-      border: 1px solid rgba(148,163,184,0.18);
-      transition: 200ms;
-      will-change: transform;
-      user-select: none;
-    }
-    .btnPrimary{
-      background: linear-gradient(90deg, rgba(56,189,248,1), rgba(34,197,94,0.95));
-      color: #03101e;
-      border-color: rgba(56,189,248,0.25);
-      box-shadow: 0 14px 40px rgba(56,189,248,0.18);
-    }
-    .btnPrimary:hover{ transform: translateY(-2px); }
-    .btnGhost{
-      background: rgba(2,6,23,0.25);
-      color: var(--text);
-    }
-    .btnGhost:hover{
-      background: rgba(56,189,248,0.10);
-      border-color: rgba(56,189,248,0.25);
-      transform: translateY(-2px);
-    }
-
-    .sideCard{
-      padding: 22px;
-      position: relative;
-      overflow: hidden;
-    }
-    .sideTitle{
-      font-size: 13px;
-      color: #cbd5e1;
-      font-weight: 700;
-      letter-spacing: 0.2px;
-      margin-bottom: 14px;
+    .heroInner{
+      width:min(var(--max), 100%);
       display:flex;
       align-items:center;
-      justify-content: space-between;
-      gap: 12px;
+      justify-content:center;
+      text-align:center;
+      position:relative;
+      z-index:1;
     }
-    .badge{
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(34,197,94,0.12);
-      border: 1px solid rgba(34,197,94,0.22);
-      color: rgba(187,247,208,0.95);
-      white-space: nowrap;
-    }
-    .kv{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-    .kvItem{
-      padding: 12px 12px;
-      border-radius: 14px;
-      background: rgba(17,24,39,0.55);
-      border: 1px solid rgba(148,163,184,0.14);
-    }
-    .kvLabel{
-      color: var(--muted);
-      font-size: 12px;
-    }
-    .kvValue{
-      margin-top: 4px;
-      font-weight: 700;
-      color: #e2e8f0;
-      font-size: 13px;
-      line-height: 1.35;
-    }
-
-    /* sections */
-    .wrap{
-      width: min(var(--max), calc(100% - 36px));
-      margin: 0 auto;
-      padding: 70px 0;
-    }
-
-    .sectionTitle{
-      display:flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-    .sectionTitle h2{
+    .heroName{
+      font-family: Orbitron, Inter, sans-serif;
+      font-weight:700;
+      letter-spacing:0.5px;
+      font-size: clamp(34px, 5vw, 70px);
+      line-height:1.05;
       margin:0;
-      font-size: 24px;
-      color: #dbeafe;
     }
-    .sectionTitle p{
-      margin:0;
-      color: var(--muted);
-      font-size: 13px;
-      max-width: 60ch;
+    .heroRole{
+      margin: 14px 0 0;
+      font-size: clamp(14px, 2vw, 18px);
+      color: rgba(148,163,184,0.98);
+      letter-spacing: 0.2px;
     }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    @media (max-width: 900px){
-      .grid{ grid-template-columns: 1fr; }
-    }
-
-    .card{
-      padding: 18px 18px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(148,163,184,0.16);
-      background: rgba(17,24,39,0.55);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.22);
-      transition: transform 200ms, border-color 200ms, background 200ms;
-      will-change: transform;
-      transform-style: preserve-3d;
-    }
-    .card:hover{
-      transform: translateY(-6px);
-      border-color: rgba(56,189,248,0.28);
-      background: rgba(17,24,39,0.72);
-    }
-    .card h3{
-      margin: 0 0 10px;
-      font-size: 16px;
-      color: #e2e8f0;
-      letter-spacing: .2px;
-    }
-    .card p{
-      margin:0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-    .list{
-      margin: 10px 0 0;
-      padding-left: 18px;
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: 14px;
-    }
-    .pillRow{
-      margin-top: 12px;
-      display:flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .pill{
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(56,189,248,0.10);
-      border: 1px solid rgba(56,189,248,0.18);
-      color: #cbd5e1;
-    }
-
-    .twoCols{
-      display:grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 16px;
-    }
-    @media (max-width: 900px){
-      .twoCols{ grid-template-columns: 1fr; }
-    }
-
-    .footer{
-      padding: 40px 18px 60px;
-      color: var(--muted);
-      text-align: center;
-      border-top: 1px solid rgba(148,163,184,0.12);
-      background: rgba(2,6,23,0.28);
-    }
-
-    /* scroll reveal */
-    .reveal{
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 700ms ease, transform 700ms ease;
-    }
-    .reveal.show{
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* back to top */
-    .toTop{
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      z-index: 9997;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(10px);
-      transition: 200ms;
-    }
-    .toTop.show{
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
-    }
-    .toTop button{
-      border: 1px solid rgba(148,163,184,0.18);
-      background: rgba(2,6,23,0.65);
-      color: var(--text);
-      border-radius: 14px;
-      padding: 12px 12px;
-      cursor: pointer;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-    .toTop button:hover{
-      border-color: rgba(56,189,248,0.28);
-      background: rgba(56,189,248,0.10);
-    }
-
-    /* smooth wheel (optional) hint */
-    .hint{
+    .heroRole b{ color: rgba(56,189,248,0.95); }
+    .scrollHint{
       margin-top: 26px;
       display:flex;
+      align-items:center;
+      justify-content:center;
       gap: 10px;
-      align-items: center;
-      color: rgba(148,163,184,0.95);
+      color: rgba(148,163,184,0.92);
       font-size: 13px;
+      user-select:none;
     }
     .mouse{
       width: 18px;
@@ -471,9 +184,219 @@
       animation: wheel 1.4s infinite;
     }
     @keyframes wheel{
-      0%{ opacity: .2; transform: translate(-50%, 0); }
-      40%{ opacity: 1; }
-      100%{ opacity: .2; transform: translate(-50%, 10px); }
+      0%{ opacity:.2; transform: translate(-50%, 0); }
+      40%{ opacity:1; }
+      100%{ opacity:.2; transform: translate(-50%, 10px); }
+    }
+
+    /* sections */
+    main{ position:relative; }
+    .wrap{
+      width:min(var(--max), calc(100% - 36px));
+      margin: 0 auto;
+      padding: 72px 0;
+    }
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom: 18px;
+    }
+    .sectionHead h2{
+      margin:0;
+      font-size: 24px;
+      color:#dbeafe;
+      letter-spacing:0.2px;
+    }
+    .sectionHead p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 62ch;
+      line-height:1.5;
+    }
+
+    .glass{
+      background: linear-gradient(180deg, var(--panel), var(--panel2));
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .twoCols{
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 16px;
+    }
+    @media (max-width: 900px){
+      .grid, .twoCols{ grid-template-columns: 1fr; }
+      .nav .left{ min-width: unset; }
+      .nav{ top:10px; }
+    }
+
+    .card{
+      padding: 18px 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: rgba(17,24,39,0.56);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.22);
+      transition: transform 200ms, border-color 200ms, background 200ms;
+      transform-style: preserve-3d;
+      will-change: transform;
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(700px 220px at 12% 14%, rgba(56,189,248,0.22), transparent 54%),
+        radial-gradient(600px 240px at 78% 10%, rgba(34,197,94,0.14), transparent 56%);
+      opacity:.35;
+      pointer-events:none;
+      filter: blur(6px);
+    }
+    .card > *{ position:relative; z-index:1; }
+    .card:hover{
+      transform: translateY(-6px);
+      border-color: var(--stroke2);
+      background: rgba(17,24,39,0.72);
+    }
+    .card h3{
+      margin: 0 0 10px;
+      font-size: 16px;
+      color: #e2e8f0;
+      letter-spacing: 0.2px;
+    }
+    .card p{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .list{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 14px;
+    }
+    .pillRow{
+      margin-top: 12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+    }
+    .pill{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(56,189,248,0.10);
+      border: 1px solid rgba(56,189,248,0.18);
+      color: #cbd5e1;
+      white-space: nowrap;
+    }
+    a{
+      color: var(--brand);
+      text-decoration:none;
+    }
+    a:hover{ text-decoration: underline; }
+
+    .ctaRow{
+      display:flex;
+      gap: 12px;
+      flex-wrap:wrap;
+      margin-top: 14px;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid rgba(148,163,184,0.18);
+      transition: 200ms;
+      user-select:none;
+      text-decoration:none !important;
+    }
+    .btnPrimary{
+      background: linear-gradient(90deg, var(--brand), rgba(34,197,94,0.95));
+      color: #03101e;
+      border-color: rgba(56,189,248,0.25);
+      box-shadow: 0 14px 40px rgba(56,189,248,0.18);
+    }
+    .btnPrimary:hover{ transform: translateY(-2px); }
+    .btnGhost{
+      background: rgba(2,6,23,0.25);
+      color: var(--text);
+    }
+    .btnGhost:hover{
+      background: rgba(56,189,248,0.10);
+      border-color: rgba(56,189,248,0.25);
+      transform: translateY(-2px);
+    }
+
+    /* reveal */
+    .reveal{
+      opacity:0;
+      transform: translateY(18px);
+      transition: opacity 750ms ease, transform 750ms ease;
+    }
+    .reveal.show{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* footer */
+    footer{
+      padding: 44px 18px 60px;
+      text-align:center;
+      color: var(--muted);
+      border-top: 1px solid rgba(148,163,184,0.12);
+      background: rgba(2,6,23,0.28);
+    }
+
+    /* back to top */
+    .toTop{
+      position:fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 9997;
+      opacity:0;
+      pointer-events:none;
+      transform: translateY(10px);
+      transition: 200ms;
+    }
+    .toTop.show{
+      opacity:1;
+      pointer-events:auto;
+      transform: translateY(0);
+    }
+    .toTop button{
+      border: 1px solid rgba(148,163,184,0.18);
+      background: rgba(2,6,23,0.65);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 12px 12px;
+      cursor:pointer;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .toTop button:hover{
+      border-color: rgba(56,189,248,0.28);
+      background: rgba(56,189,248,0.10);
     }
   </style>
 </head>
@@ -482,226 +405,189 @@
   <div class="progress" id="progress"></div>
 
   <nav class="nav">
-    <div class="brand">
-      <span class="logoDot"></span>
-      <span class="brandText">LUIGI • IT PORTFOLIO</span>
+    <div class="left">
+      <span class="dot"></span>
+      <span class="title">LUIGI • IT</span>
     </div>
-    <div class="navLinks">
-      <a href="#sobre">Sobre</a>
-      <a href="#experiencia">Experiência</a>
+    <div class="links">
+      <a href="#about">Sobre</a>
+      <a href="#experience">Experiência</a>
       <a href="#stack">Stack</a>
-      <a href="#idiomas">Idiomas</a>
-      <a href="#contato">Contato</a>
+      <a href="#languages">Idiomas</a>
+      <a href="#contact">Contato</a>
     </div>
   </nav>
 
-  <header class="hero" id="topo">
+  <!-- HERO (somente nome + função) -->
+  <header class="hero" id="top">
     <div class="gridGlow"></div>
-
     <div class="heroInner">
-      <div class="heroCard glass reveal">
-        <div class="kicker">Infrastructure • Cloud Support • Systems</div>
-        <h1>Luigi Giovanni Bertoldi</h1>
-        <p class="subtitle">
-          Analista de Suporte N1/N2 com foco em <b>Infraestrutura</b>, <b>Redes</b> e <b>Active Directory</b>.
-          Experiência em ambientes Windows e Linux, troubleshooting, documentação e boas práticas de segurança.
-        </p>
-
-        <div class="chipRow">
-          <span class="chip">Active Directory</span>
-          <span class="chip">Windows / Linux</span>
-          <span class="chip">DNS • TCP/IP</span>
-          <span class="chip">ITIL Mindset</span>
-        </div>
-
-        <div class="ctaRow">
-          <a class="btn btnPrimary" href="mailto:luigigbertoldi@gmail.com">📩 Falar comigo</a>
-          <a class="btn btnGhost" href="#experiencia">⬇️ Ver experiências</a>
-          <a class="btn btnGhost" href="https://github.com/luigigbertoldi" target="_blank" rel="noopener">💻 GitHub</a>
-        </div>
-
-        <div class="hint">
+      <div>
+        <h1 class="heroName">Luigi Giovanni Bertoldi</h1>
+        <p class="heroRole">IT Infrastructure • <b>Cloud Support</b> • Systems Analyst</p>
+        <div class="scrollHint">
           <span class="mouse"></span>
-          <span>Role para ver mais (scroll suave + animações)</span>
+          <span>Scroll</span>
         </div>
       </div>
-
-      <aside class="sideCard glass reveal">
-        <div class="sideTitle">
-          <span>Resumo rápido</span>
-          <span class="badge">Disponível • Remoto/Presencial</span>
-        </div>
-
-        <div class="kv">
-          <div class="kvItem">
-            <div class="kvLabel">Área alvo</div>
-            <div class="kvValue">Infraestrutura & Cloud Support (Junior)</div>
-          </div>
-          <div class="kvItem">
-            <div class="kvLabel">Diferenciais</div>
-            <div class="kvValue">Responsável por setor cedo • documentação • foco em estabilidade</div>
-          </div>
-          <div class="kvItem">
-            <div class="kvLabel">Idiomas</div>
-            <div class="kvValue">PT/IT fluente • EN intermediário • ES básico</div>
-          </div>
-          <div class="kvItem">
-            <div class="kvLabel">Contato</div>
-            <div class="kvValue">luigigbertoldi@gmail.com</div>
-          </div>
-        </div>
-      </aside>
     </div>
   </header>
 
   <main>
-    <section class="wrap" id="sobre">
-      <div class="sectionTitle reveal">
+    <section class="wrap" id="about">
+      <div class="sectionHead reveal">
         <h2>Sobre</h2>
-        <p>Perfil técnico e orientado a processos, com foco em troubleshooting e experiência do usuário.</p>
+        <p>Suporte N1/N2 e infraestrutura, com foco em estabilidade, segurança e experiência do usuário.</p>
       </div>
 
       <div class="twoCols">
-        <div class="card reveal">
-          <h3>Quem eu sou</h3>
+        <div class="card reveal glass">
+          <h3>Perfil</h3>
           <p>
-            Profissional de TI com atuação em suporte e infraestrutura, administrando ambientes e garantindo
-            continuidade operacional. Tenho perfil analítico, organizado e focado em resolver problemas de ponta a ponta,
-            documentando soluções e reduzindo recorrência.
+            Profissional de TI com experiência em suporte e infraestrutura, atuando com ambientes Windows e Linux,
+            administração de identidade (Active Directory), troubleshooting de redes e padronização de processos.
+            Responsável por setor cedo, com postura de ownership e disciplina operacional.
           </p>
           <div class="pillRow">
-            <span class="pill">Diagnóstico rápido</span>
-            <span class="pill">Comunicação clara</span>
-            <span class="pill">Padronização</span>
-            <span class="pill">Melhoria contínua</span>
+            <span class="pill">Troubleshooting</span>
+            <span class="pill">Documentação</span>
+            <span class="pill">Processos</span>
+            <span class="pill">Segurança</span>
           </div>
         </div>
 
-        <div class="card reveal">
-          <h3>Meu objetivo</h3>
+        <div class="card reveal glass">
+          <h3>Foco</h3>
           <p>
-            Evoluir para <b>Infraestrutura / Cloud Support</b>, atuando com redes, sistemas, identidade (AD),
-            automação e boas práticas de segurança — contribuindo com estabilidade, performance e qualidade de serviço.
+            Infraestrutura & Cloud Support, contribuindo com disponibilidade, performance, segurança e melhoria contínua.
           </p>
           <ul class="list">
-            <li>Ambientes corporativos Windows/Linux</li>
-            <li>Identidade e acesso (AD / permissões)</li>
-            <li>Troubleshooting de conectividade (DNS/TCP/IP)</li>
+            <li>Windows / Linux • suporte corporativo</li>
+            <li>Active Directory • permissões • acessos</li>
+            <li>DNS • TCP/IP • conectividade</li>
             <li>Base para evolução em cloud (AWS/Azure)</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section class="wrap" id="experiencia">
-      <div class="sectionTitle reveal">
+    <section class="wrap" id="experience">
+      <div class="sectionHead reveal">
         <h2>Experiência</h2>
-        <p>O que eu faço no dia a dia (e o que eu entrego de valor).</p>
+        <p>Atuação com suporte, infraestrutura e rotinas operacionais em ambiente corporativo.</p>
       </div>
 
       <div class="grid">
-        <div class="card reveal">
+        <div class="card reveal glass">
           <h3>SIGAMAQ Industrial — Analista de Suporte de TI (N1/N2)</h3>
           <ul class="list">
-            <li>Atendimento presencial e remoto, priorizando por impacto e urgência</li>
+            <li>Suporte presencial e remoto, com priorização por impacto e urgência</li>
             <li>Administração de usuários, grupos e permissões via Active Directory</li>
-            <li>Troubleshooting de rede: DNS, IP, conectividade, acesso a recursos</li>
+            <li>Troubleshooting de rede: DNS, IP, conectividade e acesso a recursos</li>
             <li>Manutenção e upgrades: SSD, RAM, diagnóstico e troca de componentes</li>
             <li>Suporte a impressoras, filas, drivers e padronização</li>
-            <li>Segurança: BitLocker, boas práticas, controle de acessos</li>
+            <li>Boas práticas de segurança: BitLocker, antivírus e controle de acesso</li>
           </ul>
           <div class="pillRow">
-            <span class="pill">N1/N2</span><span class="pill">AD</span><span class="pill">Redes</span><span class="pill">Windows/Linux</span>
+            <span class="pill">N1/N2</span>
+            <span class="pill">Active Directory</span>
+            <span class="pill">Redes</span>
+            <span class="pill">Windows/Linux</span>
           </div>
         </div>
 
-        <div class="card reveal">
-          <h3>Responsabilidade cedo (maturidade profissional)</h3>
+        <div class="card reveal glass">
+          <h3>Responsabilidade & liderança</h3>
           <p>
-            Assumi responsabilidades de setor ainda jovem, com foco em organização, padronização e entrega.
-            Isso me trouxe disciplina para lidar com rotinas críticas e comunicação com diferentes áreas.
+            Experiência assumindo responsabilidades de setor cedo, com foco em organização, padronização e execução.
           </p>
           <ul class="list">
-            <li>Padronização de processos e documentação técnica</li>
-            <li>Organização de ativos/inventário e rotina de suporte</li>
-            <li>Redução de retrabalho com procedimentos claros</li>
+            <li>Criação e manutenção de documentação técnica</li>
+            <li>Padronização de rotinas para reduzir retrabalho</li>
+            <li>Organização de ativos e suporte operacional</li>
           </ul>
           <div class="pillRow">
-            <span class="pill">Ownership</span><span class="pill">Processos</span><span class="pill">Documentação</span>
+            <span class="pill">Ownership</span>
+            <span class="pill">Processos</span>
+            <span class="pill">Padronização</span>
           </div>
         </div>
       </div>
     </section>
 
     <section class="wrap" id="stack">
-      <div class="sectionTitle reveal">
-        <h2>Stack & Ferramentas</h2>
-        <p>Base técnica forte para Infraestrutura/Cloud Support (e fácil de evoluir).</p>
+      <div class="sectionHead reveal">
+        <h2>Stack</h2>
+        <p>Tecnologias e áreas de atuação com base em experiência prática.</p>
       </div>
 
       <div class="grid">
-        <div class="card reveal">
+        <div class="card reveal glass">
           <h3>Sistemas & Identidade</h3>
           <ul class="list">
             <li>Windows (estações) • fundamentos de Windows Server</li>
-            <li>Linux (admin básico) • permissões • serviços</li>
-            <li>Active Directory: usuários, grupos, permissões</li>
+            <li>Linux (administração básica) • permissões • serviços</li>
+            <li>Active Directory: usuários, grupos, permissões e controle de acesso</li>
           </ul>
           <div class="pillRow">
-            <span class="pill">Windows</span><span class="pill">Linux</span><span class="pill">Active Directory</span>
+            <span class="pill">Windows</span>
+            <span class="pill">Linux</span>
+            <span class="pill">Active Directory</span>
           </div>
         </div>
 
-        <div class="card reveal">
+        <div class="card reveal glass">
           <h3>Redes & Segurança</h3>
           <ul class="list">
             <li>DNS • TCP/IP • troubleshooting de conectividade</li>
-            <li>Configuração de rede, identificação de falhas e testes</li>
-            <li>Boas práticas: BitLocker, antivírus, senhas e acesso</li>
+            <li>Diagnóstico e testes de comunicação em rede</li>
+            <li>Boas práticas: BitLocker, antivírus, senhas e acessos</li>
           </ul>
           <div class="pillRow">
-            <span class="pill">DNS</span><span class="pill">TCP/IP</span><span class="pill">BitLocker</span>
+            <span class="pill">DNS</span>
+            <span class="pill">TCP/IP</span>
+            <span class="pill">BitLocker</span>
           </div>
         </div>
 
-        <div class="card reveal">
+        <div class="card reveal glass">
           <h3>Operação & Qualidade</h3>
           <ul class="list">
-            <li>Registro e acompanhamento de incidentes</li>
+            <li>Registro e acompanhamento de incidentes e problemas</li>
             <li>Documentação e base de conhecimento</li>
             <li>Padronização e melhoria contínua</li>
           </ul>
           <div class="pillRow">
-            <span class="pill">SLA mindset</span><span class="pill">Documentação</span><span class="pill">Melhoria</span>
+            <span class="pill">Incidentes</span>
+            <span class="pill">Documentação</span>
+            <span class="pill">Melhoria contínua</span>
           </div>
         </div>
 
-        <div class="card reveal">
-          <h3>Cloud (próximo passo)</h3>
-          <p>
-            Você já tem a base ideal. Próximo passo é consolidar cloud com prática.
-            (Depois eu te passo um roadmap objetivo pra buscar vaga que paga melhor.)
-          </p>
+        <div class="card reveal glass">
+          <h3>Cloud</h3>
           <ul class="list">
-            <li>AWS/Azure: identidade, redes, compute, segurança</li>
-            <li>Hands-on: labs simples e documentação do que você fez</li>
+            <li>Fundamentos e conceitos de cloud (base para AWS/Azure)</li>
+            <li>Foco em suporte e operação: identidade, redes e segurança</li>
           </ul>
           <div class="pillRow">
-            <span class="pill">Cloud Support</span><span class="pill">AWS/Azure</span><span class="pill">Hands-on</span>
+            <span class="pill">Cloud Support</span>
+            <span class="pill">AWS/Azure</span>
+            <span class="pill">Networking</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="wrap" id="idiomas">
-      <div class="sectionTitle reveal">
+    <section class="wrap" id="languages">
+      <div class="sectionHead reveal">
         <h2>Idiomas</h2>
-        <p>Ótimo para suporte global e empresas com times internacionais.</p>
+        <p>Comunicação técnica e suporte para ambientes internacionais.</p>
       </div>
 
       <div class="grid">
-        <div class="card reveal">
-          <h3>Comunicação</h3>
+        <div class="card reveal glass">
+          <h3>Proficiência</h3>
           <ul class="list">
             <li>🇧🇷 Português — Fluente</li>
             <li>🇮🇹 Italiano — Fluente</li>
@@ -710,49 +596,53 @@
           </ul>
         </div>
 
-        <div class="card reveal">
-          <h3>Como isso te ajuda</h3>
+        <div class="card reveal glass">
+          <h3>Disponibilidade</h3>
           <p>
-            Italiano + TI é um diferencial real para empresas europeias / suporte multinacional.
-            Inglês intermediário já te coloca em vagas que pagam melhor do que suporte comum.
+            Aberto a oportunidades remoto ou presencial. Perfil voltado a ambientes corporativos,
+            com foco em qualidade de serviço e estabilidade.
           </p>
+          <div class="pillRow">
+            <span class="pill">Remoto</span>
+            <span class="pill">Presencial</span>
+            <span class="pill">Internacional</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="wrap" id="contato">
-      <div class="sectionTitle reveal">
+    <section class="wrap" id="contact">
+      <div class="sectionHead reveal">
         <h2>Contato</h2>
-        <p>Quer conversar sobre uma vaga ou projeto? É só chamar.</p>
+        <p>Conexões e links profissionais.</p>
       </div>
 
       <div class="twoCols">
-        <div class="card reveal">
+        <div class="card reveal glass">
           <h3>Fale comigo</h3>
           <p>
             📧 <a href="mailto:luigigbertoldi@gmail.com">luigigbertoldi@gmail.com</a><br>
-            💻 <a href="https://github.com/luigigbertoldi" target="_blank" rel="noopener">github.com/luigigbertoldi</a><br>
-            🔗 (adicione seu LinkedIn aqui quando quiser)
+            💻 <a href="https://github.com/luigigbertoldi" target="_blank" rel="noopener">github.com/luigigbertoldi</a>
           </p>
           <div class="ctaRow">
             <a class="btn btnPrimary" href="mailto:luigigbertoldi@gmail.com">📩 Enviar e-mail</a>
-            <a class="btn btnGhost" href="#topo">⬆️ Voltar ao topo</a>
+            <a class="btn btnGhost" href="https://github.com/luigigbertoldi" target="_blank" rel="noopener">💻 GitHub</a>
           </div>
         </div>
 
-        <div class="card reveal">
-          <h3>Frase de impacto (para recrutador)</h3>
+        <div class="card reveal glass">
+          <h3>Resumo</h3>
           <p>
-            “Atuo com Suporte N1/N2 e Infraestrutura, com foco em Active Directory, redes (DNS/TCP/IP),
-            Windows/Linux e melhoria contínua via documentação e processos.”
+            IT Infrastructure / Cloud Support com experiência em suporte N1/N2, Active Directory, redes (DNS/TCP/IP),
+            Windows/Linux, manutenção e documentação técnica.
           </p>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    © <span id="year"></span> Luigi Bertoldi • Infrastructure & Cloud Support
+  <footer>
+    © <span id="year"></span> Luigi Giovanni Bertoldi • IT Infrastructure & Cloud Support
   </footer>
 
   <div class="toTop" id="toTop">
@@ -760,49 +650,41 @@
   </div>
 
   <script>
-    // Year
+    // year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Scroll progress bar
+    // progress bar
     const progress = document.getElementById('progress');
     window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      const st = window.scrollY || document.documentElement.scrollTop;
+      const dh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const pct = dh > 0 ? (st / dh) * 100 : 0;
       progress.style.width = pct + '%';
     });
 
-    // Scroll reveal
+    // reveal on scroll
     const revealEls = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting) e.target.classList.add('show');
-      }
+      for (const e of entries) if (e.isIntersecting) e.target.classList.add('show');
     }, { threshold: 0.12 });
-
     revealEls.forEach(el => io.observe(el));
 
-    // Back to top button
+    // back to top
     const toTop = document.getElementById('toTop');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 700) toTop.classList.add('show');
       else toTop.classList.remove('show');
     });
 
-    // “Deslize” mais suave no mouse wheel (opcional, leve)
-    // Se preferir, posso remover. Isso só suaviza a rolagem em desktops.
-    let isScrolling = false;
+    // smooth wheel feel (desktop)
+    let lock = false;
     window.addEventListener('wheel', (e) => {
-      // evita interferir em trackpads muito sensíveis
       if (Math.abs(e.deltaY) < 10) return;
       e.preventDefault();
-      if (isScrolling) return;
-      isScrolling = true;
-
-      const scrollAmount = e.deltaY * 0.9;
-      window.scrollBy({ top: scrollAmount, left: 0, behavior: 'smooth' });
-
-      setTimeout(() => { isScrolling = false; }, 120);
+      if (lock) return;
+      lock = true;
+      window.scrollBy({ top: e.deltaY * 0.9, left: 0, behavior: 'smooth' });
+      setTimeout(() => lock = false, 120);
     }, { passive: false });
   </script>
 </body>
