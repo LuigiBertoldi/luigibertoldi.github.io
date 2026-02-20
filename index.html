@@ -1,83 +1,1462 @@
-<!-- CONTACT (Premium) -->
-<section class="wrap" id="contact" aria-label="Contact">
-  <div class="sectionHead reveal contactHead">
-    <h2 data-i18n="contact_title"></h2>
-    <p data-i18n="contact_sub"></p>
-  </div>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Luigi Giovanni Bertoldi — IT Infrastructure & Cloud Support. N1/N2, Windows, Linux, Active Directory, Networking, Security." />
+  <meta name="theme-color" content="#040716" />
+  <title>Luigi Giovanni Bertoldi | IT Infrastructure & Cloud Support</title>
 
-  <div class="contactGrid">
-    <div class="contactCard reveal">
-      <div class="contactTop">
-        <div class="contactBadge">
-          <span class="contactDot"></span>
-          <span data-i18n="contact_badge"></span>
-        </div>
+  <!-- Premium rounded tech fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
 
-        <div class="contactIcons" aria-label="Social links">
-          <a class="iconBtn" href="https://www.linkedin.com/in/luigibertoldi/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg class="ic"><use href="#i-linkedin"></use></svg>
-          </a>
-          <a class="iconBtn" href="https://github.com/luigibertoldi" target="_blank" rel="noopener" aria-label="GitHub">
-            <svg class="ic"><use href="#i-github"></use></svg>
-          </a>
-          <a class="iconBtn" href="mailto:luigigbertoldi@gmail.com" aria-label="Email">
-            <span class="mailIcon">✉️</span>
-          </a>
-        </div>
+  <style>
+    :root{
+      --bg0:#040716;
+      --bg1:#070b1d;
+
+      --text:#eaf1ff;
+      --muted:#a7b4c7;
+
+      --brand:#66dcff;
+      --brand2:#36f0aa;
+
+      --glass: rgba(10, 16, 34, 0.66);
+      --glass2: rgba(6, 10, 24, 0.60);
+
+      --stroke: rgba(160,175,205,0.16);
+      --stroke2: rgba(102,220,255,0.33);
+
+      --radius: 22px;
+      --max: 1160px;
+      --pad: 18px;
+      --navH: 64px;
+
+      --ease: cubic-bezier(.2,.8,.2,1);
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 12% 8%, rgba(102,220,255,0.14), transparent 55%),
+        radial-gradient(900px 520px at 88% 18%, rgba(54,240,170,0.10), transparent 55%),
+        radial-gradient(900px 520px at 50% 92%, rgba(102,220,255,0.08), transparent 55%),
+        linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 45%, var(--bg0) 100%);
+      overflow-x:hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :focus-visible{
+      outline: 2px solid rgba(102,220,255,0.55);
+      outline-offset: 3px;
+      border-radius: 12px;
+    }
+
+    #bgCanvas{
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .progress{
+      position:fixed; top:0; left:0;
+      height:3px; width:0%;
+      z-index:9999;
+      background: linear-gradient(90deg, var(--brand), var(--brand2));
+      box-shadow: 0 0 24px rgba(102,220,255,0.35);
+    }
+
+    .container{
+      width: min(var(--max), calc(100% - (var(--pad) * 2)));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* NAV */
+    .navWrap{
+      position: fixed;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(var(--max), calc(100% - 24px));
+      z-index: 9998;
+    }
+
+    .nav{
+      height: var(--navH);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(6, 10, 24, 0.64);
+      border: 1px solid rgba(160,175,205,0.16);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.48);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      user-select:none;
+      padding-left: 6px;
+      min-width: 160px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--brand);
+      box-shadow: 0 0 0 7px rgba(102,220,255,0.10), 0 0 30px rgba(102,220,255,0.35);
+      flex: 0 0 auto;
+    }
+    .brandText{
+      font-family: Sora, "Plus Jakarta Sans", sans-serif;
+      font-weight:700;
+      font-size:12px;
+      letter-spacing:1.3px;
+      color:#dbeafe;
+      opacity:.92;
+      white-space:nowrap;
+    }
+
+    .navRight{ display:flex; align-items:center; gap: 8px; }
+    .links{ display:flex; gap: 6px; align-items:center; }
+
+    .nav a{
+      color: rgba(167,180,199,0.95);
+      text-decoration:none;
+      font-size:13px;
+      padding: 10px 12px;
+      border-radius:999px;
+      transition: 220ms var(--ease);
+      white-space: nowrap;
+    }
+    .nav a:hover{
+      color: var(--text);
+      background: rgba(102,220,255,0.10);
+      box-shadow: 0 0 0 1px rgba(102,220,255,0.14) inset;
+    }
+
+    .langBtn, .menuBtn{
+      border: 1px solid rgba(160,175,205,0.18);
+      background: rgba(6,10,24,0.44);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-weight: 900;
+      font-size: 12px;
+      cursor:pointer;
+      transition: 220ms var(--ease);
+      user-select:none;
+      letter-spacing: .2px;
+    }
+    .langBtn:hover, .menuBtn:hover{
+      border-color: rgba(102,220,255,0.30);
+      background: rgba(102,220,255,0.10);
+    }
+    .menuBtn{ display:none; }
+
+    .mobilePanel{
+      display:none;
+      margin-top: 10px;
+      border-radius: 18px;
+      padding: 10px;
+      background: rgba(6, 10, 24, 0.78);
+      border: 1px solid rgba(160,175,205,0.16);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.48);
+    }
+    .mobilePanel a{
+      display:block;
+      padding: 12px 12px;
+      border-radius: 14px;
+      color: rgba(167,180,199,0.95);
+      text-decoration:none;
+      font-size: 14px;
+      transition: 220ms var(--ease);
+    }
+    .mobilePanel a:hover{
+      background: rgba(102,220,255,0.10);
+      box-shadow: 0 0 0 1px rgba(102,220,255,0.14) inset;
+      color: var(--text);
+    }
+    .mobilePanel .row{
+      display:flex;
+      gap: 10px;
+      padding: 10px 8px 4px;
+      justify-content:flex-end;
+    }
+
+    @media (max-width: 980px){
+      .links{ display:none; }
+      .menuBtn{ display:inline-flex; }
+      .brand{ min-width: unset; }
+    }
+    .mobileOpen .mobilePanel{ display:block; }
+
+    /* HERO */
+    .hero{
+      min-height: 100vh;
+      display:grid;
+      place-items:center;
+      padding: calc(92px + var(--navH)) var(--pad) 76px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .heroInner{
+      width: min(var(--max), calc(100% - (var(--pad) * 2)));
+      text-align:center;
+      position: relative;
+    }
+
+    .heroTag{
+      display:inline-flex;
+      gap: 10px;
+      align-items:center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(160,175,205,0.16);
+      background: rgba(6,10,24,0.40);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: rgba(167,180,199,0.95);
+      font-size: 13px;
+      letter-spacing: .2px;
+      margin-bottom: 18px;
+      box-shadow: 0 16px 55px rgba(0,0,0,.30);
+    }
+    .spark{
+      width: 8px; height: 8px;
+      border-radius: 999px;
+      background: var(--brand2);
+      box-shadow: 0 0 0 6px rgba(54,240,170,0.10), 0 0 28px rgba(54,240,170,0.35);
+    }
+
+    h1{
+      font-family: Sora, "Plus Jakarta Sans", sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      font-size: clamp(36px, 5vw, 76px);
+      line-height: 1.03;
+      margin: 0;
+    }
+
+    .heroRole{
+      margin: 14px 0 0;
+      font-size: clamp(14px, 2vw, 18px);
+      color: rgba(167,180,199,0.98);
+      letter-spacing: 0.2px;
+    }
+    .heroRole b{ color: rgba(102,220,255,0.95); }
+
+    .heroCtas{
+      margin-top: 26px;
+      display:flex;
+      gap: 12px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-weight: 900;
+      font-size: 14px;
+      border: 1px solid rgba(160,175,205,0.18);
+      transition: transform 220ms var(--ease), background 220ms var(--ease), border-color 220ms var(--ease);
+      user-select:none;
+      text-decoration:none;
+      letter-spacing: .2px;
+      min-width: 170px;
+    }
+    .btnPrimary{
+      background: linear-gradient(90deg, var(--brand), rgba(54,240,170,0.95));
+      color: #061018;
+      border-color: rgba(102,220,255,0.25);
+      box-shadow: 0 22px 65px rgba(102,220,255,0.15);
+    }
+    .btnPrimary:hover{ transform: translateY(-2px); }
+    .btnGhost{
+      background: rgba(6,10,24,0.34);
+      color: var(--text);
+    }
+    .btnGhost:hover{
+      background: rgba(102,220,255,0.10);
+      border-color: rgba(102,220,255,0.25);
+      transform: translateY(-2px);
+    }
+
+    .ic{
+      width: 16px;
+      height: 16px;
+      display:inline-block;
+      vertical-align: -3px;
+    }
+    .btn .ic{ opacity: .95; }
+
+    .scrollHint{
+      margin-top: 26px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      color: rgba(167,180,199,0.92);
+      font-size: 13px;
+      user-select:none;
+    }
+    .mouse{
+      width: 18px; height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(160,175,205,0.30);
+      position: relative;
+      display:inline-block;
+    }
+    .mouse::after{
+      content:"";
+      position:absolute;
+      top: 6px; left: 50%;
+      width: 3px; height: 6px;
+      border-radius: 6px;
+      background: rgba(102,220,255,0.95);
+      transform: translateX(-50%);
+      animation: wheel 1.4s infinite;
+    }
+    @keyframes wheel{
+      0%{ opacity:.2; transform: translate(-50%, 0); }
+      40%{ opacity:1; }
+      100%{ opacity:.2; transform: translate(-50%, 10px); }
+    }
+
+    /* SECTIONS */
+    section{ scroll-margin-top: 110px; }
+    .wrap{ padding: 88px 0; }
+
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .sectionHead h2{
+      margin:0;
+      font-family: Sora, "Plus Jakarta Sans", sans-serif;
+      font-size: 24px;
+      color:#eaf2ff;
+      letter-spacing:0.2px;
+    }
+    .sectionHead p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 78ch;
+      line-height: 1.55;
+    }
+    @media (max-width: 980px){
+      .sectionHead{ flex-direction: column; align-items:flex-start; }
+      .sectionHead p{ max-width: 100%; }
+      .btn{ min-width: 150px; }
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+    .twoCols{
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+    @media (max-width: 980px){
+      .grid, .twoCols{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      height:100%;
+      padding: 24px 24px;
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: linear-gradient(180deg, var(--glass), var(--glass2));
+      box-shadow: 0 16px 48px rgba(0,0,0,0.22);
+      transition: transform 240ms var(--ease), border-color 240ms var(--ease), background 240ms var(--ease);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(720px 260px at 12% 16%, rgba(102,220,255,0.22), transparent 56%),
+        radial-gradient(700px 260px at 78% 12%, rgba(54,240,170,0.14), transparent 58%);
+      opacity:.28;
+      filter: blur(10px);
+      pointer-events:none;
+    }
+    .card > *{ position:relative; z-index:1; }
+
+    .card:hover{
+      transform: translateY(-6px);
+      border-color: var(--stroke2);
+      background: linear-gradient(180deg, rgba(10,16,34,0.82), rgba(6,10,24,0.72));
+    }
+
+    .card h3{
+      margin: 0 0 10px;
+      font-family: Sora, "Plus Jakarta Sans", sans-serif;
+      font-size: 16px;
+      color: #eaf2ff;
+      letter-spacing: 0.15px;
+    }
+    .card p{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 12px;
+      color: rgba(167,180,199,0.95);
+      font-size: 13px;
+    }
+    .meta span{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(160,175,205,0.14);
+      background: rgba(6,10,24,0.30);
+    }
+
+    .list{
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .pillRow{
+      margin-top: 14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+    }
+    .pill{
+      font-size: 12px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(102,220,255,0.10);
+      border: 1px solid rgba(102,220,255,0.18);
+      color: rgba(231,237,247,0.92);
+      white-space: nowrap;
+    }
+
+    a{ color: var(--brand); text-decoration:none; }
+    a:hover{ text-decoration: underline; }
+
+    .reveal{
+      opacity:0;
+      transform: translateY(14px);
+      transition: opacity 760ms var(--ease), transform 760ms var(--ease);
+    }
+    .reveal.show{ opacity:1; transform: translateY(0); }
+
+    /* GitHub projects */
+    .repos{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 1080px){ .repos{ grid-template-columns: 1fr; } }
+
+    .repoTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+    }
+    .repoName{
+      font-family: Sora, "Plus Jakarta Sans", sans-serif;
+      font-size: 15px;
+      margin: 0;
+      color: #eaf2ff;
+      line-height: 1.2;
+    }
+    .repoDesc{
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      min-height: 44px;
+    }
+    .repoMeta{
+      margin-top: 12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      color: rgba(167,180,199,0.95);
+      font-size: 12px;
+    }
+    .repoMeta span{
+      display:inline-flex;
+      align-items:center;
+      gap: 6px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(160,175,205,0.14);
+      background: rgba(6,10,24,0.30);
+    }
+    .repoLink{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      margin-top: 14px;
+      font-weight: 800;
+      font-size: 13px;
+      color: rgba(102,220,255,0.95);
+      text-decoration:none;
+    }
+    .repoLink:hover{ text-decoration: underline; }
+
+    /* ---- Premium Contact (like screenshot) ---- */
+    .contactHead{ text-align:center; justify-content:center; }
+    .contactHead p{ text-align:center; }
+
+    .contactGrid{
+      display:grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 16px;
+      align-items: start;
+    }
+    @media (max-width: 980px){
+      .contactGrid{ grid-template-columns: 1fr; }
+    }
+
+    .contactCard{
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(10,16,34,0.72), rgba(6,10,24,0.62));
+      box-shadow: 0 18px 60px rgba(0,0,0,0.28);
+      padding: 26px;
+      position: relative;
+      overflow:hidden;
+    }
+    .contactCard::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(800px 300px at 10% 10%, rgba(102,220,255,0.22), transparent 58%),
+        radial-gradient(800px 300px at 85% 10%, rgba(54,240,170,0.16), transparent 60%);
+      opacity:.25;
+      filter: blur(10px);
+      pointer-events:none;
+    }
+    .contactCard > *{ position:relative; z-index:1; }
+
+    .contactTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .contactBadge{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(160,175,205,0.16);
+      background: rgba(6,10,24,0.40);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: rgba(167,180,199,0.95);
+      font-size: 13px;
+      letter-spacing:.2px;
+    }
+    .contactDot{
+      width: 9px; height: 9px;
+      border-radius: 999px;
+      background: var(--brand2);
+      box-shadow: 0 0 0 7px rgba(54,240,170,0.10), 0 0 28px rgba(54,240,170,0.35);
+    }
+
+    .contactIcons{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+    .iconBtn{
+      width: 44px;
+      height: 44px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius: 14px;
+      border: 1px solid rgba(160,175,205,0.18);
+      background: rgba(6,10,24,0.42);
+      color: rgba(234,241,255,0.92);
+      text-decoration:none;
+      transition: 220ms var(--ease);
+    }
+    .iconBtn:hover{
+      border-color: rgba(102,220,255,0.30);
+      background: rgba(102,220,255,0.10);
+      transform: translateY(-2px);
+    }
+    .mailIcon{ font-size: 16px; }
+
+    .contactForm{
+      margin-top: 12px;
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+    }
+
+    .field{ display:flex; flex-direction:column; gap: 8px; }
+    .label{
+      font-size: 13px;
+      color: rgba(167,180,199,0.95);
+    }
+
+    .input, .textarea{
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid rgba(160,175,205,0.18);
+      background: rgba(6,10,24,0.58);
+      color: var(--text);
+      padding: 12px 14px;
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: 220ms var(--ease);
+    }
+    .textarea{ resize: vertical; min-height: 150px; }
+    .input::placeholder, .textarea::placeholder{ color: rgba(167,180,199,0.65); }
+
+    .input:focus, .textarea:focus{
+      border-color: rgba(102,220,255,0.34);
+      box-shadow: 0 0 0 3px rgba(102,220,255,0.10);
+    }
+
+    .sendBtn{
+      margin-top: 6px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 14px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(102,220,255,0.25);
+      background: linear-gradient(90deg, var(--brand), rgba(54,240,170,0.95));
+      color: #061018;
+      font-weight: 900;
+      cursor: pointer;
+      transition: 220ms var(--ease);
+    }
+    .sendBtn:hover{ transform: translateY(-2px); }
+    .sendBtn .ic{ width: 16px; height: 16px; }
+
+    .contactFootnote{
+      margin: 8px 0 0;
+      font-size: 12px;
+      color: rgba(167,180,199,0.85);
+      text-align:center;
+    }
+
+    footer{
+      padding: 44px 0 60px;
+      text-align:center;
+      color: rgba(167,180,199,0.92);
+      border-top: 1px solid rgba(160,175,205,0.12);
+      background: rgba(6,10,24,0.28);
+      position: relative;
+      z-index: 1;
+    }
+
+    .toTop{
+      position:fixed;
+      right: 16px; bottom: 16px;
+      z-index: 9997;
+      opacity:0;
+      pointer-events:none;
+      transform: translateY(10px);
+      transition: 220ms var(--ease);
+    }
+    .toTop.show{
+      opacity:1;
+      pointer-events:auto;
+      transform: translateY(0);
+    }
+    .toTop button{
+      border: 1px solid rgba(160,175,205,0.18);
+      background: rgba(6,10,24,0.75);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 12px 12px;
+      cursor:pointer;
+      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: 220ms var(--ease);
+    }
+    .toTop button:hover{
+      border-color: rgba(102,220,255,0.28);
+      background: rgba(102,220,255,0.10);
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+      .reveal{ transition:none; transform:none; opacity:1; }
+      .mouse::after{ animation:none; }
+      .card, .btn, .nav a, .toTop button, .sendBtn, .iconBtn{ transition:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="bgCanvas"></canvas>
+  <div class="progress" id="progress"></div>
+
+  <!-- Icons (SVG) -->
+  <svg width="0" height="0" style="position:absolute">
+    <symbol id="i-linkedin" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.66H9.35V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.33-1.85 3.56 0 4.22 2.34 4.22 5.38v6.36ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM3.56 20.45h3.56V9H3.56v11.45Z"/>
+    </symbol>
+    <symbol id="i-github" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 .5C5.65.5.5 5.8.5 12.33c0 5.23 3.44 9.66 8.2 11.22.6.12.82-.27.82-.6 0-.3-.01-1.28-.02-2.33-3.34.75-4.05-1.48-4.05-1.48-.55-1.43-1.34-1.81-1.34-1.81-1.1-.78.08-.77.08-.77 1.22.09 1.86 1.28 1.86 1.28 1.08 1.9 2.84 1.35 3.54 1.03.11-.8.42-1.35.76-1.66-2.67-.31-5.48-1.37-5.48-6.1 0-1.35.46-2.45 1.22-3.31-.12-.31-.53-1.58.12-3.29 0 0 1-.33 3.3 1.27a11.05 11.05 0 0 1 6 0c2.3-1.6 3.3-1.27 3.3-1.27.65 1.71.24 2.98.12 3.29.76.86 1.22 1.96 1.22 3.31 0 4.74-2.82 5.78-5.5 6.09.43.38.81 1.12.81 2.26 0 1.63-.02 2.95-.02 3.35 0 .33.22.73.83.6 4.76-1.56 8.2-6 8.2-11.22C23.5 5.8 18.35.5 12 .5Z"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M13 5l7 7-7 7v-4H4v-6h9V5z"/>
+    </symbol>
+    <symbol id="i-star" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+    </symbol>
+  </svg>
+
+  <!-- NAV -->
+  <div class="navWrap" id="navWrap">
+    <div class="nav">
+      <div class="brand">
+        <span class="dot"></span>
+        <span class="brandText">LUIGI • IT</span>
       </div>
 
-      <form class="contactForm" id="contactForm">
-        <label class="field">
-          <span class="label" data-i18n="contact_email_label"></span>
-          <input
-            class="input"
-            type="email"
-            name="email"
-            autocomplete="email"
-            placeholder="email@exemplo.com"
-            required
-          />
-        </label>
+      <div class="navRight">
+        <nav class="links" aria-label="Primary">
+          <a href="#about" data-i18n="nav_about"></a>
+          <a href="#experience" data-i18n="nav_experience"></a>
+          <a href="#projects" data-i18n="nav_projects"></a>
+          <a href="#skills" data-i18n="nav_skills"></a>
+          <a href="#contact" data-i18n="nav_contact"></a>
+        </nav>
 
-        <label class="field">
-          <span class="label" data-i18n="contact_msg_label"></span>
-          <textarea
-            class="textarea"
-            name="message"
-            rows="6"
-            placeholder="Escreva sua mensagem..."
-            required
-          ></textarea>
-        </label>
+        <button class="langBtn" id="langBtn" aria-label="Switch language"></button>
+        <button class="menuBtn" id="menuBtn" aria-label="Open menu">MENU</button>
+      </div>
+    </div>
 
-        <button type="submit" class="sendBtn">
-          <span data-i18n="contact_send"></span>
-          <svg class="ic"><use href="#i-arrow"></use></svg>
-        </button>
+    <div class="mobilePanel" id="mobilePanel" aria-label="Mobile menu">
+      <a href="#about" data-i18n="nav_about"></a>
+      <a href="#experience" data-i18n="nav_experience"></a>
+      <a href="#projects" data-i18n="nav_projects"></a>
+      <a href="#skills" data-i18n="nav_skills"></a>
+      <a href="#contact" data-i18n="nav_contact"></a>
+      <div class="row">
+        <button class="langBtn" id="langBtn2" aria-label="Switch language"></button>
+      </div>
+    </div>
+  </div>
 
-        <p class="contactFootnote">
-          <span data-i18n="contact_hint"></span>
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="heroInner">
+      <div class="heroTag">
+        <span class="spark"></span>
+        <span data-i18n="hero_tag"></span>
+      </div>
+
+      <h1>Luigi Giovanni Bertoldi</h1>
+
+      <p class="heroRole">
+        <span data-i18n="hero_role_1"></span> • <b data-i18n="hero_role_2"></b> • <span data-i18n="hero_role_3"></span>
+      </p>
+
+      <div class="heroCtas">
+        <a class="btn btnPrimary" href="#contact">
+          ✉️ <span data-i18n="cta_contact"></span>
+        </a>
+
+        <a class="btn btnGhost" href="https://www.linkedin.com/in/luigibertoldi/" target="_blank" rel="noopener">
+          <svg class="ic"><use href="#i-linkedin"></use></svg>
+          <span data-i18n="cta_linkedin"></span>
+        </a>
+
+        <a class="btn btnGhost" href="https://github.com/luigibertoldi" target="_blank" rel="noopener">
+          <svg class="ic"><use href="#i-github"></use></svg>
+          <span data-i18n="cta_github"></span>
+        </a>
+      </div>
+
+      <div class="scrollHint">
+        <span class="mouse"></span>
+        <span data-i18n="scroll_hint"></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- ABOUT -->
+    <section class="wrap" id="about">
+      <div class="sectionHead reveal">
+        <h2 data-i18n="about_title"></h2>
+        <p data-i18n="about_sub"></p>
+      </div>
+
+      <div class="twoCols">
+        <div class="card reveal">
+          <h3 data-i18n="about_summary_title"></h3>
+          <p data-i18n="about_summary_body"></p>
+
+          <div class="meta" style="margin-top:14px">
+            <span data-i18n="hl_1_v"></span>
+            <span data-i18n="hl_2_v"></span>
+            <span data-i18n="hl_3_v"></span>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <h3 data-i18n="about_scope_title"></h3>
+          <p data-i18n="about_scope_body"></p>
+
+          <div class="pillRow">
+            <span class="pill">Windows</span>
+            <span class="pill">Linux</span>
+            <span class="pill">Active Directory</span>
+            <span class="pill">DNS</span>
+            <span class="pill">TCP/IP</span>
+            <span class="pill">BitLocker</span>
+            <span class="pill" data-i18n="pill_documentation"></span>
+          </div>
+
+          <div class="meta" style="margin-top:14px">
+            <span data-i18n="scope_meta_1"></span>
+            <span data-i18n="scope_meta_2"></span>
+            <span data-i18n="scope_meta_3"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="wrap" id="experience">
+      <div class="sectionHead reveal">
+        <h2 data-i18n="exp_title"></h2>
+        <p data-i18n="exp_sub"></p>
+      </div>
+
+      <div class="grid">
+        <div class="card reveal">
+          <h3 data-i18n="exp_job_title"></h3>
+
+          <div class="meta">
+            <span>📍 Blumenau/SC</span>
+            <span data-i18n="exp_job_tag"></span>
+            <span data-i18n="exp_job_time"></span>
+          </div>
+
+          <ul class="list" id="expList"></ul>
+        </div>
+
+        <div class="card reveal">
+          <h3 data-i18n="exp_strength_title"></h3>
+          <p data-i18n="exp_strength_body"></p>
+
+          <div class="pillRow">
+            <span class="pill" data-i18n="pill_ownership"></span>
+            <span class="pill" data-i18n="pill_standard"></span>
+            <span class="pill" data-i18n="pill_process"></span>
+            <span class="pill" data-i18n="pill_quality"></span>
+          </div>
+
+          <div class="meta" style="margin-top:14px">
+            <span data-i18n="strength_meta_1"></span>
+            <span data-i18n="strength_meta_2"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="wrap" id="projects">
+      <div class="sectionHead reveal">
+        <h2 data-i18n="proj_title"></h2>
+        <p data-i18n="proj_sub"></p>
+      </div>
+
+      <div class="repos" id="repoGrid"></div>
+
+      <div class="sectionHead reveal" style="margin-top:18px">
+        <h2 style="font-size:0; margin:0; padding:0;"></h2>
+        <p>
+          <a href="https://github.com/luigibertoldi" target="_blank" rel="noopener" class="repoLink">
+            <span data-i18n="proj_more"></span>
+            <svg class="ic"><use href="#i-arrow"></use></svg>
+          </a>
         </p>
-      </form>
-    </div>
+      </div>
+    </section>
 
-    <div class="contactInfo reveal">
-      <div class="card">
-        <h3 data-i18n="contact_info_title"></h3>
-        <p class="contactInfoText" data-i18n="contact_info_body"></p>
+    <!-- SKILLS -->
+    <section class="wrap" id="skills">
+      <div class="sectionHead reveal">
+        <h2 data-i18n="skills_title"></h2>
+        <p data-i18n="skills_sub"></p>
+      </div>
 
-        <div class="meta" style="margin-top:14px">
-          <span>📧 luigigbertoldi@gmail.com</span>
-          <span>🔗 linkedin.com/in/luigibertoldi</span>
-          <span>💻 github.com/luigibertoldi</span>
+      <div class="grid">
+        <div class="card reveal">
+          <h3 data-i18n="skills_tech_title"></h3>
+          <div class="pillRow">
+            <span class="pill">Windows</span>
+            <span class="pill">Linux</span>
+            <span class="pill">Active Directory</span>
+            <span class="pill">DNS</span>
+            <span class="pill">TCP/IP</span>
+            <span class="pill">BitLocker</span>
+            <span class="pill" data-i18n="pill_printers"></span>
+            <span class="pill" data-i18n="pill_support"></span>
+          </div>
+
+          <div class="meta" style="margin-top:14px">
+            <span data-i18n="skills_meta_1"></span>
+            <span data-i18n="skills_meta_2"></span>
+            <span data-i18n="skills_meta_3"></span>
+          </div>
         </div>
 
-        <div class="pillRow" style="margin-top:14px">
-          <span class="pill" data-i18n="contact_pill_1"></span>
-          <span class="pill" data-i18n="contact_pill_2"></span>
-          <span class="pill" data-i18n="contact_pill_3"></span>
+        <div class="card reveal">
+          <h3 data-i18n="skills_diff_title"></h3>
+          <ul class="list" id="skillsList"></ul>
         </div>
       </div>
+    </section>
+
+    <!-- CONTACT (Premium) -->
+    <section class="wrap" id="contact" aria-label="Contact">
+      <div class="sectionHead reveal contactHead">
+        <h2 data-i18n="contact_title"></h2>
+        <p data-i18n="contact_sub"></p>
+      </div>
+
+      <div class="contactGrid">
+        <div class="contactCard reveal">
+          <div class="contactTop">
+            <div class="contactBadge">
+              <span class="contactDot"></span>
+              <span data-i18n="contact_badge"></span>
+            </div>
+
+            <div class="contactIcons" aria-label="Social links">
+              <a class="iconBtn" href="https://www.linkedin.com/in/luigibertoldi/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg class="ic"><use href="#i-linkedin"></use></svg>
+              </a>
+              <a class="iconBtn" href="https://github.com/luigibertoldi" target="_blank" rel="noopener" aria-label="GitHub">
+                <svg class="ic"><use href="#i-github"></use></svg>
+              </a>
+              <a class="iconBtn" href="mailto:luigigbertoldi@gmail.com" aria-label="Email">
+                <span class="mailIcon">✉️</span>
+              </a>
+            </div>
+          </div>
+
+          <form class="contactForm" id="contactForm">
+            <label class="field">
+              <span class="label" data-i18n="contact_email_label"></span>
+              <input class="input" type="email" name="email" autocomplete="email" placeholder="email@exemplo.com" required />
+            </label>
+
+            <label class="field">
+              <span class="label" data-i18n="contact_msg_label"></span>
+              <textarea class="textarea" name="message" rows="6" placeholder="Escreva sua mensagem..." required></textarea>
+            </label>
+
+            <button type="submit" class="sendBtn">
+              <span data-i18n="contact_send"></span>
+              <svg class="ic"><use href="#i-arrow"></use></svg>
+            </button>
+
+            <p class="contactFootnote">
+              <span data-i18n="contact_hint"></span>
+            </p>
+          </form>
+        </div>
+
+        <div class="contactInfo reveal">
+          <div class="card">
+            <h3 data-i18n="contact_info_title"></h3>
+            <p class="contactInfoText" data-i18n="contact_info_body"></p>
+
+            <div class="meta" style="margin-top:14px">
+              <span>📧 luigigbertoldi@gmail.com</span>
+              <span>🔗 linkedin.com/in/luigibertoldi</span>
+              <span>💻 github.com/luigibertoldi</span>
+            </div>
+
+            <div class="pillRow" style="margin-top:14px">
+              <span class="pill" data-i18n="contact_pill_1"></span>
+              <span class="pill" data-i18n="contact_pill_2"></span>
+              <span class="pill" data-i18n="contact_pill_3"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Luigi Giovanni Bertoldi • IT Infrastructure & Cloud Support
     </div>
+  </footer>
+
+  <div class="toTop" id="toTop">
+    <button aria-label="Back to top" onclick="window.scrollTo({top:0, behavior:'smooth'})">⬆️</button>
   </div>
-</section>
+
+  <script>
+    // ---------- Reveal animation ----------
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) e.target.classList.add('show');
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+
+    // ---------- Progress + toTop ----------
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const progress = document.getElementById('progress');
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', () => {
+      const st = window.scrollY || document.documentElement.scrollTop;
+      const dh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      progress.style.width = (dh > 0 ? (st / dh) * 100 : 0) + '%';
+      if (window.scrollY > 700) toTop.classList.add('show');
+      else toTop.classList.remove('show');
+    });
+
+    // ---------- Mobile menu ----------
+    const navWrap = document.getElementById('navWrap');
+    const menuBtn = document.getElementById('menuBtn');
+    menuBtn.addEventListener('click', () => navWrap.classList.toggle('mobileOpen'));
+    document.getElementById('mobilePanel').addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') navWrap.classList.remove('mobileOpen');
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 980) navWrap.classList.remove('mobileOpen');
+    });
+
+    // ---------- i18n ----------
+    const I18N = {
+      pt: {
+        nav_about: "Sobre",
+        nav_experience: "Experiência",
+        nav_projects: "Projetos",
+        nav_skills: "Competências",
+        nav_contact: "Contato",
+
+        hero_tag: "Disponível • Remoto/Presencial",
+        hero_role_1: "Infraestrutura de TI",
+        hero_role_2: "Cloud Support",
+        hero_role_3: "Analista de Sistemas",
+        cta_contact: "Contato",
+        cta_github: "GitHub",
+        cta_linkedin: "LinkedIn",
+        scroll_hint: "Role para baixo",
+
+        about_title: "Sobre",
+        about_sub: "Infraestrutura e suporte com foco em estabilidade, segurança e excelência no atendimento.",
+        about_summary_title: "Resumo profissional",
+        about_summary_body: "Profissional de TI com experiência em suporte N1/N2 e infraestrutura. Atuação com Windows e Linux, Active Directory, troubleshooting de redes e boas práticas de segurança. Perfil analítico, organizado e orientado à resolução de problemas, com forte foco em estabilidade operacional e experiência do usuário.",
+
+        hl_1_v: "N1/N2",
+        hl_2_v: "Infra & Redes",
+        hl_3_v: "Segurança",
+
+        about_scope_title: "Atuação",
+        about_scope_body: "Atuação em Infraestrutura/Operações e Cloud Support, com foco em identidade, redes, segurança e padronização do atendimento.",
+        scope_meta_1: "🎯 Infraestrutura • Operação • Cloud Support",
+        scope_meta_2: "🧠 Troubleshooting",
+        scope_meta_3: "📚 Documentação & padrões",
+
+        exp_title: "Experiência",
+        exp_sub: "Rotina corporativa com foco em operação, estabilidade e qualidade no atendimento.",
+        exp_job_title: "SIGAMAQ Industrial — Analista de Suporte de TI (N1/N2)",
+        exp_job_tag: "🧩 Infra & Suporte",
+        exp_job_time: "📆 Jul/2025 — Atual",
+        exp_list: [
+          "Suporte N1/N2 (presencial e remoto) com registro, acompanhamento e priorização de chamados",
+          "Administração de usuários, grupos e permissões via Active Directory",
+          "Troubleshooting de redes: DNS, IP, conectividade e acesso a recursos e serviços",
+          "Manutenção de hardware (SSD, RAM), diagnóstico de falhas e substituição de componentes",
+          "Suporte a impressoras: drivers, filas de impressão e padronização",
+          "Segurança: BitLocker, antivírus, boas práticas e gestão de acessos"
+        ],
+        exp_strength_title: "Responsabilidade e liderança",
+        exp_strength_body: "Experiência assumindo responsabilidades cedo, com foco em organização, padronização de rotinas e documentação técnica para reduzir retrabalho e aumentar consistência operacional.",
+        strength_meta_1: "📌 Qualidade e organização",
+        strength_meta_2: "✅ Foco em estabilidade e experiência do usuário",
+
+        proj_title: "Projetos (GitHub)",
+        proj_sub: "Repositórios em destaque, carregados automaticamente do GitHub.",
+        proj_more: "Ver mais no GitHub",
+
+        skills_title: "Competências",
+        skills_sub: "Competências técnicas aplicadas ao dia a dia em infraestrutura e suporte.",
+        skills_tech_title: "Stack técnico",
+        pill_printers: "Impressoras",
+        pill_support: "Suporte N1/N2",
+        skills_meta_1: "🛠️ Windows & Linux",
+        skills_meta_2: "🔐 Active Directory",
+        skills_meta_3: "🌐 Redes & Segurança",
+        skills_diff_title: "Diferenciais",
+        skills_list: [
+          "Comunicação clara, empatia e foco em experiência do usuário",
+          "Organização, documentação e padronização de processos",
+          "Ownership (responsabilidade) e maturidade profissional desde cedo",
+          "Boa base para evoluir em Cloud Support e ambientes corporativos"
+        ],
+
+        contact_title: "Contato",
+        contact_sub: "Quer trabalhar comigo? Vamos conversar.",
+        contact_badge: "Vamos conversar",
+        contact_email_label: "Seu e-mail",
+        contact_msg_label: "Sua mensagem",
+        contact_send: "Enviar mensagem",
+        contact_hint: "O envio abre seu aplicativo de e-mail com a mensagem pronta.",
+        contact_info_title: "Contato direto",
+        contact_info_body: "Disponível para oportunidades em Infraestrutura / Cloud Support / Suporte N2. Entre em contato por e-mail ou LinkedIn.",
+        contact_pill_1: "Resposta rápida",
+        contact_pill_2: "Remoto / Presencial",
+        contact_pill_3: "Foco em qualidade",
+
+        pill_documentation: "Documentação",
+        pill_ownership: "Ownership",
+        pill_standard: "Padronização",
+        pill_process: "Processos",
+        pill_quality: "Qualidade"
+      },
+
+      en: {
+        nav_about: "About",
+        nav_experience: "Experience",
+        nav_projects: "Projects",
+        nav_skills: "Skills",
+        nav_contact: "Contact",
+
+        hero_tag: "Available • Remote/On-site",
+        hero_role_1: "IT Infrastructure",
+        hero_role_2: "Cloud Support",
+        hero_role_3: "Systems Analyst",
+        cta_contact: "Contact",
+        cta_github: "GitHub",
+        cta_linkedin: "LinkedIn",
+        scroll_hint: "Scroll down",
+
+        about_title: "About",
+        about_sub: "Infrastructure and support focused on stability, security, and excellent user experience.",
+        about_summary_title: "Professional summary",
+        about_summary_body: "IT professional experienced in N1/N2 support and infrastructure. Hands-on with Windows and Linux, Active Directory, network troubleshooting, and baseline security best practices. Analytical, organized, and problem-solving oriented, with a strong focus on operational stability and user experience.",
+
+        hl_1_v: "N1/N2",
+        hl_2_v: "Infra & Networking",
+        hl_3_v: "Security",
+
+        about_scope_title: "Scope",
+        about_scope_body: "Work in Infrastructure/Operations and Cloud Support, focused on identity, networking, security, and consistent support standards.",
+        scope_meta_1: "🎯 Infrastructure • Operations • Cloud Support",
+        scope_meta_2: "🧠 Troubleshooting",
+        scope_meta_3: "📚 Documentation & standards",
+
+        exp_title: "Experience",
+        exp_sub: "Corporate operations focused on stability and high-quality support.",
+        exp_job_title: "SIGAMAQ Industrial — IT Support Analyst (N1/N2)",
+        exp_job_tag: "🧩 Infra & Support",
+        exp_job_time: "📆 Jul/2025 — Present",
+        exp_list: [
+          "N1/N2 support (on-site and remote) with ticket tracking, follow-up and prioritization",
+          "Active Directory administration: users, groups, and permissions",
+          "Network troubleshooting: DNS, IP, connectivity, access to resources and services",
+          "Hardware maintenance (SSD, RAM), diagnostics and component replacement",
+          "Printer support: drivers, print queues and standardization",
+          "Security: BitLocker, antivirus, best practices and access management"
+        ],
+        exp_strength_title: "Ownership & leadership",
+        exp_strength_body: "Early responsibility focused on organization, routine standardization, and technical documentation to reduce rework and improve operational consistency.",
+        strength_meta_1: "📌 Quality and organization",
+        strength_meta_2: "✅ Stability and user experience focus",
+
+        proj_title: "Projects (GitHub)",
+        proj_sub: "Featured repositories loaded automatically from GitHub.",
+        proj_more: "See more on GitHub",
+
+        skills_title: "Skills",
+        skills_sub: "Hands-on skills used daily in infrastructure and support.",
+        skills_tech_title: "Technical stack",
+        pill_printers: "Printers",
+        pill_support: "N1/N2 Support",
+        skills_meta_1: "🛠️ Windows & Linux",
+        skills_meta_2: "🔐 Active Directory",
+        skills_meta_3: "🌐 Networking & Security",
+        skills_diff_title: "Strengths",
+        skills_list: [
+          "Clear communication, empathy, and user experience focus",
+          "Organization, documentation, and process standardization",
+          "Ownership mindset and early responsibility",
+          "Strong foundation to grow in Cloud Support and corporate environments"
+        ],
+
+        contact_title: "Contact",
+        contact_sub: "Want to work with me? Let’s talk.",
+        contact_badge: "Let’s talk",
+        contact_email_label: "Your email",
+        contact_msg_label: "Your message",
+        contact_send: "Send message",
+        contact_hint: "This will open your email app with a ready-to-send message.",
+        contact_info_title: "Direct contact",
+        contact_info_body: "Available for opportunities in Infrastructure / Cloud Support / N2 Support. Reach out by email or LinkedIn.",
+        contact_pill_1: "Quick reply",
+        contact_pill_2: "Remote / On-site",
+        contact_pill_3: "Quality mindset",
+
+        pill_documentation: "Documentation",
+        pill_ownership: "Ownership",
+        pill_standard: "Standardization",
+        pill_process: "Processes",
+        pill_quality: "Quality"
+      }
+    };
+
+    function setLang(lang){
+      document.documentElement.lang = lang === "pt" ? "pt-br" : "en";
+      localStorage.setItem("siteLang", lang);
+
+      const next = lang === "pt" ? "EN" : "PT";
+      document.getElementById("langBtn").textContent = next;
+      document.getElementById("langBtn2").textContent = next;
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (I18N[lang][key] !== undefined) el.textContent = I18N[lang][key];
+      });
+
+      const expList = document.getElementById("expList");
+      expList.innerHTML = "";
+      I18N[lang].exp_list.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        expList.appendChild(li);
+      });
+
+      const skillsList = document.getElementById("skillsList");
+      skillsList.innerHTML = "";
+      I18N[lang].skills_list.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        skillsList.appendChild(li);
+      });
+    }
+
+    // ---------- Language init ----------
+    const saved = localStorage.getItem("siteLang");
+    setLang(saved === "en" ? "en" : "pt");
+
+    document.getElementById("langBtn").addEventListener("click", () => {
+      setLang((localStorage.getItem("siteLang") || "pt") === "pt" ? "en" : "pt");
+    });
+    document.getElementById("langBtn2").addEventListener("click", () => {
+      setLang((localStorage.getItem("siteLang") || "pt") === "pt" ? "en" : "pt");
+    });
+
+    // ---------- GitHub repos (auto) ----------
+    async function loadRepos(){
+      const grid = document.getElementById("repoGrid");
+      const username = "luigibertoldi";
+      try{
+        const res = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`);
+        if(!res.ok) throw new Error("GitHub API error");
+        const repos = await res.json();
+
+        const filtered = repos
+          .filter(r => !r.fork)
+          .sort((a,b) => (b.stargazers_count - a.stargazers_count) || (new Date(b.updated_at) - new Date(a.updated_at)))
+          .slice(0, 6);
+
+        grid.innerHTML = "";
+        filtered.forEach(r => {
+          const card = document.createElement("div");
+          card.className = "card reveal";
+          card.innerHTML = `
+            <div class="repoTop">
+              <div>
+                <p class="repoName">${escapeHtml(r.name)}</p>
+              </div>
+              <span class="pill">${escapeHtml(r.language || "Code")}</span>
+            </div>
+            <div class="repoDesc">${escapeHtml(r.description || "")}</div>
+            <div class="repoMeta">
+              <span><svg class="ic"><use href="#i-star"></use></svg> ${r.stargazers_count}</span>
+              <span>🕒 ${new Date(r.updated_at).toLocaleDateString()}</span>
+            </div>
+            <a class="repoLink" href="${r.html_url}" target="_blank" rel="noopener">
+              <span>Open repo</span>
+              <svg class="ic"><use href="#i-arrow"></use></svg>
+            </a>
+          `;
+          grid.appendChild(card);
+          io.observe(card);
+        });
+
+        if(filtered.length === 0){
+          grid.innerHTML = `<div class="card reveal"><h3>GitHub</h3><p>Repositórios em destaque serão exibidos aqui.</p></div>`;
+          io.observe(grid.firstElementChild);
+        }
+      } catch(e){
+        grid.innerHTML = `
+          <div class="card reveal">
+            <h3>GitHub</h3>
+            <p>Não foi possível carregar os repositórios agora. Você ainda pode acessar seu GitHub pelo link.</p>
+            <a class="repoLink" href="https://github.com/luigibertoldi" target="_blank" rel="noopener">
+              <span>github.com/luigibertoldi</span>
+              <svg class="ic"><use href="#i-arrow"></use></svg>
+            </a>
+          </div>`;
+        io.observe(grid.firstElementChild);
+      }
+    }
+
+    function escapeHtml(str){
+      return String(str).replace(/[&<>"']/g, m => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"
+      }[m]));
+    }
+    loadRepos();
+
+    // ---------- Contact form (mailto) ----------
+    const contactForm = document.getElementById("contactForm");
+    if (contactForm) {
+      contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const data = new FormData(contactForm);
+        const from = String(data.get("email") || "").trim();
+        const msg = String(data.get("message") || "").trim();
+        const lang = localStorage.getItem("siteLang") || "pt";
+
+        const subject = lang === "en"
+          ? "Contact — Portfolio (Luigi Bertoldi)"
+          : "Contato — Portfólio (Luigi Bertoldi)";
+
+        const body = lang === "en"
+          ? `From: ${from}\n\nMessage:\n${msg}\n\n— Sent from portfolio`
+          : `De: ${from}\n\nMensagem:\n${msg}\n\n— Enviado pelo portfólio`;
+
+        const to = "luigigbertoldi@gmail.com";
+        const url = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = url;
+      });
+    }
+
+    // ---------- Particles background ----------
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resize(){
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const pts = [];
+    const P = 56;
+    const rnd = (min,max)=> Math.random()*(max-min)+min;
+
+    for(let i=0;i<P;i++){
+      pts.push({ x:rnd(0, innerWidth), y:rnd(0, innerHeight), vx:rnd(-0.22,0.22), vy:rnd(-0.22,0.22), r:rnd(1.2,2.4) });
+    }
+
+    function step(){
+      ctx.clearRect(0,0,innerWidth,innerHeight);
+
+      for(const p of pts){
+        p.x += p.vx; p.y += p.vy;
+        if(p.x < -20) p.x = innerWidth + 20;
+        if(p.x > innerWidth + 20) p.x = -20;
+        if(p.y < -20) p.y = innerHeight + 20;
+        if(p.y > innerHeight + 20) p.y = -20;
+      }
+
+      for(let i=0;i<pts.length;i++){
+        for(let j=i+1;j<pts.length;j++){
+          const a = pts[i], b = pts[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          const max = 150;
+          if(dist < max){
+            const alpha = (1 - dist/max) * 0.15;
+            ctx.strokeStyle = `rgba(102,220,255,${alpha})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x,a.y);
+            ctx.lineTo(b.x,b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      for(const p of pts){
+        ctx.fillStyle = 'rgba(102,220,255,0.55)';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(step);
+    }
+    step();
+  </script>
+</body>
+</html>
