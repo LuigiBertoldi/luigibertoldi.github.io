@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Luigi Bertoldi | IT Infrastructure & Cloud Support</title>
 
-  <!-- Fonts (rounded + tech) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
@@ -17,11 +16,12 @@
       --muted:#a7b4c7;
       --brand:#5dd6ff;
       --brand2:#33e0a1;
-      --panel: rgba(12, 18, 36, 0.70);
+      --panel: rgba(12, 18, 36, 0.72);
+      --panel2: rgba(6, 10, 24, 0.62);
       --stroke: rgba(160, 175, 205, 0.16);
       --stroke2: rgba(93, 214, 255, 0.28);
       --shadow: 0 24px 80px rgba(0,0,0,.55);
-      --radius: 20px;
+      --radius: 22px;
       --max: 1120px;
     }
 
@@ -97,6 +97,7 @@
       gap:6px;
       flex-wrap:wrap;
       justify-content:flex-end;
+      align-items:center;
     }
     .nav a{
       color: rgba(167,180,199,0.95);
@@ -110,6 +111,23 @@
       color: var(--text);
       background: rgba(93,214,255,0.10);
       box-shadow: 0 0 0 1px rgba(93,214,255,0.14) inset;
+    }
+
+    .langBtn{
+      border: 1px solid rgba(160,175,205,0.18);
+      background: rgba(6,10,24,0.40);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-weight: 700;
+      font-size: 12px;
+      cursor:pointer;
+      transition: 200ms ease;
+      user-select:none;
+    }
+    .langBtn:hover{
+      border-color: rgba(93,214,255,0.30);
+      background: rgba(93,214,255,0.10);
     }
 
     /* hero */
@@ -238,7 +256,7 @@
       padding: 20px 20px;
       border-radius: var(--radius);
       border: 1px solid var(--stroke);
-      background: linear-gradient(180deg, rgba(12,18,36,0.72), rgba(6,10,24,0.62));
+      background: linear-gradient(180deg, var(--panel), var(--panel2));
       box-shadow: 0 16px 48px rgba(0,0,0,0.24);
       transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
       position:relative;
@@ -387,10 +405,15 @@
       border-color: rgba(93,214,255,0.28);
       background: rgba(93,214,255,0.10);
     }
+
+    /* language */
+    [data-lang]{ display:none; }
+    body.lang-pt [data-lang="pt"]{ display:block; }
+    body.lang-en [data-lang="en"]{ display:block; }
   </style>
 </head>
 
-<body>
+<body class="lang-pt">
   <div class="progress" id="progress"></div>
 
   <nav class="nav">
@@ -399,11 +422,12 @@
       <span class="title">LUIGI • IT</span>
     </div>
     <div class="links">
-      <a href="#about">Sobre</a>
-      <a href="#experience">Experiência</a>
-      <a href="#stack">Stack</a>
-      <a href="#languages">Idiomas</a>
-      <a href="#contact">Contato</a>
+      <a href="#about" data-i18n="nav_about">Sobre</a>
+      <a href="#experience" data-i18n="nav_experience">Experiência</a>
+      <a href="#stack" data-i18n="nav_stack">Stack</a>
+      <a href="#languages" data-i18n="nav_languages">Idiomas</a>
+      <a href="#contact" data-i18n="nav_contact">Contato</a>
+      <button class="langBtn" id="langBtn">EN</button>
     </div>
   </nav>
 
@@ -413,61 +437,95 @@
     <div class="heroInner">
       <div>
         <h1>Luigi Giovanni Bertoldi</h1>
-        <p class="heroRole">IT Infrastructure • <b>Cloud Support</b> • Systems Analyst</p>
+        <p class="heroRole" data-lang="pt">IT Infrastructure • <b>Cloud Support</b> • Systems Analyst</p>
+        <p class="heroRole" data-lang="en">IT Infrastructure • <b>Cloud Support</b> • Systems Analyst</p>
+
         <div class="scrollHint">
           <span class="mouse"></span>
-          <span>Scroll</span>
+          <span data-lang="pt">Scroll</span>
+          <span data-lang="en">Scroll</span>
         </div>
       </div>
     </div>
   </header>
 
   <main>
+    <!-- ABOUT -->
     <section class="wrap" id="about">
       <div class="sectionHead reveal">
-        <h2>Sobre</h2>
-        <p>Suporte N1/N2 e infraestrutura com foco em estabilidade, segurança e experiência do usuário.</p>
+        <h2 data-lang="pt">Sobre</h2>
+        <h2 data-lang="en">About</h2>
+
+        <p data-lang="pt">Suporte N1/N2 e infraestrutura com foco em estabilidade, segurança e experiência do usuário.</p>
+        <p data-lang="en">N1/N2 support and infrastructure focused on stability, security, and user experience.</p>
       </div>
 
       <div class="twoCols">
         <div class="card reveal">
-          <h3>Perfil</h3>
-          <p>
+          <h3 data-lang="pt">Perfil</h3>
+          <h3 data-lang="en">Profile</h3>
+
+          <p data-lang="pt">
             Profissional de TI com experiência em suporte e infraestrutura, atuando com ambientes Windows e Linux,
             administração de identidade (Active Directory), troubleshooting de redes e padronização de processos.
             Responsável por setor cedo, com postura de ownership e disciplina operacional.
           </p>
+          <p data-lang="en">
+            IT professional with experience in support and infrastructure, working with Windows and Linux environments,
+            identity administration (Active Directory), network troubleshooting, and process standardization.
+            Took ownership early, with strong operational discipline.
+          </p>
+
           <div class="pillRow">
             <span class="pill">Troubleshooting</span>
-            <span class="pill">Documentação</span>
-            <span class="pill">Processos</span>
-            <span class="pill">Segurança</span>
+            <span class="pill" data-lang="pt">Documentação</span>
+            <span class="pill" data-lang="en">Documentation</span>
+            <span class="pill" data-lang="pt">Processos</span>
+            <span class="pill" data-lang="en">Processes</span>
+            <span class="pill" data-lang="pt">Segurança</span>
+            <span class="pill" data-lang="en">Security</span>
           </div>
         </div>
 
         <div class="card reveal">
-          <h3>Foco</h3>
-          <p>Infraestrutura & Cloud Support, contribuindo com disponibilidade, performance e melhoria contínua.</p>
-          <ul class="list">
+          <h3 data-lang="pt">Foco</h3>
+          <h3 data-lang="en">Focus</h3>
+
+          <p data-lang="pt">Infraestrutura & Cloud Support, contribuindo com disponibilidade, performance e melhoria contínua.</p>
+          <p data-lang="en">Infrastructure & Cloud Support, focused on availability, performance, and continuous improvement.</p>
+
+          <ul class="list" data-lang="pt">
             <li>Windows / Linux • suporte corporativo</li>
             <li>Active Directory • permissões • acessos</li>
             <li>DNS • TCP/IP • conectividade</li>
             <li>Base para evolução em cloud (AWS/Azure)</li>
           </ul>
+          <ul class="list" data-lang="en">
+            <li>Windows / Linux • corporate support</li>
+            <li>Active Directory • permissions • access control</li>
+            <li>DNS • TCP/IP • connectivity</li>
+            <li>Foundation for cloud growth (AWS/Azure)</li>
+          </ul>
         </div>
       </div>
     </section>
 
+    <!-- EXPERIENCE -->
     <section class="wrap" id="experience">
       <div class="sectionHead reveal">
-        <h2>Experiência</h2>
-        <p>Atuação com suporte, infraestrutura e rotinas operacionais em ambiente corporativo.</p>
+        <h2 data-lang="pt">Experiência</h2>
+        <h2 data-lang="en">Experience</h2>
+
+        <p data-lang="pt">Atuação com suporte, infraestrutura e rotinas operacionais em ambiente corporativo.</p>
+        <p data-lang="en">Hands-on work with support, infrastructure, and operations in a corporate environment.</p>
       </div>
 
       <div class="grid">
         <div class="card reveal">
-          <h3>SIGAMAQ Industrial — Analista de Suporte de TI (N1/N2)</h3>
-          <ul class="list">
+          <h3 data-lang="pt">SIGAMAQ Industrial — Analista de Suporte de TI (N1/N2)</h3>
+          <h3 data-lang="en">SIGAMAQ Industrial — IT Support Analyst (N1/N2)</h3>
+
+          <ul class="list" data-lang="pt">
             <li>Suporte presencial e remoto, com priorização por impacto e urgência</li>
             <li>Administração de usuários, grupos e permissões via Active Directory</li>
             <li>Troubleshooting de rede: DNS, IP, conectividade e acesso a recursos</li>
@@ -475,45 +533,80 @@
             <li>Suporte a impressoras, filas, drivers e padronização</li>
             <li>Boas práticas de segurança: BitLocker, antivírus e controle de acesso</li>
           </ul>
+
+          <ul class="list" data-lang="en">
+            <li>On-site and remote support, prioritizing by impact and urgency</li>
+            <li>User/group/permission management through Active Directory</li>
+            <li>Network troubleshooting: DNS, IP, connectivity and resource access</li>
+            <li>Hardware maintenance and upgrades: SSD, RAM, diagnostics and replacement</li>
+            <li>Printer support: queues, drivers and standardization</li>
+            <li>Security best practices: BitLocker, antivirus and access control</li>
+          </ul>
+
           <div class="pillRow">
             <span class="pill">N1/N2</span>
             <span class="pill">Active Directory</span>
-            <span class="pill">Redes</span>
+            <span class="pill" data-lang="pt">Redes</span>
+            <span class="pill" data-lang="en">Networking</span>
             <span class="pill">Windows/Linux</span>
           </div>
         </div>
 
         <div class="card reveal">
-          <h3>Responsabilidade & liderança</h3>
-          <p>Experiência assumindo responsabilidades de setor cedo, com foco em organização, padronização e execução.</p>
-          <ul class="list">
+          <h3 data-lang="pt">Responsabilidade & liderança</h3>
+          <h3 data-lang="en">Ownership & leadership</h3>
+
+          <p data-lang="pt">Experiência assumindo responsabilidades de setor cedo, com foco em organização, padronização e execução.</p>
+          <p data-lang="en">Experience taking ownership early, focusing on organization, standardization, and execution.</p>
+
+          <ul class="list" data-lang="pt">
             <li>Criação e manutenção de documentação técnica</li>
             <li>Padronização de rotinas para reduzir retrabalho</li>
             <li>Organização de ativos e suporte operacional</li>
           </ul>
+          <ul class="list" data-lang="en">
+            <li>Technical documentation creation and maintenance</li>
+            <li>Standardizing routines to reduce rework</li>
+            <li>Asset organization and operational support</li>
+          </ul>
+
           <div class="pillRow">
             <span class="pill">Ownership</span>
-            <span class="pill">Processos</span>
-            <span class="pill">Padronização</span>
+            <span class="pill" data-lang="pt">Processos</span>
+            <span class="pill" data-lang="en">Processes</span>
+            <span class="pill" data-lang="pt">Padronização</span>
+            <span class="pill" data-lang="en">Standardization</span>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- STACK -->
     <section class="wrap" id="stack">
       <div class="sectionHead reveal">
-        <h2>Stack</h2>
-        <p>Tecnologias e áreas de atuação com base em experiência prática.</p>
+        <h2 data-lang="pt">Stack</h2>
+        <h2 data-lang="en">Tech Stack</h2>
+
+        <p data-lang="pt">Tecnologias e áreas de atuação com base em experiência prática.</p>
+        <p data-lang="en">Technologies and areas of work based on hands-on experience.</p>
       </div>
 
       <div class="grid">
         <div class="card reveal">
-          <h3>Sistemas & Identidade</h3>
-          <ul class="list">
+          <h3 data-lang="pt">Sistemas & Identidade</h3>
+          <h3 data-lang="en">Systems & Identity</h3>
+
+          <ul class="list" data-lang="pt">
             <li>Windows (estações) • fundamentos de Windows Server</li>
             <li>Linux (administração básica) • permissões • serviços</li>
             <li>Active Directory: usuários, grupos, permissões e controle de acesso</li>
           </ul>
+          <ul class="list" data-lang="en">
+            <li>Windows (workstations) • Windows Server fundamentals</li>
+            <li>Linux (basic administration) • permissions • services</li>
+            <li>Active Directory: users, groups, permissions and access control</li>
+          </ul>
+
           <div class="pillRow">
             <span class="pill">Windows</span>
             <span class="pill">Linux</span>
@@ -522,12 +615,20 @@
         </div>
 
         <div class="card reveal">
-          <h3>Redes & Segurança</h3>
-          <ul class="list">
+          <h3 data-lang="pt">Redes & Segurança</h3>
+          <h3 data-lang="en">Networking & Security</h3>
+
+          <ul class="list" data-lang="pt">
             <li>DNS • TCP/IP • troubleshooting de conectividade</li>
             <li>Diagnóstico e testes de comunicação em rede</li>
             <li>Boas práticas: BitLocker, antivírus, senhas e acessos</li>
           </ul>
+          <ul class="list" data-lang="en">
+            <li>DNS • TCP/IP • connectivity troubleshooting</li>
+            <li>Network diagnostics and communication testing</li>
+            <li>Best practices: BitLocker, antivirus, passwords and access</li>
+          </ul>
+
           <div class="pillRow">
             <span class="pill">DNS</span>
             <span class="pill">TCP/IP</span>
@@ -536,92 +637,97 @@
         </div>
 
         <div class="card reveal">
-          <h3>Operação & Qualidade</h3>
-          <ul class="list">
+          <h3 data-lang="pt">Operação & Qualidade</h3>
+          <h3 data-lang="en">Operations & Quality</h3>
+
+          <ul class="list" data-lang="pt">
             <li>Registro e acompanhamento de incidentes e problemas</li>
             <li>Documentação e base de conhecimento</li>
             <li>Padronização e melhoria contínua</li>
           </ul>
+          <ul class="list" data-lang="en">
+            <li>Incident and problem tracking</li>
+            <li>Documentation and knowledge base</li>
+            <li>Standardization and continuous improvement</li>
+          </ul>
+
           <div class="pillRow">
-            <span class="pill">Incidentes</span>
-            <span class="pill">Documentação</span>
-            <span class="pill">Melhoria contínua</span>
+            <span class="pill" data-lang="pt">Incidentes</span>
+            <span class="pill" data-lang="en">Incidents</span>
+            <span class="pill" data-lang="pt">Documentação</span>
+            <span class="pill" data-lang="en">Documentation</span>
+            <span class="pill" data-lang="pt">Melhoria contínua</span>
+            <span class="pill" data-lang="en">Continuous improvement</span>
           </div>
         </div>
 
         <div class="card reveal">
-          <h3>Cloud</h3>
-          <ul class="list">
+          <h3 data-lang="pt">Cloud</h3>
+          <h3 data-lang="en">Cloud</h3>
+
+          <ul class="list" data-lang="pt">
             <li>Fundamentos e conceitos de cloud (base para AWS/Azure)</li>
             <li>Foco em suporte e operação: identidade, redes e segurança</li>
           </ul>
+          <ul class="list" data-lang="en">
+            <li>Cloud fundamentals (foundation for AWS/Azure)</li>
+            <li>Support and operations focus: identity, networking, and security</li>
+          </ul>
+
           <div class="pillRow">
             <span class="pill">Cloud Support</span>
             <span class="pill">AWS/Azure</span>
-            <span class="pill">Networking</span>
+            <span class="pill" data-lang="pt">Redes</span>
+            <span class="pill" data-lang="en">Networking</span>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- LANGUAGES -->
     <section class="wrap" id="languages">
       <div class="sectionHead reveal">
-        <h2>Idiomas</h2>
-        <p>Comunicação técnica e suporte para ambientes internacionais.</p>
+        <h2 data-lang="pt">Idiomas</h2>
+        <h2 data-lang="en">Languages</h2>
+
+        <p data-lang="pt">Comunicação técnica e suporte para ambientes internacionais.</p>
+        <p data-lang="en">Technical communication and support for international environments.</p>
       </div>
 
       <div class="grid">
         <div class="card reveal">
-          <h3>Proficiência</h3>
-          <ul class="list">
+          <h3 data-lang="pt">Proficiência</h3>
+          <h3 data-lang="en">Proficiency</h3>
+
+          <ul class="list" data-lang="pt">
             <li>🇧🇷 Português — Fluente</li>
             <li>🇮🇹 Italiano — Fluente</li>
             <li>🇺🇸 Inglês — Intermediário</li>
             <li>🇪🇸 Espanhol — Básico</li>
           </ul>
+          <ul class="list" data-lang="en">
+            <li>🇧🇷 Portuguese — Fluent</li>
+            <li>🇮🇹 Italian — Fluent</li>
+            <li>🇺🇸 English — Intermediate</li>
+            <li>🇪🇸 Spanish — Basic</li>
+          </ul>
         </div>
 
-        <div class="card reveal">
-          <h3>Contato</h3>
+        <div class="card reveal" id="contact">
+          <h3 data-lang="pt">Contato</h3>
+          <h3 data-lang="en">Contact</h3>
+
           <p>
             📧 <a href="mailto:luigigbertoldi@gmail.com">luigigbertoldi@gmail.com</a><br>
             💻 <a href="https://github.com/luigigbertoldi" target="_blank" rel="noopener">github.com/luigigbertoldi</a>
           </p>
+
           <div class="ctaRow">
-            <a class="btn btnPrimary" href="mailto:luigigbertoldi@gmail.com">📩 Enviar e-mail</a>
+            <a class="btn btnPrimary" href="mailto:luigigbertoldi@gmail.com" data-lang="pt">📩 Enviar e-mail</a>
+            <a class="btn btnPrimary" href="mailto:luigigbertoldi@gmail.com" data-lang="en">📩 Send email</a>
+
             <a class="btn btnGhost" href="https://github.com/luigigbertoldi" target="_blank" rel="noopener">💻 GitHub</a>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="wrap" id="contact">
-      <div class="sectionHead reveal">
-        <h2>Resumo</h2>
-        <p>IT Infrastructure / Cloud Support com experiência em suporte N1/N2, Active Directory, redes e Windows/Linux.</p>
-      </div>
-
-      <div class="twoCols">
-        <div class="card reveal">
-          <h3>Resumo profissional</h3>
-          <p>
-            Atuo com suporte e infraestrutura em ambiente corporativo, com foco em estabilidade, segurança e processos.
-            Experiência prática com Active Directory, troubleshooting de rede (DNS/TCP/IP), Windows/Linux e documentação técnica.
-          </p>
-          <div class="pillRow">
-            <span class="pill">Infraestrutura</span>
-            <span class="pill">Cloud Support</span>
-            <span class="pill">AD</span>
-            <span class="pill">Redes</span>
-          </div>
-        </div>
-
-        <div class="card reveal">
-          <h3>Links</h3>
-          <p>
-            Email: <a href="mailto:luigigbertoldi@gmail.com">luigigbertoldi@gmail.com</a><br>
-            GitHub: <a href="https://github.com/luigigbertoldi" target="_blank" rel="noopener">luigigbertoldi</a>
-          </p>
         </div>
       </div>
     </section>
@@ -632,30 +738,56 @@
   </footer>
 
   <div class="toTop" id="toTop">
-    <button aria-label="Voltar ao topo" onclick="window.scrollTo({top:0, behavior:'smooth'})">⬆️</button>
+    <button aria-label="Back to top" onclick="window.scrollTo({top:0, behavior:'smooth'})">⬆️</button>
   </div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // progress
     const progress = document.getElementById('progress');
     window.addEventListener('scroll', () => {
       const st = window.scrollY || document.documentElement.scrollTop;
       const dh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const pct = dh > 0 ? (st / dh) * 100 : 0;
-      progress.style.width = pct + '%';
+      progress.style.width = (dh > 0 ? (st / dh) * 100 : 0) + '%';
     });
 
+    // reveal
     const revealEls = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) if (e.isIntersecting) e.target.classList.add('show');
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
 
+    // back to top
     const toTop = document.getElementById('toTop');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 700) toTop.classList.add('show');
       else toTop.classList.remove('show');
+    });
+
+    // language toggle (PT/EN)
+    const langBtn = document.getElementById('langBtn');
+    function setLang(lang){
+      document.body.classList.remove('lang-pt','lang-en');
+      document.body.classList.add('lang-' + lang);
+      langBtn.textContent = (lang === 'pt') ? 'EN' : 'PT';
+      localStorage.setItem('siteLang', lang);
+
+      // update nav labels
+      const labels = {
+        pt: { nav_about:'Sobre', nav_experience:'Experiência', nav_stack:'Stack', nav_languages:'Idiomas', nav_contact:'Contato' },
+        en: { nav_about:'About', nav_experience:'Experience', nav_stack:'Tech', nav_languages:'Languages', nav_contact:'Contact' }
+      };
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const key = el.getAttribute('data-i18n');
+        el.textContent = labels[lang][key] || el.textContent;
+      });
+    }
+    const saved = localStorage.getItem('siteLang');
+    setLang(saved === 'en' ? 'en' : 'pt');
+    langBtn.addEventListener('click', () => {
+      setLang(document.body.classList.contains('lang-pt') ? 'en' : 'pt');
     });
   </script>
 </body>
