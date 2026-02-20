@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Luigi Bertoldi | IT Infrastructure & Cloud Support</title>
+  <title>Luigi Giovanni Bertoldi | IT Infrastructure & Cloud Support</title>
 
-  <!-- Premium rounded tech fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
@@ -20,7 +19,6 @@
 
       --brand:#66dcff;
       --brand2:#36f0aa;
-      --danger:#ff5d7a;
 
       --glass: rgba(10, 16, 34, 0.64);
       --glass2: rgba(6, 10, 24, 0.58);
@@ -28,12 +26,9 @@
       --stroke: rgba(160,175,205,0.16);
       --stroke2: rgba(102,220,255,0.30);
 
-      --shadow: 0 26px 90px rgba(0,0,0,.58);
       --radius: 22px;
-
       --max: 1140px;
       --pad: 18px;
-
       --navH: 64px;
     }
 
@@ -76,7 +71,6 @@
       pointer-events: none;
     }
 
-    /* container */
     .container{
       width: min(var(--max), calc(100% - (var(--pad) * 2)));
       margin: 0 auto;
@@ -491,36 +485,6 @@
     a{ color: var(--brand); text-decoration:none; }
     a:hover{ text-decoration: underline; }
 
-    /* KPI cards */
-    .kpis{
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
-      margin-top: 16px;
-    }
-    @media (max-width: 900px){
-      .kpis{ grid-template-columns: 1fr; }
-    }
-    .kpi{
-      padding: 18px 18px;
-      border-radius: 18px;
-      border: 1px solid rgba(160,175,205,0.16);
-      background: rgba(6,10,24,0.34);
-    }
-    .kpi .v{
-      font-family: Sora, "Plus Jakarta Sans", sans-serif;
-      font-weight: 700;
-      font-size: 18px;
-      color: #eaf2ff;
-    }
-    .kpi .l{
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    /* reveal */
     .reveal{
       opacity:0;
       transform: translateY(14px);
@@ -528,7 +492,6 @@
     }
     .reveal.show{ opacity:1; transform: translateY(0); }
 
-    /* footer */
     footer{
       padding: 44px 0 60px;
       text-align:center;
@@ -539,7 +502,6 @@
       z-index: 1;
     }
 
-    /* back to top */
     .toTop{
       position:fixed;
       right: 16px; bottom: 16px;
@@ -589,7 +551,7 @@
           <a href="#about" data-i18n="nav_about">Sobre</a>
           <a href="#experience" data-i18n="nav_experience">Experiência</a>
           <a href="#projects" data-i18n="nav_projects">Projetos</a>
-          <a href="#skills" data-i18n="nav_skills">Skills</a>
+          <a href="#skills" data-i18n="nav_skills">Competências</a>
           <a href="#contact" data-i18n="nav_contact">Contato</a>
         </div>
 
@@ -602,7 +564,7 @@
       <a href="#about" data-i18n="nav_about">Sobre</a>
       <a href="#experience" data-i18n="nav_experience">Experiência</a>
       <a href="#projects" data-i18n="nav_projects">Projetos</a>
-      <a href="#skills" data-i18n="nav_skills">Skills</a>
+      <a href="#skills" data-i18n="nav_skills">Competências</a>
       <a href="#contact" data-i18n="nav_contact">Contato</a>
       <div class="row">
         <button class="langBtn" id="langBtn2" aria-label="Trocar idioma">EN</button>
@@ -621,19 +583,19 @@
 
       <h1>Luigi Giovanni Bertoldi</h1>
 
-      <p class="heroRole" data-lang="pt">IT Infrastructure • <b>Cloud Support</b> • Systems Analyst</p>
+      <p class="heroRole" data-lang="pt">Infraestrutura de TI • <b>Cloud Support</b> • Analista de Sistemas</p>
       <p class="heroRole" data-lang="en">IT Infrastructure • <b>Cloud Support</b> • Systems Analyst</p>
 
       <div class="heroCtas">
         <a class="btn btnPrimary" href="mailto:luigigbertoldi@gmail.com" data-lang="pt">📩 Contato</a>
         <a class="btn btnPrimary" href="mailto:luigigbertoldi@gmail.com" data-lang="en">📩 Contact</a>
-        <a class="btn btnGhost" href="https://github.com/luigigbertoldi" target="_blank" rel="noopener">💻 GitHub</a>
+        <a class="btn btnGhost" href="https://github.com/luigibertoldi" target="_blank" rel="noopener">💻 GitHub</a>
       </div>
 
       <div class="scrollHint">
         <span class="mouse"></span>
-        <span data-lang="pt">Scroll</span>
-        <span data-lang="en">Scroll</span>
+        <span data-lang="pt">Role para baixo</span>
+        <span data-lang="en">Scroll down</span>
       </div>
     </div>
   </header>
@@ -655,32 +617,20 @@
           <h3 data-lang="en">Summary</h3>
 
           <p data-lang="pt">
-            Profissional de TI com experiência em suporte N1/N2 e infraestrutura, atuando com ambientes Windows e Linux,
-            Active Directory, troubleshooting de redes e segurança básica. Forte foco em documentação, padronização e melhoria contínua.
+            Profissional de TI com experiência em suporte N1/N2 e infraestrutura, atuando com Windows e Linux, Active Directory,
+            troubleshooting de redes e boas práticas de segurança. Forte foco em documentação, padronização e melhoria contínua.
           </p>
           <p data-lang="en">
-            IT professional with experience in N1/N2 support and infrastructure, working with Windows and Linux environments,
-            Active Directory, network troubleshooting, and baseline security. Strong focus on documentation, standardization, and continuous improvement.
+            IT professional with experience in N1/N2 support and infrastructure, working with Windows and Linux, Active Directory,
+            network troubleshooting, and baseline security best practices. Strong focus on documentation, standardization, and continuous improvement.
           </p>
 
-          <div class="kpis">
-            <div class="kpi">
-              <div class="v" data-lang="pt">N1/N2</div>
-              <div class="v" data-lang="en">N1/N2</div>
-              <div class="l" data-lang="pt">Atendimento presencial e remoto</div>
-              <div class="l" data-lang="en">On-site and remote support</div>
-            </div>
-            <div class="kpi">
-              <div class="v">AD</div>
-              <div class="l" data-lang="pt">Usuários, grupos e permissões</div>
-              <div class="l" data-lang="en">Users, groups and permissions</div>
-            </div>
-            <div class="kpi">
-              <div class="v" data-lang="pt">Redes</div>
-              <div class="v" data-lang="en">Networking</div>
-              <div class="l" data-lang="pt">DNS • TCP/IP • conectividade</div>
-              <div class="l" data-lang="en">DNS • TCP/IP • connectivity</div>
-            </div>
+          <div class="meta">
+            <span>🧩 N1/N2</span>
+            <span>🔐 Active Directory</span>
+            <span>🌐 DNS/TCP-IP</span>
+            <span data-lang="pt">🛡️ Segurança</span>
+            <span data-lang="en">🛡️ Security</span>
           </div>
         </div>
 
@@ -689,11 +639,11 @@
           <h3 data-lang="en">Goal</h3>
 
           <p data-lang="pt">
-            Evoluir para uma posição em Infraestrutura/Cloud Support, atuando com identidade, redes, segurança e operação —
+            Evoluir para uma posição em Infraestrutura/Cloud Support, atuando com identidade, redes, segurança e operação,
             garantindo disponibilidade e qualidade do serviço.
           </p>
           <p data-lang="en">
-            Grow into an Infrastructure/Cloud Support role, working with identity, networking, security, and operations —
+            Grow into an Infrastructure/Cloud Support role, working with identity, networking, security, and operations,
             ensuring high availability and service quality.
           </p>
 
@@ -703,8 +653,7 @@
             <span class="pill">Active Directory</span>
             <span class="pill">DNS</span>
             <span class="pill">TCP/IP</span>
-            <span class="pill" data-lang="pt">Segurança</span>
-            <span class="pill" data-lang="en">Security</span>
+            <span class="pill">BitLocker</span>
           </div>
         </div>
       </div>
@@ -751,11 +700,11 @@
         </div>
 
         <div class="card reveal">
-          <h3 data-lang="pt">Responsabilidade cedo</h3>
-          <h3 data-lang="en">Early ownership</h3>
+          <h3 data-lang="pt">Responsabilidade e liderança</h3>
+          <h3 data-lang="en">Ownership & leadership</h3>
 
           <p data-lang="pt">
-            Experiência assumindo responsabilidades de setor cedo, com foco em organização, padronização de rotinas e documentação técnica
+            Experiência assumindo responsabilidades cedo, com foco em organização, padronização de rotinas e documentação técnica
             para reduzir retrabalho e melhorar consistência.
           </p>
           <p data-lang="en">
@@ -786,15 +735,11 @@
 
       <div class="three">
         <div class="card reveal">
-          <h3 data-lang="pt">Padronização de atendimento & base de conhecimento</h3>
-          <h3 data-lang="en">Support standardization & knowledge base</h3>
+          <h3 data-lang="pt">Base de conhecimento e procedimentos</h3>
+          <h3 data-lang="en">Knowledge base & procedures</h3>
 
-          <p data-lang="pt">
-            Criação de procedimentos e documentação para acelerar atendimento e reduzir recorrência de incidentes.
-          </p>
-          <p data-lang="en">
-            Created procedures and documentation to speed up support and reduce recurring incidents.
-          </p>
+          <p data-lang="pt">Criação de documentação para acelerar atendimento e reduzir recorrência de incidentes.</p>
+          <p data-lang="en">Created documentation to speed up support and reduce recurring incidents.</p>
 
           <div class="pillRow">
             <span class="pill" data-lang="pt">Documentação</span>
@@ -806,15 +751,11 @@
         </div>
 
         <div class="card reveal">
-          <h3 data-lang="pt">Troubleshooting de rede (DNS/TCP/IP)</h3>
-          <h3 data-lang="en">Network troubleshooting (DNS/TCP/IP)</h3>
+          <h3 data-lang="pt">Troubleshooting de rede</h3>
+          <h3 data-lang="en">Network troubleshooting</h3>
 
-          <p data-lang="pt">
-            Diagnóstico e correção de falhas de conectividade e acesso a recursos, com testes e validações.
-          </p>
-          <p data-lang="en">
-            Diagnosed and fixed connectivity issues and resource access, with testing and validation.
-          </p>
+          <p data-lang="pt">Diagnóstico e correção de falhas de conectividade e acesso a recursos.</p>
+          <p data-lang="en">Diagnosed and fixed connectivity issues and resource access problems.</p>
 
           <div class="pillRow">
             <span class="pill">DNS</span>
@@ -825,15 +766,11 @@
         </div>
 
         <div class="card reveal">
-          <h3 data-lang="pt">Segurança básica (BitLocker & boas práticas)</h3>
-          <h3 data-lang="en">Baseline security (BitLocker & best practices)</h3>
+          <h3 data-lang="pt">Segurança e proteção de dados</h3>
+          <h3 data-lang="en">Security & data protection</h3>
 
-          <p data-lang="pt">
-            Aplicação de boas práticas, criptografia de dispositivos e controle de acessos conforme políticas internas.
-          </p>
-          <p data-lang="en">
-            Applied best practices, device encryption, and access control aligned with internal policies.
-          </p>
+          <p data-lang="pt">Aplicação de boas práticas, criptografia com BitLocker e controle de acessos.</p>
+          <p data-lang="en">Applied best practices, BitLocker encryption, and access control.</p>
 
           <div class="pillRow">
             <span class="pill">BitLocker</span>
@@ -849,7 +786,7 @@
     <!-- SKILLS -->
     <section class="wrap" id="skills">
       <div class="sectionHead reveal">
-        <h2 data-lang="pt">Skills</h2>
+        <h2 data-lang="pt">Competências</h2>
         <h2 data-lang="en">Skills</h2>
 
         <p data-lang="pt">Competências técnicas alinhadas para Infraestrutura e Cloud Support.</p>
@@ -858,52 +795,51 @@
 
       <div class="grid">
         <div class="card reveal">
-          <h3 data-lang="pt">Core</h3>
-          <h3 data-lang="en">Core</h3>
+          <h3 data-lang="pt">Tecnologias</h3>
+          <h3 data-lang="en">Technologies</h3>
 
           <div class="pillRow">
-            <span class="pill">Active Directory</span>
             <span class="pill">Windows</span>
             <span class="pill">Linux</span>
+            <span class="pill">Active Directory</span>
             <span class="pill">DNS</span>
             <span class="pill">TCP/IP</span>
+            <span class="pill">BitLocker</span>
+            <span class="pill" data-lang="pt">Impressoras</span>
+            <span class="pill" data-lang="en">Printers</span>
             <span class="pill" data-lang="pt">Suporte N1/N2</span>
             <span class="pill" data-lang="en">N1/N2 Support</span>
-            <span class="pill" data-lang="pt">Documentação</span>
-            <span class="pill" data-lang="en">Documentation</span>
           </div>
         </div>
 
         <div class="card reveal">
-          <h3 data-lang="pt">Cloud & Próximos passos</h3>
-          <h3 data-lang="en">Cloud & Next steps</h3>
+          <h3 data-lang="pt">Diferenciais</h3>
+          <h3 data-lang="en">Strengths</h3>
 
-          <p data-lang="pt">
-            Base sólida para evolução em cloud com foco em suporte e operação (identidade, redes, segurança e observabilidade).
-          </p>
-          <p data-lang="en">
-            Strong foundation to grow into cloud focused on support and operations (identity, networking, security, and observability).
-          </p>
-
-          <div class="pillRow">
-            <span class="pill">AWS/Azure (Foundations)</span>
-            <span class="pill" data-lang="pt">Operação</span>
-            <span class="pill" data-lang="en">Operations</span>
-            <span class="pill" data-lang="pt">Segurança</span>
-            <span class="pill" data-lang="en">Security</span>
-          </div>
+          <ul class="list" data-lang="pt">
+            <li>Comunicação clara e foco em experiência do usuário</li>
+            <li>Organização, documentação e padronização</li>
+            <li>Postura de ownership e responsabilidade desde cedo</li>
+            <li>Boa base para evoluir em Cloud Support (AWS/Azure)</li>
+          </ul>
+          <ul class="list" data-lang="en">
+            <li>Clear communication and user experience focus</li>
+            <li>Organization, documentation, and standardization</li>
+            <li>Ownership mindset and early responsibility</li>
+            <li>Strong foundation to grow into Cloud Support (AWS/Azure)</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <!-- LANGUAGES + CONTACT -->
+    <!-- CONTACT -->
     <section class="wrap" id="contact">
       <div class="sectionHead reveal">
         <h2 data-lang="pt">Contato</h2>
         <h2 data-lang="en">Contact</h2>
 
-        <p data-lang="pt">Vamos conversar sobre oportunidades e projetos.</p>
-        <p data-lang="en">Let’s talk about opportunities and projects.</p>
+        <p data-lang="pt">Vamos conversar sobre oportunidades.</p>
+        <p data-lang="en">Let’s talk about opportunities.</p>
       </div>
 
       <div class="twoCols">
@@ -931,20 +867,13 @@
 
           <p>
             📧 <a href="mailto:luigigbertoldi@gmail.com">luigigbertoldi@gmail.com</a><br>
-            💻 <a href="https://github.com/luigigbertoldi" target="_blank" rel="noopener">github.com/luigigbertoldi</a>
+            💻 <a href="https://github.com/luigibertoldi" target="_blank" rel="noopener">github.com/luigibertoldi</a>
           </p>
-
-          <div class="meta">
-            <span>✅ PT/IT</span>
-            <span>🌍 EN</span>
-            <span data-lang="pt">🚀 Cloud Support</span>
-            <span data-lang="en">🚀 Cloud Support</span>
-          </div>
 
           <div class="heroCtas" style="margin-top:16px">
             <a class="btn btnPrimary" href="mailto:luigigbertoldi@gmail.com" data-lang="pt">📩 Enviar e-mail</a>
             <a class="btn btnPrimary" href="mailto:luigigbertoldi@gmail.com" data-lang="en">📩 Send email</a>
-            <a class="btn btnGhost" href="https://github.com/luigigbertoldi" target="_blank" rel="noopener">💻 GitHub</a>
+            <a class="btn btnGhost" href="https://github.com/luigibertoldi" target="_blank" rel="noopener">💻 GitHub</a>
           </div>
         </div>
       </div>
@@ -989,8 +918,20 @@
 
     // i18n labels (nav)
     const labels = {
-      pt: { nav_about:'Sobre', nav_experience:'Experiência', nav_projects:'Projetos', nav_skills:'Skills', nav_contact:'Contato' },
-      en: { nav_about:'About', nav_experience:'Experience', nav_projects:'Projects', nav_skills:'Skills', nav_contact:'Contact' }
+      pt: {
+        nav_about:'Sobre',
+        nav_experience:'Experiência',
+        nav_projects:'Projetos',
+        nav_skills:'Competências',
+        nav_contact:'Contato'
+      },
+      en: {
+        nav_about:'About',
+        nav_experience:'Experience',
+        nav_projects:'Projects',
+        nav_skills:'Skills',
+        nav_contact:'Contact'
+      }
     };
 
     const langBtn = document.getElementById('langBtn');
@@ -1002,7 +943,7 @@
 
       const next = (lang === 'pt') ? 'EN' : 'PT';
       langBtn.textContent = next;
-      if (langBtn2) langBtn2.textContent = next;
+      langBtn2.textContent = next;
 
       localStorage.setItem('siteLang', lang);
 
@@ -1036,29 +977,27 @@
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
 
-    let w, h, dpr;
+    let dpr = 1;
     function resize(){
       dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = canvas.width = Math.floor(window.innerWidth * dpr);
-      h = canvas.height = Math.floor(window.innerHeight * dpr);
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
       canvas.style.width = window.innerWidth + 'px';
       canvas.style.height = window.innerHeight + 'px';
-      ctx.setTransform(1,0,0,1,0,0);
-      ctx.scale(dpr, dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
     }
     resize();
     window.addEventListener('resize', resize);
 
     const pts = [];
-    const P = 60; // keep light
+    const P = 56;
     function rnd(min,max){ return Math.random()*(max-min)+min; }
-
     for(let i=0;i<P;i++){
       pts.push({
         x:rnd(0, window.innerWidth),
         y:rnd(0, window.innerHeight),
-        vx:rnd(-0.25,0.25),
-        vy:rnd(-0.25,0.25),
+        vx:rnd(-0.22,0.22),
+        vy:rnd(-0.22,0.22),
         r:rnd(1.2,2.4)
       });
     }
@@ -1066,18 +1005,14 @@
     function step(){
       ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
 
-      // points
       for(const p of pts){
-        p.x += p.vx;
-        p.y += p.vy;
-
+        p.x += p.vx; p.y += p.vy;
         if(p.x < -20) p.x = window.innerWidth + 20;
         if(p.x > window.innerWidth + 20) p.x = -20;
         if(p.y < -20) p.y = window.innerHeight + 20;
         if(p.y > window.innerHeight + 20) p.y = -20;
       }
 
-      // lines
       for(let i=0;i<pts.length;i++){
         for(let j=i+1;j<pts.length;j++){
           const a = pts[i], b = pts[j];
@@ -1096,7 +1031,6 @@
         }
       }
 
-      // dots
       for(const p of pts){
         ctx.fillStyle = 'rgba(102,220,255,0.55)';
         ctx.beginPath();
