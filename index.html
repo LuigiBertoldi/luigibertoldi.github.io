@@ -2,15 +2,26 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Luigi Giovanni Bertoldi — IT Infrastructure & Cloud Support. N1/N2, Windows, Linux, Active Directory, Networking, Security." />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
   <meta name="theme-color" content="#040716" />
+
   <title>Luigi Giovanni Bertoldi | IT Infrastructure & Cloud Support</title>
+  <meta name="description" content="Luigi Giovanni Bertoldi — IT Infrastructure & Cloud Support (N1/N2). Windows, Linux, Active Directory, Networking, Security. Blumenau/SC — Remote/On-site." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Luigi Giovanni Bertoldi | IT Infrastructure & Cloud Support" />
+  <meta property="og:description" content="IT Infrastructure & Cloud Support (N1/N2). Windows, Linux, Active Directory, Networking, Security." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://luigibertoldi.github.io/" />
+
+  <!-- Icons -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><text y=%2252%22 font-size=%2250%22>💻</text></svg>">
 
   <!-- Premium rounded tech fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Sora:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root{
@@ -67,6 +78,24 @@
       pointer-events: none;
     }
 
+    .skip{
+      position:absolute;
+      left: -999px;
+      top: -999px;
+    }
+    .skip:focus{
+      left: 16px; top: 16px;
+      z-index: 10000;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(6,10,24,0.82);
+      border: 1px solid rgba(102,220,255,0.30);
+      color: var(--text);
+      text-decoration:none;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
     .progress{
       position:fixed; top:0; left:0;
       height:3px; width:0%;
@@ -113,7 +142,7 @@
       gap:10px;
       user-select:none;
       padding-left: 6px;
-      min-width: 160px;
+      min-width: 170px;
     }
     .dot{
       width:10px; height:10px; border-radius:999px;
@@ -260,6 +289,7 @@
       font-size: clamp(14px, 2vw, 18px);
       color: rgba(167,180,199,0.98);
       letter-spacing: 0.2px;
+      line-height: 1.55;
     }
     .heroRole b{ color: rgba(102,220,255,0.95); }
 
@@ -508,6 +538,7 @@
       margin: 0;
       color: #eaf2ff;
       line-height: 1.2;
+      word-break: break-word;
     }
     .repoDesc{
       margin-top: 8px;
@@ -545,7 +576,7 @@
     }
     .repoLink:hover{ text-decoration: underline; }
 
-    /* ---- CONTACT (fixed formatting) ---- */
+    /* ---- CONTACT (premium) ---- */
     .contactHead{
       justify-content:center;
       text-align:center;
@@ -557,9 +588,7 @@
       align-items:center;
       gap: 8px;
     }
-    .contactHead h2{
-      line-height: 1.15;
-    }
+    .contactHead h2{ line-height: 1.15; }
     .contactHead p{
       max-width: 60ch;
       text-align:center;
@@ -765,11 +794,13 @@
 </head>
 
 <body>
-  <canvas id="bgCanvas"></canvas>
-  <div class="progress" id="progress"></div>
+  <a class="skip" href="#main" data-i18n="skip"></a>
+
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+  <div class="progress" id="progress" aria-hidden="true"></div>
 
   <!-- Icons (SVG) -->
-  <svg width="0" height="0" style="position:absolute">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <symbol id="i-linkedin" viewBox="0 0 24 24">
       <path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.66H9.35V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.33-1.85 3.56 0 4.22 2.34 4.22 5.38v6.36ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM3.56 20.45h3.56V9H3.56v11.45Z"/>
     </symbol>
@@ -798,6 +829,7 @@
           <a href="#experience" data-i18n="nav_experience"></a>
           <a href="#projects" data-i18n="nav_projects"></a>
           <a href="#skills" data-i18n="nav_skills"></a>
+          <a href="#languages" data-i18n="nav_languages"></a>
           <a href="#contact" data-i18n="nav_contact"></a>
         </nav>
 
@@ -811,6 +843,7 @@
       <a href="#experience" data-i18n="nav_experience"></a>
       <a href="#projects" data-i18n="nav_projects"></a>
       <a href="#skills" data-i18n="nav_skills"></a>
+      <a href="#languages" data-i18n="nav_languages"></a>
       <a href="#contact" data-i18n="nav_contact"></a>
       <div class="row">
         <button class="langBtn" id="langBtn2" aria-label="Switch language"></button>
@@ -829,7 +862,9 @@
       <h1>Luigi Giovanni Bertoldi</h1>
 
       <p class="heroRole">
-        <span data-i18n="hero_role_1"></span> • <b data-i18n="hero_role_2"></b> • <span data-i18n="hero_role_3"></span>
+        <b data-i18n="hero_role_main"></b>
+        <span data-i18n="hero_role_sep"></span>
+        <span data-i18n="hero_role_stack"></span>
       </p>
 
       <div class="heroCtas">
@@ -855,7 +890,7 @@
     </div>
   </header>
 
-  <main class="container">
+  <main class="container" id="main">
     <!-- ABOUT -->
     <section class="wrap" id="about">
       <div class="sectionHead reveal">
@@ -910,7 +945,7 @@
           <h3 data-i18n="exp_job_title"></h3>
 
           <div class="meta">
-            <span>📍 Blumenau/SC</span>
+            <span data-i18n="exp_location"></span>
             <span data-i18n="exp_job_tag"></span>
             <span data-i18n="exp_job_time"></span>
           </div>
@@ -976,6 +1011,7 @@
             <span class="pill">BitLocker</span>
             <span class="pill" data-i18n="pill_printers"></span>
             <span class="pill" data-i18n="pill_support"></span>
+            <span class="pill" data-i18n="pill_security"></span>
           </div>
 
           <div class="meta" style="margin-top:14px">
@@ -988,6 +1024,37 @@
         <div class="card reveal">
           <h3 data-i18n="skills_diff_title"></h3>
           <ul class="list" id="skillsList"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- LANGUAGES -->
+    <section class="wrap" id="languages">
+      <div class="sectionHead reveal">
+        <h2 data-i18n="lang_title"></h2>
+        <p data-i18n="lang_sub"></p>
+      </div>
+
+      <div class="grid">
+        <div class="card reveal">
+          <h3 data-i18n="lang_card_title"></h3>
+          <div class="meta">
+            <span data-i18n="lang_pt"></span>
+            <span data-i18n="lang_it"></span>
+            <span data-i18n="lang_en"></span>
+            <span data-i18n="lang_es"></span>
+          </div>
+          <p style="margin-top:12px" data-i18n="lang_card_body"></p>
+        </div>
+
+        <div class="card reveal">
+          <h3 data-i18n="availability_title"></h3>
+          <p data-i18n="availability_body"></p>
+          <div class="pillRow" style="margin-top:14px">
+            <span class="pill" data-i18n="availability_pill_1"></span>
+            <span class="pill" data-i18n="availability_pill_2"></span>
+            <span class="pill" data-i18n="availability_pill_3"></span>
+          </div>
         </div>
       </div>
     </section>
@@ -1030,7 +1097,7 @@
 
             <label class="field">
               <span class="label" data-i18n="contact_msg_label"></span>
-              <textarea class="textarea" name="message" rows="6" placeholder="Escreva sua mensagem..." required></textarea>
+              <textarea class="textarea" name="message" rows="6" data-i18n-placeholder="contact_msg_ph" placeholder="Escreva sua mensagem..." required></textarea>
             </label>
 
             <button type="submit" class="sendBtn">
@@ -1064,7 +1131,6 @@
         </div>
       </div>
     </section>
-
   </main>
 
   <footer>
@@ -1111,16 +1177,19 @@
     // ---------- i18n ----------
     const I18N = {
       pt: {
+        skip: "Pular para o conteúdo",
+
         nav_about: "Sobre",
         nav_experience: "Experiência",
         nav_projects: "Projetos",
         nav_skills: "Competências",
+        nav_languages: "Idiomas",
         nav_contact: "Contato",
 
         hero_tag: "Disponível • Remoto/Presencial",
-        hero_role_1: "Infraestrutura de TI",
-        hero_role_2: "Cloud Support",
-        hero_role_3: "Analista de Sistemas",
+        hero_role_main: "IT Infrastructure & Cloud Support (N1/N2)",
+        hero_role_sep: " — ",
+        hero_role_stack: "Windows • Linux • Active Directory • Redes • Segurança",
         cta_contact: "Contato",
         cta_github: "GitHub",
         cta_linkedin: "LinkedIn",
@@ -1129,7 +1198,7 @@
         about_title: "Sobre",
         about_sub: "Infraestrutura e suporte com foco em estabilidade, segurança e excelência no atendimento.",
         about_summary_title: "Resumo profissional",
-        about_summary_body: "Profissional de TI com experiência em suporte N1/N2 e infraestrutura. Atuação com Windows e Linux, Active Directory, troubleshooting de redes e boas práticas de segurança. Perfil analítico, organizado e orientado à resolução de problemas, com forte foco em estabilidade operacional e experiência do usuário.",
+        about_summary_body: "Profissional de TI com experiência em suporte N1/N2 e infraestrutura em ambiente corporativo. Atuação com Windows e Linux, Active Directory, troubleshooting de redes e boas práticas de segurança. Perfil analítico, organizado e orientado à resolução de problemas, com foco em estabilidade operacional e experiência do usuário.",
 
         hl_1_v: "N1/N2",
         hl_2_v: "Infra & Redes",
@@ -1144,6 +1213,7 @@
         exp_title: "Experiência",
         exp_sub: "Rotina corporativa com foco em operação, estabilidade e qualidade no atendimento.",
         exp_job_title: "SIGAMAQ Industrial — Analista de Suporte de TI (N1/N2)",
+        exp_location: "📍 Blumenau/SC",
         exp_job_tag: "🧩 Infra & Suporte",
         exp_job_time: "📆 Jul/2025 — Atual",
         exp_list: [
@@ -1162,12 +1232,15 @@
         proj_title: "Projetos (GitHub)",
         proj_sub: "Repositórios em destaque, carregados automaticamente do GitHub.",
         proj_more: "Ver mais no GitHub",
+        repo_open: "Abrir repositório",
+        repo_updated: "Atualizado",
 
         skills_title: "Competências",
         skills_sub: "Competências técnicas aplicadas ao dia a dia em infraestrutura e suporte.",
         skills_tech_title: "Stack técnico",
         pill_printers: "Impressoras",
         pill_support: "Suporte N1/N2",
+        pill_security: "Boas práticas de segurança",
         skills_meta_1: "🛠️ Windows & Linux",
         skills_meta_2: "🔐 Active Directory",
         skills_meta_3: "🌐 Redes & Segurança",
@@ -1176,14 +1249,30 @@
           "Comunicação clara, empatia e foco em experiência do usuário",
           "Organização, documentação e padronização de processos",
           "Ownership (responsabilidade) e maturidade profissional desde cedo",
-          "Boa base para evoluir em Cloud Support e ambientes corporativos"
+          "Análise, priorização e acompanhamento de incidentes com foco em causa raiz"
         ],
+
+        lang_title: "Idiomas",
+        lang_sub: "Comunicação profissional em ambientes corporativos.",
+        lang_card_title: "Níveis",
+        lang_pt: "🇧🇷 Português — Fluente",
+        lang_it: "🇮🇹 Italiano — Fluente",
+        lang_en: "🇺🇸 Inglês — Intermediário",
+        lang_es: "🇪🇸 Espanhol — Básico",
+        lang_card_body: "Experiência com atendimento e comunicação clara, adaptando o nível técnico ao perfil do usuário.",
+
+        availability_title: "Disponibilidade",
+        availability_body: "Aberto a oportunidades em Infraestrutura, Cloud Support e Suporte N2.",
+        availability_pill_1: "Remoto",
+        availability_pill_2: "Presencial",
+        availability_pill_3: "Full-time",
 
         contact_title: "Contato",
         contact_sub: "Quer trabalhar comigo? Vamos conversar.",
         contact_badge: "Vamos conversar",
         contact_email_label: "Seu e-mail",
         contact_msg_label: "Sua mensagem",
+        contact_msg_ph: "Escreva sua mensagem...",
         contact_send: "Enviar mensagem",
         contact_hint: "O envio abre seu aplicativo de e-mail com a mensagem pronta.",
         contact_info_title: "Contato direto",
@@ -1200,16 +1289,19 @@
       },
 
       en: {
+        skip: "Skip to content",
+
         nav_about: "About",
         nav_experience: "Experience",
         nav_projects: "Projects",
         nav_skills: "Skills",
+        nav_languages: "Languages",
         nav_contact: "Contact",
 
         hero_tag: "Available • Remote/On-site",
-        hero_role_1: "IT Infrastructure",
-        hero_role_2: "Cloud Support",
-        hero_role_3: "Systems Analyst",
+        hero_role_main: "IT Infrastructure & Cloud Support (N1/N2)",
+        hero_role_sep: " — ",
+        hero_role_stack: "Windows • Linux • Active Directory • Networking • Security",
         cta_contact: "Contact",
         cta_github: "GitHub",
         cta_linkedin: "LinkedIn",
@@ -1233,6 +1325,7 @@
         exp_title: "Experience",
         exp_sub: "Corporate operations focused on stability and high-quality support.",
         exp_job_title: "SIGAMAQ Industrial — IT Support Analyst (N1/N2)",
+        exp_location: "📍 Blumenau/SC",
         exp_job_tag: "🧩 Infra & Support",
         exp_job_time: "📆 Jul/2025 — Present",
         exp_list: [
@@ -1251,12 +1344,15 @@
         proj_title: "Projects (GitHub)",
         proj_sub: "Featured repositories loaded automatically from GitHub.",
         proj_more: "See more on GitHub",
+        repo_open: "Open repository",
+        repo_updated: "Updated",
 
         skills_title: "Skills",
         skills_sub: "Hands-on skills used daily in infrastructure and support.",
         skills_tech_title: "Technical stack",
         pill_printers: "Printers",
         pill_support: "N1/N2 Support",
+        pill_security: "Security best practices",
         skills_meta_1: "🛠️ Windows & Linux",
         skills_meta_2: "🔐 Active Directory",
         skills_meta_3: "🌐 Networking & Security",
@@ -1265,14 +1361,30 @@
           "Clear communication, empathy, and user experience focus",
           "Organization, documentation, and process standardization",
           "Ownership mindset and early responsibility",
-          "Strong foundation to grow in Cloud Support and corporate environments"
+          "Incident triage, prioritization, and root-cause thinking"
         ],
+
+        lang_title: "Languages",
+        lang_sub: "Professional communication in corporate environments.",
+        lang_card_title: "Levels",
+        lang_pt: "🇧🇷 Portuguese — Fluent",
+        lang_it: "🇮🇹 Italian — Fluent",
+        lang_en: "🇺🇸 English — Intermediate",
+        lang_es: "🇪🇸 Spanish — Basic",
+        lang_card_body: "Experienced in support communication, adapting technical depth to the audience.",
+
+        availability_title: "Availability",
+        availability_body: "Open to opportunities in Infrastructure, Cloud Support, and N2 Support.",
+        availability_pill_1: "Remote",
+        availability_pill_2: "On-site",
+        availability_pill_3: "Full-time",
 
         contact_title: "Contact",
         contact_sub: "Want to work with me? Let’s talk.",
         contact_badge: "Let’s talk",
         contact_email_label: "Your email",
         contact_msg_label: "Your message",
+        contact_msg_ph: "Write your message...",
         contact_send: "Send message",
         contact_hint: "This will open your email app with a ready-to-send message.",
         contact_info_title: "Direct contact",
@@ -1300,6 +1412,12 @@
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
         if (I18N[lang][key] !== undefined) el.textContent = I18N[lang][key];
+      });
+
+      // Placeholders translated
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        const key = el.getAttribute("data-i18n-placeholder");
+        if (I18N[lang][key] !== undefined) el.setAttribute("placeholder", I18N[lang][key]);
       });
 
       const expList = document.getElementById("expList");
@@ -1334,6 +1452,10 @@
     async function loadRepos(){
       const grid = document.getElementById("repoGrid");
       const username = "luigibertoldi";
+      const lang = localStorage.getItem("siteLang") || "pt";
+      const openLabel = I18N[lang].repo_open;
+      const updatedLabel = I18N[lang].repo_updated;
+
       try{
         const res = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`);
         if(!res.ok) throw new Error("GitHub API error");
@@ -1348,6 +1470,7 @@
         filtered.forEach(r => {
           const card = document.createElement("div");
           card.className = "card reveal";
+          const updated = new Date(r.updated_at).toLocaleDateString();
           card.innerHTML = `
             <div class="repoTop">
               <div>
@@ -1358,10 +1481,10 @@
             <div class="repoDesc">${escapeHtml(r.description || "")}</div>
             <div class="repoMeta">
               <span><svg class="ic"><use href="#i-star"></use></svg> ${r.stargazers_count}</span>
-              <span>🕒 ${new Date(r.updated_at).toLocaleDateString()}</span>
+              <span>🕒 ${escapeHtml(updatedLabel)}: ${updated}</span>
             </div>
             <a class="repoLink" href="${r.html_url}" target="_blank" rel="noopener">
-              <span>Open repo</span>
+              <span>${escapeHtml(openLabel)}</span>
               <svg class="ic"><use href="#i-arrow"></use></svg>
             </a>
           `;
@@ -1370,14 +1493,16 @@
         });
 
         if(filtered.length === 0){
-          grid.innerHTML = `<div class="card reveal"><h3>GitHub</h3><p>Repositórios em destaque serão exibidos aqui.</p></div>`;
+          grid.innerHTML = `<div class="card reveal"><h3>GitHub</h3><p>${lang==="en" ? "Featured repositories will appear here." : "Repositórios em destaque serão exibidos aqui."}</p></div>`;
           io.observe(grid.firstElementChild);
         }
       } catch(e){
         grid.innerHTML = `
           <div class="card reveal">
             <h3>GitHub</h3>
-            <p>Não foi possível carregar os repositórios agora. Você ainda pode acessar seu GitHub pelo link.</p>
+            <p>${(localStorage.getItem("siteLang")||"pt")==="en"
+              ? "Could not load repositories right now. You can still access GitHub via the link."
+              : "Não foi possível carregar os repositórios agora. Você ainda pode acessar seu GitHub pelo link."}</p>
             <a class="repoLink" href="https://github.com/luigibertoldi" target="_blank" rel="noopener">
               <span>github.com/luigibertoldi</span>
               <svg class="ic"><use href="#i-arrow"></use></svg>
@@ -1392,7 +1517,15 @@
         "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"
       }[m]));
     }
+
     loadRepos();
+
+    // Recarrega labels do GitHub quando troca idioma
+    const _oldSetLang = setLang;
+    setLang = function(lang){
+      _oldSetLang(lang);
+      loadRepos();
+    };
 
     // ---------- Contact form (mailto) ----------
     const contactForm = document.getElementById("contactForm");
